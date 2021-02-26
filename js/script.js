@@ -70,7 +70,6 @@ function WhatsApp() {
 					informasi = $('#whatsapp .informasi').val();
 				$(this).attr('href', url_wa + '?phone=62 ' + tujuan + '&text=' +
                  
-               ' %2AOrder Dari%2A ' + via_url + '%0A' +
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
                ' %0A%2ABayar Via%2A: ' + bayar + '%0A' +
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
@@ -81,7 +80,8 @@ function WhatsApp() {
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A%0A' +
                ' %0A%2AWarna Pilihan%2A: ' + warna +
                ' %0A%2AModel Pilihan%2A: ' + tali + '%0A' +
-               ' %0A%2AJasa Kirim%2A: ' + informasi);
+               ' %0A%2AJasa Kirim%2A: ' + informasi + '%0A' +
+               ' %2AOrder Lewat%2A ' + via_url);
 				var w = 960,
 					h = 540,
 					left = Number((screen.width / 2) - (w / 2)),
