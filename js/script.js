@@ -81,6 +81,7 @@ function WhatsApp() {
                ' %0A%2AWarna Pilihan%2A: ' + warna +
                ' %0A%2AModel Pilihan%2A: ' + tali + '%0A' +
                ' %0A%2AJasa Kirim%2A: ' + informasi + '%0A' +
+               '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
                ' %2AOrder Lewat%2A ' + via_url);
 				var w = 960,
 					h = 540,
