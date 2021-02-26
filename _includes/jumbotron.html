@@ -1,0 +1,75 @@
+<style type="text/css">
+.jumbotron {
+  background: #00000082 url("/images/intro-bg.jpg") no-repeat center center;
+  background-size: cover;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  color: #fff;
+  height: 600px;
+  margin-bottom: 50px;
+  background-blend-mode: overlay;
+}
+
+.fa {
+  vertical-align: middle;
+  padding-left: 1%;
+}
+.fa-facebook-official {
+  padding-right: 9%;
+  cursor: pointer;
+}
+.btn-primary {
+  font-size: 16px;
+}
+
+.aligned-center {
+    text-align: center;
+    padding-top: 150px;
+}
+
+.circle-background {
+  background: #5bc0de;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100px;
+  vertical-align: middle;
+}
+
+.shadow-effect {
+  webkit-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.61);
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.61);
+}
+.wrapper-head {}
+</style>
+<div class="jumbotron">
+  <div class="container">
+    <div class="wrapper-head">
+      <div class="container">
+        <header class="masthead clearfix">
+          <a href="{{ site.baseurl }}/" class="site-avatar"><img src="{{ site.avatar }}" /></a>
+
+          <div class="site-info">
+            <h1 class="site-name"><a href="{{ site.baseurl }}/">{{ site.name }}</a></h1>
+            <p class="site-description">{{ site.description }}</p>
+          </div>
+
+          <nav>
+            <a href="{{ site.baseurl }}/payment">
+        <ion-chip color="default"><ion-label color="light">Payment</ion-label>
+        </ion-chip></a>
+            <a href="{{ site.baseurl }}/about">
+        <ion-chip color="default"><ion-label color="light">About</ion-label>
+        </ion-chip></a>
+          </nav>
+        </header>
+      </div>
+    </div>
+    <h1 class="aligned-center">Looking for Embroidery Stuff?</h1>
+<center><a class="page-scroll" href="#main">Scroll Down</a></center>
+</div>
+
+</div>
+<script type="text/javascript" src="{{ site.baseurl }}/js/landing-page.js"></script>

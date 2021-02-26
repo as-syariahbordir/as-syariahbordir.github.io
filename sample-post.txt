@@ -1,0 +1,24 @@
+---
+layout: post
+title: 
+harga: 
+subtitle: 
+image: 
+img-1: 
+img-2: 
+img-3: 
+img-4: 
+warna-1: Hitam
+warna-2: Navi
+warna-3: Marun
+warna-4: Mustard
+warna-5: Abu
+---
+
+
+<b>Detail Produk:</b>
+<ul>
+<li>Bahan Kain : 100% Katun</li>
+<li>Lapisan : 3 Lapisan</li>
+<li>Bordir : Manual ( JUKI )</li>
+</ul>

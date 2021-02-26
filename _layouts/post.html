@@ -1,0 +1,81 @@
+---
+layout: default
+---
+<article class="post-page">
+<div class="productPhoto">
+<img src="{{ page.image }}"/>
+<div class="productPhotoWrapper gallery">
+<img src="{{ page.img-1 }}"/>
+<img src="{{ page.img-2 }}"/>
+<img src="{{ page.img-3 }}"/>
+<img src="{{ page.img-4 }}"/>
+</div>
+</div>
+
+<div class="productDetail" data-stock="on">
+  <h1>{{ page.title }}</h1>
+
+<span class="productPrice" data-discount-percent="0" itemprop="price" data-selected="18500"><b>Rp. {{ page.harga }}</b></span>
+
+<ul class="productOption" id="Warna">
+<small>Warna Tersedia</small><p/>
+<li>{{ page.warna-1 }}</li>
+<li>{{ page.warna-2 }}</li>
+<li>{{ page.warna-3 }}</li>
+<li>{{ page.warna-4 }}</li>
+<li>{{ page.warna-5 }}</li>
+</ul>
+<ul class="productOption" id="Model">
+<small>model</small><p/>
+<li>{{ page.model-1 }}</li>
+<li>{{ page.model-2 }}</li>
+<li>{{ page.model-3 }}</li>
+</ul>
+<div class="productCheckout">
+<div class="productQty">
+<span class="min">Stok:</span><span class="plus">{{ page.stok }}</span>
+</div>
+<div class="productOrder">
+<a class="tombol-wa" data-title="<i class='icon ion-logo-whatsapp'></i><b>Beli</b> via WhatsApp!" data-width="550" href="#order">
+<i class="icon ion-logo-whatsapp"></i>
+<b>Beli</b> Sekarang
+                        </a>
+</div>
+</div>
+<div class="productTab">
+<div class="tabNav">
+<ul>
+<li class="selected" data-tab="tabDescription"><b>Deskripsi</b></li>
+<li data-tab="tabShare"><small></small></li>
+</ul>
+</div>
+<div class="tabContent selected" id="tabDescription"><h2 style="font-size: 18px;font-weight: normal;">{{ page.subtitle }}</h2><div class="detailDescription">
+    {{ content }}
+<br>
+<b>Disclaimer:</b> <small>Persamaan warna foto katalog dengan produk asli mencapai 98%. Efek cahaya, kecerahan, kerapatan, dan resolusi layar memungkinkan terjadinya distorsi warna.</small>
+</div></div>
+<div class="tabContent" id="tabShare">
+<div class="shareWrapper">
+</div>
+</div>
+</div>
+
+  <div class="entry">
+  </div>
+
+  <ion-label>
+    Made on {{ page.date | date: "%B %e, %Y" }}
+  </ion-label>
+  {% include disqus.html %}
+<!-- Post Navigation -->
+<div class="pagination">
+  {% if page.next.url %}<a class="back" href="{{ page.next.url | prepend: site.baseurl }}"><ion-chip outline color="primary">
+<ion-icon name="chevron-back-circle-outline"></ion-icon>
+          <ion-label>Previous</ion-label>
+        </ion-chip></a>{% endif %}
+  {% if page.previous.url %}<a class="next" href="{{ page.previous.url | prepend: site.baseurl }}"><ion-chip outline color="primary">
+          <ion-label>Next</ion-label>
+<ion-icon name="chevron-forward-circle-outline"></ion-icon>
+        </ion-chip></a>{% endif %}
+</div>
+</article>
