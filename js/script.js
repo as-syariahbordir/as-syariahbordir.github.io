@@ -1,5 +1,5 @@
 //<![CDATA[
-$('#noAdmin').val('0813-8626-7897');// Nomor Tujuan
+$('#noAdmin').val('0811-3951-666');// Nomor Tujuan
 $('.whatsapp-btn').click(function () {
 $('#whatsapp').toggleClass('toggle');});
 // Fungsi Tombol Whatsapp Kirim!
