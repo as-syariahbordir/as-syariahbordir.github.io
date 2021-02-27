@@ -76,7 +76,7 @@ function WhatsApp() {
                ' %0A%2ANama%2A: ' + nama + 
                ' %0A%2ANo. WhatsApp%2A: ' + nomor +
                ' %0A%2AAlamat%2A: ' + alamat + 
-               ' %0A%2Ajumlah%2A: ' + jumlah + '%0A' +
+               ' %0A%2AJumlah%2A: ' + jumlah + '%0A' +
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A%0A' +
                ' %0A%2AWarna Pilihan%2A: ' + warna +
                ' %0A%2AModel Pilihan%2A: ' + tali + '%0A' +
