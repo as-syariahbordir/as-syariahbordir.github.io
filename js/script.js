@@ -20,18 +20,18 @@ function WhatsApp() {
 				ph = $('#whatsapp .alamat').attr('placeholder');
 				alert('Silahkan tulis ' + ph);
 				$('#whatsapp .alamat').focus();
-                		return false;
-            		} else if ($('#whatsapp .nomor').val() == '') { // Cek nomor
-                		ph = $('#whatsapp .nomor').attr('placeholder');
-                		alert('Silahkan tulis ' + ph);
-                		$('#whatsapp .nomor').focus();
+                return false;
+            } else if ($('#whatsapp .nomor').val() == '') { // Cek nomor
+                ph = $('#whatsapp .nomor').attr('placeholder');
+                alert('Silahkan tulis ' + ph);
+                $('#whatsapp .nomor').focus();
 				return false;
-            		} else if ($('#whatsapp .qty').val() == '') { // Cek jumlah
-                		ph = $('#whatsapp .qty').attr('placeholder');
-                		alert('Silahkan tulis ' + ph);
-                		$('#whatsapp .qty').focus();
+            } else if ($('#whatsapp .qty').val() == '') { // Cek jumlah
+                ph = $('#whatsapp .qty').attr('placeholder');
+                alert('Silahkan tulis ' + ph);
+                $('#whatsapp .qty').focus();
 				return false;
-            		} else if ($('#whatsapp .bayar').val() == '') { // Cek bayar
+            } else if ($('#whatsapp .bayar').val() == '') { // Cek bayar
 				ph = $('#whatsapp .bayar').attr('placeholder');
 				alert('Silahkan pilih ' + ph);
 				$('#whatsapp .bayar').focus();
@@ -61,13 +61,13 @@ function WhatsApp() {
 				var tujuan = $('#whatsapp .tujuan').val(),
 					via_url = location.href,
                     bayar =$('#whatsapp .bayar').val(),
-		    nama = $('#whatsapp .nama').val(),
-		    alamat = $('#whatsapp .alamat').val(),
-		    nomor = $('#whatsapp .nomor').val(),
-		    qty = $('#whatsapp .qty').val(),
+		            nama = $('#whatsapp .nama').val(),
+		            alamat = $('#whatsapp .alamat').val(),
+		            nomor = $('#whatsapp .nomor').val(),
+		            qty = $('#whatsapp .qty').val(),
                     warna = $('#whatsapp .warna').val(),
                     tali = $('#whatsapp .tali').val(),
-		    informasi = $('#whatsapp .informasi').val();
+		            informasi = $('#whatsapp .informasi').val();
 				$(this).attr('href', url_wa + '?phone=62 ' + tujuan + '&text=' +
                  
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +

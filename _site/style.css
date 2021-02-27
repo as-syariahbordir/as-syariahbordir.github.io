@@ -280,7 +280,7 @@ small {
 }
 
 .posts {
-  max-width: 900px;
+  max-width: 940px;
   display: flex;
   flex-wrap: wrap;
   margin: auto;

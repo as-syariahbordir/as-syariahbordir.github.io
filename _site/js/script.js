@@ -19,17 +19,17 @@ function WhatsApp() {
 			} else if ($('#whatsapp .alamat').val() == '') { // Cek alamat
 				ph = $('#whatsapp .alamat').attr('placeholder');
 				alert('Silahkan tulis ' + ph);
-				$('#whatsapp .website').focus();
+				$('#whatsapp .alamat').focus();
                 return false;
             } else if ($('#whatsapp .nomor').val() == '') { // Cek nomor
                 ph = $('#whatsapp .nomor').attr('placeholder');
                 alert('Silahkan tulis ' + ph);
                 $('#whatsapp .nomor').focus();
 				return false;
-            } else if ($('#whatsapp .kota').val() == '') { // Cek kota
-                ph = $('#whatsapp .kota').attr('placeholder');
+            } else if ($('#whatsapp .qty').val() == '') { // Cek jumlah
+                ph = $('#whatsapp .qty').attr('placeholder');
                 alert('Silahkan tulis ' + ph);
-                $('#whatsapp .alamat').focus();
+                $('#whatsapp .qty').focus();
 				return false;
             } else if ($('#whatsapp .bayar').val() == '') { // Cek bayar
 				ph = $('#whatsapp .bayar').attr('placeholder');
@@ -61,27 +61,28 @@ function WhatsApp() {
 				var tujuan = $('#whatsapp .tujuan').val(),
 					via_url = location.href,
                     bayar =$('#whatsapp .bayar').val(),
-					nama = $('#whatsapp .nama').val(),
-					alamat = $('#whatsapp .alamat').val(),
-					nomor = $('#whatsapp .nomor').val(),
-					kota = $('#whatsapp .kota').val(),
+		            nama = $('#whatsapp .nama').val(),
+		            alamat = $('#whatsapp .alamat').val(),
+		            nomor = $('#whatsapp .nomor').val(),
+		            qty = $('#whatsapp .qty').val(),
                     warna = $('#whatsapp .warna').val(),
                     tali = $('#whatsapp .tali').val(),
-					informasi = $('#whatsapp .informasi').val();
+		            informasi = $('#whatsapp .informasi').val();
 				$(this).attr('href', url_wa + '?phone=62 ' + tujuan + '&text=' +
                  
-               ' %2AOrder Dari%2A ' + via_url + '%0A' +
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
                ' %0A%2ABayar Via%2A: ' + bayar + '%0A' +
                '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
                ' %0A%2ANama%2A: ' + nama + 
                ' %0A%2ANo. WhatsApp%2A: ' + nomor +
                ' %0A%2AAlamat%2A: ' + alamat + 
-               ' %0A%2AKota%2A: ' + kota + '%0A' +
-               '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A%0A' +
+               ' %0A%2AQty%2A: ' + qty + '%0A' +
+               '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
                ' %0A%2AWarna Pilihan%2A: ' + warna +
                ' %0A%2AModel Pilihan%2A: ' + tali + '%0A' +
-               ' %0A%2AJasa Kirim%2A: ' + informasi);
+               ' %0A%2AJasa Kirim%2A: ' + informasi + '%0A' +
+               '_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _%0A' +
+               ' %2AOrder Lewat%2A ' + via_url);
 				var w = 960,
 					h = 540,
 					left = Number((screen.width / 2) - (w / 2)),

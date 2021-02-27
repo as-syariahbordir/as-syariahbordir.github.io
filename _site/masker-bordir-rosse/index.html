@@ -30,6 +30,17 @@ Bordir : Manual ( JUKI )
     <meta property="og:title" content="Masker Bordir" />
     <meta property="twitter:title" content="Masker Bordir" />
     
+
+<meta name="theme-color" content="#eb445a" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="As-Syariah Bordir" />
+<meta name="msapplication-TileImage" content="/fav/ms-icon-144x144.png" />
+<meta name="msapplication-TileColor" content="#eb445a" />
+<meta class="theme-color" content="#eb445a" name="apple-mobile-web-app-status-bar-style" />
+<meta class="theme-color" content="#eb445a" name="msapplication-navbutton-color" />
+<meta class="theme-color" content="#eb445a" name="theme-color" />
+
     
     <link rel="apple-touch-icon" sizes="57x57" href="/fav/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/fav/apple-icon-60x60.png">
@@ -64,6 +75,7 @@ Bordir : Manual ( JUKI )
 
   <body>
   <ion-app>
+    
 <ion-toolbar color="danger">
     
         <ion-buttons slot="start"><a href="/">
@@ -75,6 +87,8 @@ Bordir : Manual ( JUKI )
     
       </ion-toolbar>
   </ion-header>
+
+    
       <ion-content>
     
     <div class="wrapper-masthead">
@@ -205,9 +219,9 @@ Bordir : Manual ( JUKI )
         <footer class="footer">
           
 
-<a href="https://www.facebook.com/As-Syariah Bordir"><i class="svg-icon facebook"></i></a>
+<a href="https://www.facebook.com/as.syariahputra"><i class="svg-icon facebook"></i></a>
 
-<a href="https://github.com/As-Syariah-Bordir"><i class="svg-icon github"></i></a>
+<a href="https://github.com/as-syariahbordir"><i class="svg-icon github"></i></a>
 <a href="https://instagram.com/bordirantasik"><i class="svg-icon instagram"></i></a>
 
 
@@ -296,7 +310,7 @@ Bordir : Manual ( JUKI )
 		position: absolute;
 		top:3px;
 		right:3px;
-		padding:7px 10px;
+		padding:10px 10px;
 		font-size: 20px;
 		text-decoration: none;
 		line-height: 1;
@@ -356,7 +370,7 @@ Bordir : Manual ( JUKI )
 <div class='wrap-contact100'>
 <h2 class='title-beli'>
   <span class='data-form-title'>
-<i class='fab fa-whatsapp'></i> Pesan via <b>WhatsApp</b></span>
+<i class='fab fa-whatsapp'></i> Order Produk Masker Bordir Rosse via <b>WhatsApp</b></span>
 </h2>
 
 <!--=== HTML Form WhatsApp  ===-->
@@ -366,11 +380,11 @@ Bordir : Manual ( JUKI )
 <label class='formWhatsApp'>
 <i class='fa fa-angle-down'></i>
 <select class='bayar wajib' placeholder='Bayar'>
-<option hidden='hidden' selected='selected' value='default'>Pilih Pembayaran</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pilih Pembayaran</option>
 <!--=== HTML Data Pembayaran ===-->
 <optgroup label='Pilih Pembayaran'>
-<option value='BRI | 1234567'>Transfer Bank BRI</option>
-<option value='BTPN | 123456789'>Transfer Bank BTPN</option>
+<option value='BRI | 0100-01-09897550-6'>Transfer Bank BRI</option>
+<option value='BTPN | 90370011795'>Transfer Bank BTPN</option>
 <option value='Scan QRIS'>Scan QRIS</option>
 <option value='Dana'>NonTunai Dana</option>
 </optgroup>
@@ -396,19 +410,19 @@ Bordir : Manual ( JUKI )
 <label class='item'>
 <!--=== From Nomor WhatsApp ===-->
   <i class='fab fa-whatsapp'></i>
-<input class='nomor wajib' placeholder='WhatsApp..' type='number'/>
+<input class='nomor wajib' placeholder='No. WhatsApp..' type='number'/>
 </label>
 <label class='item'>
-<!--=== From Nama Kota ===-->
-  <i class='fa fa-university'></i>
-<input class='kota wajib' placeholder='Kota..' type='url'/>
+<!--=== From Jumlah Item ===-->
+  <i class='fa fa-cart-plus'></i>
+<input value='1' min='1' class='qty wajib' placeholder='Quatity' type='number'/>
 </label>
 </div>
 <!--=== HTML Opsi Form Produk ===-->
 <label class='formWhatsApp'>
   <i class='fa fa-angle-down'></i>
 <select class='warna wajib' placeholder='Warna'>
-<option hidden='hidden' selected='selected' value='default'>Pilih Warna</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pilih Warna</option>
 <optgroup label='Pilihan Warna'>
 <option value='Hitam'>Hitam</option>
 <option value='Abu'>Abu</option>
@@ -421,7 +435,7 @@ Bordir : Manual ( JUKI )
 <label class='formWhatsApp'>
   <i class='fa fa-angle-down'></i>
 <select class='tali wajib' placeholder='Model'>
-<option hidden='hidden' selected='selected' value='default'>Pilih Model</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pilih Model</option>
 <optgroup label='Pilihan Model'>
 <option value='Headloop'>Headloop</option>
 <option value='Earloop'>Earloop</option>
@@ -432,7 +446,7 @@ Bordir : Manual ( JUKI )
 <label class='formWhatsApp'>
   <i class='fa fa-angle-down'></i>
 <select class='informasi wajib' placeholder='Informasi'>
-<option hidden='hidden' selected='selected' value='default'>Pengiriman</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pengiriman</option>
 <optgroup label='Kirim Pakai?'>
 <option value='J%26T Express'>J&T Express</option>
 <option value='JNE Express'>JNE Express</option>
@@ -461,6 +475,21 @@ Bordir : Manual ( JUKI )
 </div>
 
     
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-53683781-2', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/masker-bordir-rosse/',
+		  'title': 'Masker Bordir'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
 
   </body>
 </html>

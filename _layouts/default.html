@@ -22,6 +22,7 @@
 
   <body>
   <ion-app>
+    {% if page.layout == "post" %}
 <ion-toolbar color="danger">
     {% if page.layout == "post" %}
         <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
@@ -40,6 +41,27 @@
 {% endif %}
       </ion-toolbar>
   </ion-header>
+{% endif %}
+    {% if page.layout == "page" %}
+<ion-toolbar color="danger">
+    {% if page.layout == "post" %}
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
+          <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
+          </ion-button></a>
+        </ion-buttons>
+{% endif %}
+    {% if page.layout == "default" %}
+        <ion-title><a href="{{ site.baseurl }}/">{{ site.name }}</a></ion-title>
+{% endif %}
+    {% if page.layout == "page" %}
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
+          <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
+          </ion-button></a>
+        </ion-buttons>
+{% endif %}
+      </ion-toolbar>
+  </ion-header>
+{% endif %}
       <ion-content>
     {% if page.layout == "post" %}
     <div class="wrapper-masthead">
@@ -221,7 +243,7 @@
 <label class='formWhatsApp'>
 <i class='fa fa-angle-down'></i>
 <select class='bayar wajib' placeholder='Bayar'>
-<option hidden='hidden' selected='selected' value='default'>Pilih Pembayaran</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pilih Pembayaran</option>
 <!--=== HTML Data Pembayaran ===-->
 <optgroup label='Pilih Pembayaran'>
 <option value='BRI | 0100-01-09897550-6'>Transfer Bank BRI</option>
@@ -251,19 +273,19 @@
 <label class='item'>
 <!--=== From Nomor WhatsApp ===-->
   <i class='fab fa-whatsapp'></i>
-<input class='nomor wajib' placeholder='WhatsApp..' type='number'/>
+<input class='nomor wajib' placeholder='No. WhatsApp..' type='number'/>
 </label>
 <label class='item'>
 <!--=== From Jumlah Item ===-->
   <i class='fa fa-cart-plus'></i>
-<input value="1" min="1" class='qty wajib' placeholder='Quatity' type='number'/>
+<input value='1' min='1' class='qty wajib' placeholder='Quatity' type='number'/>
 </label>
 </div>
 <!--=== HTML Opsi Form Produk ===-->
 <label class='formWhatsApp'>
   <i class='fa fa-angle-down'></i>
 <select class='warna wajib' placeholder='Warna'>
-<option hidden='hidden' selected='selected' value='tidak dipilih'>Pilih Warna</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pilih Warna</option>
 <optgroup label='Pilihan Warna'>
 <option value='{{ page.warna-1 }}'>{{ page.warna-1 }}</option>
 <option value='{{ page.warna-2 }}'>{{ page.warna-2 }}</option>
@@ -276,7 +298,7 @@
 <label class='formWhatsApp'>
   <i class='fa fa-angle-down'></i>
 <select class='tali wajib' placeholder='Model'>
-<option hidden='hidden' selected='selected' value='tidak dipilih'>Pilih Model</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pilih Model</option>
 <optgroup label='Pilihan Model'>
 <option value='Headloop'>Headloop</option>
 <option value='Earloop'>Earloop</option>
@@ -287,7 +309,7 @@
 <label class='formWhatsApp'>
   <i class='fa fa-angle-down'></i>
 <select class='informasi wajib' placeholder='Informasi'>
-<option hidden='hidden' selected='selected' value='tidak dipilih'>Pengiriman</option>
+<option hidden='hidden' selected='selected' value='Tidak Dipilih'>Pengiriman</option>
 <optgroup label='Kirim Pakai?'>
 <option value='J%26T Express'>J&T Express</option>
 <option value='JNE Express'>JNE Express</option>
