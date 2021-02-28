@@ -4,6 +4,5 @@ title: Contact Us
 permalink: /kontak.html
 ---
 
-Sorry, we can't find that page that you're looking for. You can try again by going [back to the homepage]({{ site.baseurl }}/).
 
-[<img src="{{ site.baseurl }}/images/404.jpg" alt="404" style="width: 400px;"/>]({{ site.baseurl }}/)
+  {% include wa.html %}
