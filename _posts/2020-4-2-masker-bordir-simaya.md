@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Masker Bordir
+title: Masker Bordir Simaya
 harga: 20000
 stok: 20pcs
 subtitle: Masker Bordir Simaya

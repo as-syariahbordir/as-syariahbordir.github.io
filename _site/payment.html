@@ -7,6 +7,7 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <meta property="og:image" content="/images/intro-bg.jpg"/>
 
     
     <meta name="description" content="Produk & Jasa Bordir Tasikmalaya">
@@ -15,19 +16,20 @@
     <meta name="author" content="As-Syariah Bordir" />
 
     
+    <meta property="og:image" content=""/>
     <meta property="og:title" content="Pembayaran" />
     <meta property="twitter:title" content="Pembayaran" />
     
 
-<meta name="theme-color" content="#eb445a" />
+<meta name="theme-color" content="#f94c2f" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content="As-Syariah Bordir" />
 <meta name="msapplication-TileImage" content="/fav/ms-icon-144x144.png" />
-<meta name="msapplication-TileColor" content="#eb445a" />
-<meta class="theme-color" content="#eb445a" name="apple-mobile-web-app-status-bar-style" />
-<meta class="theme-color" content="#eb445a" name="msapplication-navbutton-color" />
-<meta class="theme-color" content="#eb445a" name="theme-color" />
+<meta name="msapplication-TileColor" content="#f94c2f" />
+<meta class="theme-color" content="#f94c2f" name="apple-mobile-web-app-status-bar-style" />
+<meta class="theme-color" content="#f94c2f" name="msapplication-navbutton-color" />
+<meta class="theme-color" content="#f94c2f" name="theme-color" />
 
     
     <link rel="apple-touch-icon" sizes="57x57" href="/fav/apple-icon-57x57.png">
@@ -55,10 +57,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
 <link rel="stylesheet" type="text/css" href="/style.css" />
 <link rel="alternate" type="application/rss+xml" title="As-Syariah Bordir - Produk & Jasa Bordir Tasikmalaya" href="/feed.xml" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
 
+    
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 <link rel="stylesheet" type="text/css" href="/css/wa.css"/>
+  <script type="module">
+    import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+    window.modalController = modalController;
+  </script>
   </head>
 
   <body>
@@ -69,7 +76,7 @@
     
     
     
-        <ion-buttons slot="start"><a href="/">
+        <ion-buttons slot="start"><a href="/#main">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -80,13 +87,74 @@
       <ion-content>
     
     
-    <div id="main" role="main" class="container">
-      <article class="page">
+    <div id="main" role="main" class="blog container">
+      <article class="page-pay">
 
   <center><h1>Pembayaran</h1>
 
   <div class="entry">
-    <center> SEDANG DALAM PERBAIKAN </center>
+    
+<ion-grid>
+  <ion-row>
+    <ion-col>
+<ion-card>
+<img style="height:220px;" src="/images/bank-bri.png" />
+  <ion-card-header>
+    <ion-card-subtitle>Transfer Bank BRI</ion-card-subtitle>
+    <ion-bri><ion-button>Cara Bayar</ion-button></ion-bri>
+  </ion-card-header>
+
+  <ion-card-content>
+    Keep close to Nature's heart... and break clear away, once in awhile,
+    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+  </ion-card-content>
+</ion-card>
+    </ion-col>
+    <ion-col>
+<ion-card>
+<img style="height:220px;" src="/images/bank-btpn.jpeg" />
+  <ion-card-header>
+    <ion-card-subtitle>Transfer Bank BTPN</ion-card-subtitle>
+    <ion-btpn><ion-button>Cara Bayar</ion-button></ion-btpn>
+  </ion-card-header>
+
+  <ion-card-content>
+    Keep close to Nature's heart... and break clear away, once in awhile,
+    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+  </ion-card-content>
+</ion-card>
+    </ion-col>
+    <ion-col>
+<ion-card>
+<img style="height:220px;" src="/images/scan-qris.jpg" />
+  <ion-card-header>
+    <ion-card-subtitle>Scan QRIS</ion-card-subtitle>
+    <ion-qris><ion-button>Cara Bayar</ion-button></ion-qris>
+  </ion-card-header>
+
+  <ion-card-content>
+    Keep close to Nature's heart... and break clear away, once in awhile,
+    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+  </ion-card-content>
+</ion-card>
+    </ion-col>
+    <ion-col>
+<ion-card>
+<img style="height:220px;" src="/images/dana-link.jpg" />
+  <ion-card-header>
+    <ion-card-subtitle>DANA LINK</ion-card-subtitle>
+    <ion-dana><ion-button>Cara Bayar</ion-button></ion-dana>
+  </ion-card-header>
+
+  <ion-card-content>
+    Keep close to Nature's heart... and break clear away, once in awhile,
+    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+  </ion-card-content>
+</ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
 
   </div></center>
 </article>
@@ -132,5 +200,81 @@
 	<!-- End Google Analytics -->
 
 
+
+  <script>
+    customElements.define('modal-content', class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <ion-header translucent>
+            <ion-toolbar>
+              <ion-title>Metode Pembayaran</ion-title>
+              <ion-buttons slot="end">
+                <ion-button onclick="dismissModal()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content fullscreen>
+            <ion-list>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/bri.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Bank BRI</h2>
+                  <p>0100-01-098975-50-6</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/btpn.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Bank BTPN</h2>
+                  <p>903-7001-1795</p>
+                </ion-label>
+              </ion-item>
+                  <a href="/scan-qris">
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/qris.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Scan QRIS</h2><p>Klik Untuk Membuka dan Scan Qris.</p>
+                </ion-label>
+              </ion-item></a>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/dana.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Dana Link</h2>
+                  <p>Klik disini untuk menggunakan DANA.</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        `;
+      }
+    });
+
+    let currentModal = null;
+    const button = document.querySelector('ion-pay');
+    button.addEventListener('click', createModal);
+
+    async function createModal() {
+      const modal = await modalController.create({
+        component: 'modal-content'
+      });
+
+      await modal.present();
+      currentModal = modal;
+    }
+
+    function dismissModal() {
+      if (currentModal) {
+        currentModal.dismiss().then(() => { currentModal = null; });
+      }
+    }
+  </script>
   </body>
 </html>

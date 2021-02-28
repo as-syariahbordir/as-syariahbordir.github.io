@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Masker Bordir
+title: Masker Bordir Motif
 harga: 25000
 stok: 20pcs
 subtitle: Masker Bordir Motif

@@ -23,12 +23,36 @@ body {
   color: $darkGray;
 }
 
-.container {
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 100%;
+.ion-color-danger {
+    --ion-color-base: #f94c2f!important;
 }
 
+.toolbar-background {
+    background: #f94c2f!important;
+    color: #fff!important;
+}
+.icon {
+    width: 60px;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+.logo {
+    width: 100px;
+    border-radius: 5px;
+}
+.tes {
+    width: 200px;
+    margin-left: -55px;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  width: 100%;
+
+  @include mobile {
+  padding: 0 10px;
+  }
+}
 h1, h2, h3, h4, h5, h6 {
 
   @include mobile {
@@ -139,7 +163,7 @@ img {
 //
 
 .wrapper-masthead {
-  background-color: #eb445a;
+  background-color: #f94c2f;
 }
 
 .masthead {
@@ -225,13 +249,13 @@ nav {
 }
 small {
     font-size: x-small;
-    color: #eb445a;
+    color: #f94c2f;
 }
 //
 // .main
 //
 .posts {
-  max-width: 940px;
+  max-width: 900px;
   display: flex;
   flex-wrap: wrap;
   margin: auto;
@@ -245,8 +269,9 @@ small {
   display: flex;
 }
 }
-.page {
+.page-pay {
     padding: 20px 0;
+    margin: auto;
     }
 
 .post-page {
@@ -365,7 +390,7 @@ input[type="number"] {
 .productOrder a i {
     display: inline-block;
     vertical-align: middle;
-    font-size: 150%;
+    font-size: 160%;
     margin-right: 10px;
 }
 .productCheckoutMP {
@@ -414,7 +439,7 @@ input[type="number"] {
 
 /* iPads (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 768px) and (max-device-width : 768px)  {
-  width: 363px;
+  width: 374px;
 }
 }
 
@@ -449,6 +474,9 @@ input[type="number"] {
     border-radius: 5px;
     }
 }
+.pagination {
+    display: flow-root;
+}
 .next {
     float: right;
 }
@@ -456,7 +484,6 @@ input[type="number"] {
     float: left;
 }
 .wrapper-footer {
-  margin-top: 50px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   background-color: $lightGray;

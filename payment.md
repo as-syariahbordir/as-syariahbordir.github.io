@@ -4,4 +4,4 @@ title: Pembayaran
 permalink: /payment.html
 ---
 
-<center> SEDANG DALAM PERBAIKAN </center>
+    {% include pembayaran.html %}

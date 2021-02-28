@@ -14,10 +14,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/style.css" />
 <link rel="alternate" type="application/rss+xml" title="{{ site.name }} - {{ site.description }}" href="{{ site.baseurl }}/feed.xml" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
 
+    {% if page.layout == "default" %}
+<style type="text/css">
+.blog {
+    background-color: #f2f2f2;
+    padding-top: 50px;
+}
+</style>
+{% endif %}
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/css/wa.css"/>
+  <script type="module">
+    import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+    window.modalController = modalController;
+  </script>
   </head>
 
   <body>
@@ -25,7 +37,7 @@
     {% if page.layout == "post" %}
 <ion-toolbar color="danger">
     {% if page.layout == "post" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -34,7 +46,7 @@
         <ion-title><a href="{{ site.baseurl }}/">{{ site.name }}</a></ion-title>
 {% endif %}
     {% if page.layout == "page" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -45,16 +57,16 @@
     {% if page.layout == "page" %}
 <ion-toolbar color="danger">
     {% if page.layout == "post" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
 {% endif %}
     {% if page.layout == "default" %}
-        <ion-title><a href="{{ site.baseurl }}/">{{ site.name }}</a></ion-title>
+        <ion-title><a href="{{ site.baseurl }}">{{ site.name }}</a></ion-title>
 {% endif %}
     {% if page.layout == "page" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -75,8 +87,12 @@
           </div>
 
           <nav>
-            <a href="{{ site.baseurl }}/payment">Payment</a>
-            <a href="{{ site.baseurl }}/about">About</a>
+            <ion-pay>
+        <ion-chip color="default"><ion-label color="light">Payment</ion-label>
+        </ion-chip></ion-pay>
+            <a href="{{ site.baseurl }}/kontak">
+        <ion-chip color="default"><ion-label color="light">Contact</ion-label>
+        </ion-chip></a>
           </nav>
         </header>
       </div>
@@ -85,7 +101,7 @@
     {% if page.layout == "default" %}
     {% include jumbotron.html %}
     {% endif %}
-    <div id="main" role="main" class="container">
+    <div id="main" role="main" class="blog container">
       {{ content }}
     </div>
 
@@ -338,5 +354,81 @@
 </div>
 {% endif %}
     {% include analytics.html %}
+
+  <script>
+    customElements.define('modal-content', class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+          <ion-header translucent>
+            <ion-toolbar>
+              <ion-title>Metode Pembayaran</ion-title>
+              <ion-buttons slot="end">
+                <ion-button onclick="dismissModal()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content fullscreen>
+            <ion-list>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/bri.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Bank BRI</h2>
+                  <p>0100-01-098975-50-6</p>
+                </ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/btpn.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Bank BTPN</h2>
+                  <p>903-7001-1795</p>
+                </ion-label>
+              </ion-item>
+                  <a href="{{ site.baseurl }}/scan-qris">
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/qris.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Scan QRIS</h2><p>Klik Untuk Membuka dan Scan Qris.</p>
+                </ion-label>
+              </ion-item></a>
+              <ion-item>
+                <ion-avatar slot="start">
+                  <ion-img src="/images/dana.png"/>
+                </ion-avatar>
+                <ion-label>
+                  <h2>Dana Link</h2>
+                  <p>Klik disini untuk menggunakan DANA.</p>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        `;
+      }
+    });
+
+    let currentModal = null;
+    const button = document.querySelector('ion-pay');
+    button.addEventListener('click', createModal);
+
+    async function createModal() {
+      const modal = await modalController.create({
+        component: 'modal-content'
+      });
+
+      await modal.present();
+      currentModal = modal;
+    }
+
+    function dismissModal() {
+      if (currentModal) {
+        currentModal.dismiss().then(() => { currentModal = null; });
+      }
+    }
+  </script>
   </body>
 </html>

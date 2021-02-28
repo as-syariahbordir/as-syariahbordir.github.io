@@ -6,7 +6,6 @@
   -o-background-size: 100% 100%;
   color: #fff;
   height: 700px;
-  margin-bottom: 50px;
   background-blend-mode: overlay;
 }
 
@@ -42,7 +41,9 @@
   -moz-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.61);
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.61);
 }
-.wrapper-head {}
+.war-head {
+    font-size: -webkit-xxx-large;
+}
 </style>
 <div class="jumbotron">
   <div class="container">
@@ -57,19 +58,20 @@
           </div>
 
           <nav>
-            <a href="{{ site.baseurl }}/payment">
+            <ion-pay>
         <ion-chip color="default"><ion-label color="light">Payment</ion-label>
-        </ion-chip></a>
-            <a href="{{ site.baseurl }}/about">
-        <ion-chip color="default"><ion-label color="light">About</ion-label>
+        </ion-chip></ion-pay>
+            <a href="{{ site.baseurl }}/kontak">
+        <ion-chip color="default"><ion-label color="light">Contact</ion-label>
         </ion-chip></a>
           </nav>
         </header>
       </div>
     </div>
     <h1 class="aligned-center">Looking for Embroidery Stuff?</h1>
-<center><a class="page-scroll" href="#main">Scroll Down</a></center>
+<center><a class="page-scroll" href="#main">Scroll Down<br>
+<ion-icon class="war-head" name="chevron-down-outline"></ion-icon></br></a>
+</center>
 </div>
 
 </div>
-<script type="text/javascript" src="{{ site.baseurl }}/js/landing-page.js"></script>
