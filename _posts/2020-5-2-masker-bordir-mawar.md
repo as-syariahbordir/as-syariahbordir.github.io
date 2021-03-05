@@ -2,6 +2,7 @@
 layout: post
 title: Masker Bordir Mawar
 harga: 20000
+diskon: 15000
 stok: 20pcs
 subtitle: Masker Bordir Mawar
 image: /images/masker-mawar/utama.jpg
