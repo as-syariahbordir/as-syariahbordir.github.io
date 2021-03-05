@@ -5,7 +5,7 @@ permalink: /scan-qris.html
 ---
 
 <style>
-  .wrapper-footer { dislay:none!important; }
+  .wrapper-footer { display:none!important; }
   </style>
 
 
