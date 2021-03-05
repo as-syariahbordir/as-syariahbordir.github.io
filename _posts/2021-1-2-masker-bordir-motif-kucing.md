@@ -3,7 +3,7 @@ layout: post
 title: Masker Bordir Motif
 harga: 25000
 diskon: 18750
-stok: 20pcs
+stok: 12pcs
 subtitle: Masker Bordir Motif
 image: /images/MotifKucing/kucing.jpeg
 img-1: /images/MotifKucing/hitam.jpeg
