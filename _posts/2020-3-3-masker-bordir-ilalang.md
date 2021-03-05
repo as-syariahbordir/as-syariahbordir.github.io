@@ -3,7 +3,7 @@ layout: post
 title: Masker Bordir Ilalang
 harga: 20000
 diskon: 15000
-stok: 20pcs
+stok: 8pcs
 subtitle: masker bordir ilalang
 image: /images/masker-ilalang/ilalang-utama.jpg
 img-1: /images/masker-ilalang/ilalang-abu.jpg
