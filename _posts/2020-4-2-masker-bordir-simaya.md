@@ -2,6 +2,7 @@
 layout: post
 title: Masker Bordir Simaya
 harga: 20000
+diskon: 15000
 stok: 20pcs
 subtitle: Masker Bordir Simaya
 image: /images/masker-simaya/utama.jpg
