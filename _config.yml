@@ -37,6 +37,8 @@ footer-links:
 disqus: as-syariahbordir
 signal-id: e884466f-bced-41ce-8a23-d287803069a5
 google_analytics: UA-53683781-2
+dana-pay: https://link.dana.id/p2m?params=[orderId=c8c9ea7c-8b86-421d-987d-ebcf2d5604bf]
+dana-diskon: https://link.dana.id/p2m?params=[orderId=534a046a-07ee-46c9-a7cd-0a54552e212a]
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
