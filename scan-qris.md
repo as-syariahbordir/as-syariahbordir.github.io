@@ -4,6 +4,10 @@ title: Scan Qris
 permalink: /scan-qris.html
 ---
 
+<style>
+  footer { dislay:none!important; }
+  </style>
+
 
 <img src="{{ site.baseurl }}/images/QRisCode.jpeg" alt="qris" style="width: 285px;"/>
 <p/>
