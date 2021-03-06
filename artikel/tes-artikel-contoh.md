@@ -1,5 +1,5 @@
 ---
-layout: artikel
+layout: default
 ---
 
 Hello World
