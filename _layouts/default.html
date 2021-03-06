@@ -44,7 +44,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Jendela Pop Up */
-#kontak {
+#whatsapp {
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -91,7 +91,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Memunculkan Jendela Pop Up*/
-#popup:target {
+#whatsapp:target {
 	visibility: visible;
 }
 	  </style>
@@ -229,7 +229,7 @@ jQuery(function($) {
           <ion-icon name="chatbubbles-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
-		<a href="#kontak">
+		<a href="#whatsapp">
           <ion-fab-button color="success">
             <ion-icon name="logo-whatsapp"></ion-icon>
 			</ion-fab-button></a>
@@ -571,7 +571,7 @@ jQuery(function($) {
     </div>
 </div>
     {% if page.layout == "default" %}
-<div id="kontak">
+<div id="whatsapp">
     	<div class="window">
 		<ion-card>
         	<a href="#" class="close-button" title="Close">X</a>
