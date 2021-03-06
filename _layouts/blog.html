@@ -3,6 +3,7 @@ layout: default
 ---
 <style>
     .blog { padding:0px;}
+    .page-artikel { max-width:90px;margin:auto; }
 </style>
 <ion-header>
     <ion-toolbar color="danger">
@@ -13,7 +14,7 @@ layout: default
       </ion-toolbar>
   </ion-header>
 
-<article class="page-pay">
+<article class="page-artikel">
   <center><h1>{{ page.title }}</h1></center>
 {% for artikel in site.data.artikel %}
         <ion-item href="{{ artikel.url }}">
