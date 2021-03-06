@@ -22,7 +22,7 @@ layout: default
           </ion-thumbnail>
           <ion-label>
             <h3>{{ artikel.judul }}</h3>
-            <p>{{ artikel.deskrip }}</p>
+            <p>{{ artikel.deskrip }}</p><ion-label color="dark" slot="end">{{ artikel.admin }}</ion-label>
           </ion-label>
         </ion-item>
 {% endfor %}
