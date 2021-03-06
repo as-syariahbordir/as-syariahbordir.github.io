@@ -223,6 +223,7 @@ jQuery(function($) {
     <div id="main" role="main" class="blog container">
       {{ content }}
     </div>
+    {% if page.layout == "default" %}
 <ion-fab horizontal="end" vertical="bottom" slot="fixed">
         <ion-fab-button color="danger">
           <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -234,6 +235,7 @@ jQuery(function($) {
 			</ion-fab-button></a>
         </ion-fab-list>
  </ion-fab>
+    {% endif %}
 
     <div class="wrapper-footer">
       <div class="container">
