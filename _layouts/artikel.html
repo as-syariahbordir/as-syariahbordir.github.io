@@ -15,6 +15,7 @@ layout: default
 
 <article class="page-pay">
   <center><h1>{{ page.title }}</h1></center>
+{% for artikel in site.data.artikel %}
         <ion-item>
           <ion-thumbnail slot="start">
             <img src="./thumbnail.svg">
@@ -24,4 +25,5 @@ layout: default
             <p>{{ content }}</p>
           </ion-label>
         </ion-item>
+{% endfor %}
 </article>
