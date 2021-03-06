@@ -44,7 +44,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Jendela Pop Up */
-#whatsapp {
+#kontak {
 	width: 100%;
 	height: 100%;
 	position: fixed;
@@ -91,7 +91,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 /* Memunculkan Jendela Pop Up*/
-#whatsapp:target {
+#kontak:target {
 	visibility: visible;
 }
 	  </style>
@@ -230,7 +230,7 @@ jQuery(function($) {
           <ion-icon name="chatbubbles-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
-		<a href="#whatsapp">
+		<a href="#kontak">
           <ion-fab-button color="success">
             <ion-icon name="logo-whatsapp"></ion-icon>
 			</ion-fab-button></a>
@@ -572,10 +572,10 @@ jQuery(function($) {
     </div>
 </div>
     {% if page.layout == "default" %}
-<div id="whatsapp">
+<div id="kontak">
     	<div class="window">
         	<a href="#" class="close-button" title="Close">X</a>
-            <div class='wrap-contact'><form action='?' class='contact100-form validate-form' id='whatsapp'><div id='p62s'></div><input class='tujuan' type='hidden' id='noAdmin'><ion-item><ion-label position='floating'>Nama*</ion-label><ion-input class='nama' type='text'></ion-input></ion-item><ion-item><ion-label position='floating'>No. WhatsApp*</ion-label><ion-input class='nowhatsapp' type='number'></ion-input></ion-item><ion-item><ion-label position='floating'>Isi Pesan*</ion-label><ion-textarea class='isi_pesan'></ion-textarea></ion-item><p/><ion-button expand='full' color='success' class='submit'>Buka WhatsApp</ion-button></form></div>
+		<form action='?' class='contact100-form validate-form' id='whatsapp'><div id='p62s'></div><input class='tujuan' type='hidden' id='noAdmin'><ion-item><ion-label position='floating'>Nama*</ion-label><ion-input class='nama' type='text'></ion-input></ion-item><ion-item><ion-label position='floating'>No. WhatsApp*</ion-label><ion-input class='nowhatsapp' type='number'></ion-input></ion-item><ion-item><ion-label position='floating'>Isi Pesan*</ion-label><ion-textarea class='isi_pesan'></ion-textarea></ion-item><p/><ion-button expand='full' color='success' class='submit'>Buka WhatsApp</ion-button></form>
         </div>
     </div>
 	<script>
