@@ -140,9 +140,8 @@ jQuery(function($) {
             <ion-pay>
         <ion-chip color="default"><ion-label color="light">Payment</ion-label>
         </ion-chip></ion-pay>
-            <a href="{{ site.baseurl }}/kontak.html">
-        <ion-chip color="default"><ion-label color="light">Contact</ion-label>
-        </ion-chip></a>
+        <ion-chip href="{{ site.baseurl }}/kontak.html" color="default"><ion-label color="light">Contact</ion-label>
+        </ion-chip>
           </nav>
         </header>
       </div>
@@ -154,16 +153,16 @@ jQuery(function($) {
     <div id="main" role="main" class="blog container">
       {{ content }}
     </div>
-	      <ion-fab horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button color="dark">
+<ion-fab horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button color="danger">
           <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
-          <ion-fab-button color="light">
+          <ion-fab-button color="success" href="{{ site.baseurl }}/kontak.html">
             <ion-icon name="logo-whatsapp"></ion-icon>
           </ion-fab-button>
         </ion-fab-list>
-      </ion-fab>
+ </ion-fab>
 
     <div class="wrapper-footer">
       <div class="container">
