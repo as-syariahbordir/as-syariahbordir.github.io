@@ -6,18 +6,10 @@ layout: default
 </style>
 <ion-header>
     <ion-toolbar color="danger">
-    {% if page.layout == "default" %}
         <ion-buttons slot="start" onclick="javascript:history.back()">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label color="light">Back</ion-label>
           </ion-button>
         </ion-buttons>
-    {% endif %}
-    {% if page.layout == "artikel" %}
-        <ion-buttons slot="start" onclick="javascript:history.back()/artikel">
-          <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label color="light">Back</ion-label>
-          </ion-button>
-        </ion-buttons>
-    {% endif %}
       </ion-toolbar>
   </ion-header>
 
