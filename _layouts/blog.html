@@ -23,7 +23,8 @@ layout: default
           <ion-label>
             <h3>{{ artikel.judul }}</h3>
             <p>{{ artikel.deskrip }}</p>
-          </ion-label><ion-label color="success" slot="end">{{ artikel.time }}</ion-label>
+              <small>{{ artikel.time }}</small>
+          </ion-label>
         </ion-item>
 {% endfor %}
 </article>
