@@ -62,7 +62,7 @@ jQuery(function($) {
 						'helpers'   : { overlay : {closeClick: false } },
 						'onCleanup' : function() { }
 					});
-				}, 500); // .5 second	
+				}, 100); // .1 second	
 			}, seconds_pop); 
 		} else { 
 			return; 
@@ -87,7 +87,7 @@ jQuery(function($) {
     {% if page.layout == "post" %}
 <ion-toolbar color="danger">
     {% if page.layout == "post" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -96,7 +96,7 @@ jQuery(function($) {
         <ion-title><a href="{{ site.baseurl }}/">{{ site.name }}</a></ion-title>
 {% endif %}
     {% if page.layout == "page" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -107,7 +107,7 @@ jQuery(function($) {
     {% if page.layout == "page" %}
 <ion-toolbar color="danger">
     {% if page.layout == "post" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -116,7 +116,7 @@ jQuery(function($) {
         <ion-title><a href="{{ site.baseurl }}">{{ site.name }}</a></ion-title>
 {% endif %}
     {% if page.layout == "page" %}
-        <ion-buttons slot="start"><a href="{{ site.baseurl }}/#main">
+        <ion-buttons slot="start"><a href="{{ site.baseurl }}/">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -484,8 +484,8 @@ jQuery(function($) {
 
 	<div style="display:none">
     <div id="popup_content">
-        <p style="text-align: center; font-weight: bold;">Assalamualaikum.</p>
-	    <center>Spesial Promo Bulan Maret<br/>Dapatkan Diskon 25% Untuk Setiap Produk.</center>
+        <span style="text-align: center; font-weight: bold;">Assalamualaikum.</span>
+	    <p style="text-align: center;">Spesial Promo Bulan Maret<br/>Dapatkan Diskon 25% Untuk Setiap Produk.</p>
     </div>
 </div>
   </body>
