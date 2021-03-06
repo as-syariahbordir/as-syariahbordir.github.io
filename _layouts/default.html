@@ -23,6 +23,74 @@
     background-color: #f2f2f2;
     padding-top: 50px;
 }
+	
+	* {margin:0; padding: 0;}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Tombol Button Pesan */
+#button {margin: 5% auto; width: 100px; text-align: center;}
+#button a {
+	width: 100px;
+	height: 30px;
+	vertical-align: middle;
+	background-color: #F00;
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid transparent;
+}
+
+/* Jendela Pop Up */
+#popup {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.7);
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	visibility: hidden;
+}
+
+.window {
+	width: 400px;
+	height: auto;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	padding: 10px;
+	text-align: center;
+	margin: 15% auto;
+}
+.window h2 {
+	margin: 30px 0 0 0;
+}
+/* Button Close */
+.close-button {
+	width: 28px;
+	height: 28px;
+	line-height: 23px;
+	background: #000;
+	border-radius: 50%;
+	border: 2px solid #ddd;
+	display: block;
+	text-align: center;
+	color: #fff;
+	text-decoration: none;
+	position: absolute;
+	top: -15px;
+	right: -15px;	
+}
+.wrap-contact {
+  overflow: hidden;
+}
+
+/* Memunculkan Jendela Pop Up*/
+#popup:target {
+	visibility: visible;
+}
 </style>
 {% endif %}
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
@@ -158,7 +226,7 @@ jQuery(function($) {
           <ion-icon name="chatbubbles-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="top">
-          <ion-fab-button color="success" href="{{ site.baseurl }}/kontak.html">
+          <ion-fab-button color="success" href="#popup">
             <ion-icon name="logo-whatsapp"></ion-icon>
           </ion-fab-button>
         </ion-fab-list>
@@ -497,5 +565,14 @@ jQuery(function($) {
 	    <p style="text-align: center;">Spesial Promo Bulan Maret<br/>Dapatkan Diskon 25% Untuk Setiap Produk.</p>
     </div>
 </div>
+<div id="popup">
+    	<div class="window">
+        	<a href="#" class="close-button" title="Close">X</a>
+            <div class='wrap-contact'><form action='?' class='contact100-form validate-form' id='whatsapp'><div id='p62s'></div><input class='tujuan' type='hidden' id='noAdmin'><ion-item><ion-label position='floating'>Nama*</ion-label><ion-input class='nama' type='text'></ion-input></ion-item><ion-item><ion-label position='floating'>No. WhatsApp*</ion-label><ion-input class='nowhatsapp' type='number'></ion-input></ion-item><ion-item><ion-label position='floating'>Isi Pesan*</ion-label><ion-textarea class='isi_pesan'></ion-textarea></ion-item><ion-button expand='full' color='success' class='submit'>Buka WhatsApp</ion-button></form></div>
+        </div>
+    </div>
+	<script>
+	$("#noAdmin").val("08113951666"),$(".whatsapp-btn").click(function(){$("#whatsapp").toggleClass("toggle")}),$("#whatsapp .submit").click(WhatsApp),$("#whatsapp input, #whatsapp textarea").keypress(function(){13==event.which&&WhatsApp()});var reg=/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;function WhatsApp(){var a="";if(""==$("#whatsapp .nama").val())return a=$("#whatsapp .nama").attr("placeholder"),alert("Kolom Bertanda * Perlu di isi"),$("#whatsapp .nama").focus(),!1;if(""==$("#whatsapp .nowhatsapp").val())return a=$("#whatsapp .nowhatsapp").attr("placeholder"),alert("Kolom Bertanda * Perlu di isi"),$("#whatsapp .nowhatsapp").focus(),!1;if(""==$("#whatsapp .isi_pesan").val())return a=$("#whatsapp .isi_pesan").attr("placeholder"),alert("Kolom Bertanda * Perlu di isi"),$("#whatsapp .isi_pesan").focus(),!1;var t="https://web.whatsapp.com/send";/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)&&(t="whatsapp://send/");var p=$("#whatsapp .tujuan").val(),s=location.href,e=$("#whatsapp .nama").val(),n=$("#whatsapp .nowhatsapp").val(),h=$("#whatsapp .isi_pesan").val();$(this).attr("href",t+"?phone=62 "+p+"&text=Nama: "+e+" %0ANo. Whatsapp: "+n+"%0AIsi Pesan: "+h+" %0A%0Avia "+s);var i=Number(screen.width/2-480),r=Number(screen.height/2-270);return window.open(this.href,"","toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=1, copyhistory=no, width=960, height=540, top="+r+", left="+i).focus(),!1}
+	</script>
   </body>
 </html>
