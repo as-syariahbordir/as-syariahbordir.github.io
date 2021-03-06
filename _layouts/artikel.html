@@ -18,10 +18,10 @@ layout: default
 {% for artikel in site.data.artikel %}
         <ion-item>
           <ion-thumbnail slot="start">
-            <img src="./thumbnail.svg">
+            <img src="{{ artkel.img }}">
           </ion-thumbnail>
           <ion-label>
-            <h3>Lorem ipsum</h3>
+            <h3>{{ artikel.judul }}</h3>
             <p>{{ content }}</p>
           </ion-label>
         </ion-item>
