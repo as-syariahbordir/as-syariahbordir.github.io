@@ -16,7 +16,7 @@ layout: default
 <article class="page-pay">
   <center><h1>{{ page.title }}</h1></center>
 {% for artikel in site.data.artikel %}
-        <ion-item>
+        <ion-item href="{{ artikel.url }}">
           <ion-thumbnail slot="start">
             <img src="{{ artikel.img }}">
           </ion-thumbnail>
