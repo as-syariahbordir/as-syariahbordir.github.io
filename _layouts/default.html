@@ -194,7 +194,6 @@ jQuery(function($) {
       </ion-toolbar>
   </ion-header>
 {% endif %}
-	{% include ads-banner.html %}
       <ion-content>
     {% if page.layout == "post" %}
     <div class="wrapper-masthead">
@@ -222,6 +221,7 @@ jQuery(function($) {
     {% if page.layout == "default" %}
     {% include jumbotron.html %}
     {% endif %}
+	{% include ads-banner.html %}
     <div id="main" role="main" class="blog container">
       {{ content }}
     </div>
