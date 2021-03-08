@@ -17,7 +17,7 @@ layout: default
     <ion-card-title style="color: #f94c2f;">Rp.{{ post.diskon }}</ion-card-title>
 </center>
   </ion-card-header>
-              <ion-item href="{{ site.baseurl }}{{ post.url }}">
+              <ion-item onclick="handleButtonClick()" href="{{ site.baseurl }}{{ post.url }}">
                 <ion-label>Lihat Produk</ion-label><ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
 </ion-item>
 </ion-card>
@@ -27,12 +27,12 @@ layout: default
 {% if paginator.total_pages > 1 %}<!-- Pagination links -->
   <div class="pagination">
     {% if paginator.previous_page %} <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="back">
-        <ion-chip color="secondary">
+        <ion-chip onclick="handleButtonClick()" color="secondary">
 <ion-icon name="chevron-back-outline"></ion-icon>
           <ion-label>Newer Posts</ion-label>
         </ion-chip></a> {% endif %}
     {% if paginator.next_page %} <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next">
-        <ion-chip color="secondary">
+        <ion-chip onclick="handleButtonClick()" color="secondary">
           <ion-label>Older Posts</ion-label>
 <ion-icon name="chevron-forward-outline"></ion-icon>
         </ion-chip></a>{% endif %}
