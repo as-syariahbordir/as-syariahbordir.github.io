@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Privacy Policy for As-Syariah Bordir
+title: Privacy Policy
 permalink: /privacy-policy.html
 ---
 
