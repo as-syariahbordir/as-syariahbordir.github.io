@@ -25,14 +25,14 @@ permalink: /privacy-policy.html
 
 <p style="text-align: justify;">We use the information we collect in various ways, including to:</p>
 
-<ul>
-<li>Provide, operate, and maintain our webste</li>
-<li>Improve, personalize, and expand our webste</li>
-<li>Understand and analyze how you use our webste</li>
-<li>Develop new products, services, features, and functionality</li>
-<li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the webste, and for marketing and promotional purposes</li>
-<li>Send you emails</li>
-<li>Find and prevent fraud</li>
+<ul style="text-align: justify;">
+<li>- Provide, operate, and maintain our webste</li>
+<li>- Improve, personalize, and expand our webste</li>
+<li>- Understand and analyze how you use our webste</li>
+<li>- Develop new products, services, features, and functionality</li>
+<li>- Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the webste, and for marketing and promotional purposes</li>
+<li>- Send you emails</li>
+<li>- Find and prevent fraud</li>
 </ul>
 
 <h2>Log Files</h2>
@@ -53,7 +53,7 @@ permalink: /privacy-policy.html
 
 <p style="text-align: justify;">Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below. Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier access, we hyperlinked to their Privacy Policies below.</p>
 
-<ul>
+<ul style="text-align: left;">
     <li>
         <p>Google</p>
         <p><a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></p>
