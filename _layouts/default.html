@@ -523,7 +523,7 @@ jQuery(function($) {
                 </ion-label>
               </ion-item>
                   <a href="{{ site.baseurl }}/scan-qris">
-              <ion-item>
+              <ion-item onclick="handleButtonClick()">
                 <ion-avatar slot="start">
                   <ion-img src="/images/qris.png"/>
                 </ion-avatar>
@@ -588,7 +588,7 @@ jQuery(function($) {
     async function handleButtonClick() {
       const loading = await loadingController.create({
         message: 'Mohon Tunggu...',
-        duration: 4000
+        duration: 3000
       });
 
       await loading.present();
