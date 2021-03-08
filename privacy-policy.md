@@ -53,7 +53,7 @@ permalink: /privacy-policy.html
 
 <p style="text-align: justify;">Some of advertisers on our site may use cookies and web beacons. Our advertising partners are listed below. Each of our advertising partners has their own Privacy Policy for their policies on user data. For easier access, we hyperlinked to their Privacy Policies below.</p>
 
-<ul style="text-align: left;">
+<ul style="text-align: justify;">
     <li>
         <p>Google</p>
         <p><a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a></p>
@@ -86,7 +86,7 @@ permalink: /privacy-policy.html
 
 <p style="text-align: justify;">We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:</p>
 <p style="text-align: justify;">The right to access – You have the right to request copies of your personal data. We may charge you a small fee for this service.</p>
-<p>The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.</p>
+<p style="text-align: justify;">The right to rectification – You have the right to request that we correct any information you believe is inaccurate. You also have the right to request that we complete the information you believe is incomplete.</p>
 <p style="text-align: justify;">The right to erasure – You have the right to request that we erase your personal data, under certain conditions.</p>
 <p style="text-align: justify;">The right to restrict processing – You have the right to request that we restrict the processing of your personal data, under certain conditions.</p>
 <p style="text-align: justify;">The right to object to processing – You have the right to object to our processing of your personal data, under certain conditions.</p>
