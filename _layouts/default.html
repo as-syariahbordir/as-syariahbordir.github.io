@@ -221,8 +221,8 @@ jQuery(function($) {
     {% if page.layout == "default" %}
     {% include jumbotron.html %}
     {% endif %}
-	{% include ads-banner.html %}
     <div id="main" role="main" class="blog container">
+	    <center>{% include ads-banner.html %}</center>
       {{ content }}
     </div>
     {% if page.layout == "default" %}
@@ -238,7 +238,7 @@ jQuery(function($) {
         </ion-fab-list>
  </ion-fab>
     {% endif %}
-{% include ads-banner.html %}
+	    <center>{% include ads-banner.html %}</center>
     <div class="wrapper-footer">
       <div class="container">
         <footer class="footer">
