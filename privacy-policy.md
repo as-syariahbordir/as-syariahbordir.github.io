@@ -1,8 +1,9 @@
 ---
 layout: page
+title: Privacy Policy for As-Syariah Bordir
+permalink: /privacy-policy.html
 ---
 
-<h1>Privacy Policy for As-Syariah Bordir</h1>
 
 <p>At As-Syariah Bordir, accessible from https://as-syariahbordir.com, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by As-Syariah Bordir and how we use it.</p>
 
