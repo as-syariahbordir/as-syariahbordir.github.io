@@ -18,7 +18,7 @@ layout: default
 <article class="page-artikel">
   <center><h1>{{ page.title }}</h1></center>
 {% for artikel in site.data.artikel %}
-        <ion-item href="{{ artikel.url }}">
+        <ion-item onclick="handleButtonClick()" href="{{ artikel.url }}">
 		<ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
           <ion-thumbnail slot="start">
             <img src="{{ artikel.img }}">
