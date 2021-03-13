@@ -2,6 +2,7 @@
 layout: post
 title: Masker Bordir Rosse
 harga: 20000
+persen: 25% off
 diskon: 15000
 stok: 13pcs
 subtitle: Masker Bordir Rosse
