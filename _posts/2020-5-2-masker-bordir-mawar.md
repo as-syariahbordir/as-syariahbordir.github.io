@@ -2,6 +2,7 @@
 layout: post
 title: Masker Bordir Mawar
 harga: 20000
+persen: 25% off
 diskon: 15000
 stok: 10pcs
 subtitle: Masker Bordir Mawar
