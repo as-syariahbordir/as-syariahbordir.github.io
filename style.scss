@@ -251,6 +251,16 @@ small {
     font-size: x-small;
     color: #f94c2f;
 }
+
+.diskon {
+    border: 1px solid;
+    padding: 3px;
+    border-radius: 3px;
+    margin-left: 5px;
+    animation: fade;
+    vertical-align: top;
+	}
+
 //
 // .main
 //
