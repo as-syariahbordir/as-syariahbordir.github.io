@@ -59,7 +59,19 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
   }
 }
-
+.badge-diskon {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.tabel-diskon {
+    border: 1px solid;
+    font-size: larger;
+    padding: 5px;
+    border-radius: 3px;
+    color: #f94c2f;
+    background: blanchedalmond;
+}
 h1 {
   font-size: 30px;
   a {
