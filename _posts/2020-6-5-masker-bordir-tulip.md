@@ -2,6 +2,7 @@
 layout: post
 title: Masker Bordir Tulip
 harga: 20000
+persen: 25% off
 diskon: 15000
 stok: 5pcs
 subtitle: Masker Bordir Tulip
