@@ -2,6 +2,7 @@
 layout: post
 title: Masker Bordir Ilalang
 harga: 20000
+persen: 25% off
 diskon: 15000
 stok: 8pcs
 subtitle: masker bordir ilalang
