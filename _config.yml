@@ -35,6 +35,8 @@ footer-links:
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
 disqus: as-syariahbordir
+fb-appID: 1337078570021836
+fb-admin: 663995656965854
 signal-id: e884466f-bced-41ce-8a23-d287803069a5
 google_analytics: UA-53683781-2
 dana-pay: https://link.dana.id/p2m?params=[orderId=c8c9ea7c-8b86-421d-987d-ebcf2d5604bf]
