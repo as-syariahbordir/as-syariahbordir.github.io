@@ -1,7 +1,23 @@
 ---
 layout: default
 ---
-
+<style>
+.rating-produk {
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    }
+.skor {
+    width: 65px;
+    font-size: 9px;
+    color:#edde14;
+    }
+.jual {
+    font-size: 10px;
+    margin-right: auto;
+    }
+</style>
 <div class="posts">
     {% for post in paginator.posts %}
     <article class="post">
@@ -20,6 +36,15 @@ layout: default
     <ion-card-title style="color: #f94c2f;">Rp.{{ post.diskon }}</ion-card-title>
 </center>
   </ion-card-header>
+<div class="rating-produk" itemprop="aggregateRating" itemscope="" itemtype="https://schema.org/AggregateRating"><div class="jual">{{post.penjualan}}</div>
+<span class="skor" itemprop="ratingValue">
+<i class="fa {{post.bintang1}}"></i>
+<i class="fa {{post.bintang2}}"></i>
+<i class="fa {{post.bintang3}}"></i>
+<i class="fa {{post.bintang4}}"></i>
+<i class="fa {{post.bintang5}}"></i>
+</span>
+</div>
 </ion-card>
     </article>
   {% endfor %}

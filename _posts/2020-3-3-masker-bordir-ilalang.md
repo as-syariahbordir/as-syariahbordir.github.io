@@ -2,7 +2,7 @@
 layout: post
 title: Masker Bordir Ilalang
 harga: 20000
-persen: 25% off
+persen: 25% OFF
 diskon: 15000
 stok: 8pcs
 subtitle: masker bordir ilalang
@@ -19,6 +19,12 @@ warna-5: Mustard
 model-1: Headloop
 model-2: Earloop
 model-3: Tali ikat
+bintang1: fa-star
+bintang2: fa-star
+bintang3: fa-star
+bintang4: fa-star
+bintang5: fa-star
+penjualan: 244 Terjual
 ---
 
 

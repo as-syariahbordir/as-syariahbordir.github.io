@@ -2,7 +2,7 @@
 layout: post
 title: Masker Bordir Motif
 harga: 25000
-persen: 25% off
+persen: 25% OFF
 diskon: 18750
 stok: Sisa 7pcs
 subtitle: Masker Bordir Motif
@@ -19,6 +19,12 @@ warna-5: Peach
 model-1: Headloop
 model-2: Earloop
 model-3: Tali ikat
+bintang1: fa-star
+bintang2: fa-star
+bintang3: fa-star
+bintang4: fa-star
+bintang5: fa-star-half
+penjualan: 55 Terjual
 ---
 
 

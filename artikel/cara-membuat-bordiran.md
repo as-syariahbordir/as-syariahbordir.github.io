@@ -1,5 +1,6 @@
 ---
 layout: artikel
+title: 2 Macam Cara Membuat Bordiran
 ---
 
 Ada 2 macam cara membordir yaitu bordir manual dan bordir komputer. Tehnik membordir secara manual maupun dengan komputer itu tetap memerlukan keterampilan khusus, terutama dalam proses persiapan sampai dengan proses produksi. Pada awalnya bordir manual sangat pupoler dikalangan masyarakat pengusaha atau pelaku industri konveksi dan semi garment sebelum bordir komputer populer dan dikenal di pasaran.
