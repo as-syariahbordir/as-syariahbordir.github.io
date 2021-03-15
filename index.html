@@ -5,7 +5,7 @@ layout: default
 <div class="posts">
     {% for post in paginator.posts %}
     <article class="post">
-<ion-card>
+<ion-card onclick="handleButtonClick()" href="{{ site.baseurl }}{{ post.url }}">
     <div class="badge-diskon">
         <div class="tabel-diskon">{{ post.persen }}</div>
     </div>
@@ -20,9 +20,6 @@ layout: default
     <ion-card-title style="color: #f94c2f;">Rp.{{ post.diskon }}</ion-card-title>
 </center>
   </ion-card-header>
-              <ion-item onclick="handleButtonClick()" href="{{ site.baseurl }}{{ post.url }}">
-                <ion-label>Lihat Produk</ion-label><ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
-</ion-item>
 </ion-card>
     </article>
   {% endfor %}

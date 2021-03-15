@@ -120,7 +120,6 @@ div.badge-diskon {
 
 div.tabel-diskon {
   border: 1px solid;
-  font-size: larger;
   padding: 5px;
   border-radius: 3px;
   color: #f94c2f;
@@ -257,6 +256,7 @@ img {
 
 .site-info {
   float: left;
+  margin-top: 7px;
 }
 
 @media screen and (max-width: 640px) {
@@ -537,7 +537,7 @@ input[type="number"] {
 
 .posts > .post {
   padding-bottom: 2em;
-  width: 300px;
+  width: 200px;
   /* iPads (portrait and landscape) ----------- */
 }
 

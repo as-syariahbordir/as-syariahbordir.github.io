@@ -66,7 +66,6 @@ div.badge-diskon {
 }
 div.tabel-diskon {
     border: 1px solid;
-    font-size: larger;
     padding: 5px;
     border-radius: 3px;
     color: #f94c2f;
@@ -205,6 +204,7 @@ img {
 
 .site-info {
   float: left;
+  margin-top: 7px;
 
   @include mobile {
     float: none;
@@ -454,7 +454,7 @@ input[type="number"] {
 }
 .posts > .post {
   padding-bottom: 2em;
-  width: 300px;
+  width: 200px;
 
     @include mobile {
     width :auto;
