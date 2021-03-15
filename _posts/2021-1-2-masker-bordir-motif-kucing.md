@@ -24,7 +24,7 @@ bintang2: fa-star
 bintang3: fa-star
 bintang4: fa-star
 bintang5: fa-star-half
-penjualan: 55 Terjual
+penjualan: 25 Terjual
 ---
 
 
