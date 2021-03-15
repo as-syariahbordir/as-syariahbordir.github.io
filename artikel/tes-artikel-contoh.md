@@ -1,5 +1,0 @@
----
-layout: artikel
----
-
-Hello World

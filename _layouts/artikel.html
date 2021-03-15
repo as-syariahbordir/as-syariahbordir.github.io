@@ -4,8 +4,9 @@ layout: default
 <style>
     .blog { padding:0px;}
     .wrapper-footer { display:none!important; }
+    .posts {padding-top:60px;}
 </style>
-<ion-header>
+<ion-header style="position:fixed;">
     <ion-toolbar color="danger">
         <ion-buttons slot="start" onclick="javascript:history.back()/artikel">
           <ion-button onclick="handleButtonClick()"><ion-icon name="chevron-back-outline"></ion-icon><ion-label color="light">Back</ion-label>
@@ -13,6 +14,6 @@ layout: default
         </ion-buttons>
       </ion-toolbar>
   </ion-header>
-<div class="container">
+<div class="container posts">
 {{ content }}
 </div>

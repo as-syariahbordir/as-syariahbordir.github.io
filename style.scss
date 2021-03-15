@@ -498,7 +498,9 @@ input[type="number"] {
     }
 }
 .pagination {
-    display: flow-root;
+    display: block;
+    flex-wrap: wrap;
+    margin-bottom: 2em;
 }
 .next {
     float: right;
@@ -515,6 +517,79 @@ input[type="number"] {
 footer {
   padding: 20px 0;
   text-align: center;
+}
+
+.feature_tw .grid .widget .icon, .feature_tw .grid .widget .text {
+    display: flex;
+
+    @include mobile {
+    display: block;
+    margin: auto;
+    }
+}
+.feature_tw .grid .widget .icon i {
+    margin-top: 0;
+    color: #009688;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 60px;
+    text-align: center;
+    font-size: 25px;
+    transition: .1s;
+}
+.feature_tw .grid .widget .icon i, .feature_tw .grid .widget .text .textWrap {
+    display: block;
+    margin: auto;
+}
+.feature_tw {
+    background: #fff;
+    display: block;
+    padding: 60px 0;
+    color: rgba(0,0,0,.6);
+    border-top: 1px solid rgba(0,0,0,.06);
+    overflow: auto;
+}
+.feature_tw .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px;
+
+    @include mobile {
+    grid-template-columns: repeat(3, 60%) 1px;
+    grid-gap: 40px;
+    font-size: 90%;
+    width: 100%;
+    max-width: calc(100% + 20px);
+    overflow-x: auto;
+    padding: 40px 10px;
+    padding-left: 30px;
+    }
+}
+.wrapper {
+    margin: auto;
+    width: 1200px;
+    max-width: calc(100% - 20px);
+
+    @include mobile {
+    width: 1050px;
+    }
+}
+.feature_tw .grid .widget {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-column-gap: 20px;
+    border-right: 1px solid rgba(0,0,0,.06);
+    padding-right: 40px;
+
+    @include mobile {
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 10px;
+    text-align: center;
+    }
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

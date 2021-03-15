@@ -1,34 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang='id'>
   <head>
     <title>Masker Bordir Simaya – As-Syariah Bordir – Produk & Jasa Bordir Tasikmalaya</title>
 
         <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-    <meta property="og:image" content="/images/intro-bg.jpg"/>
+    <meta property="image" content="/images/intro-bg.webp"/>
 
     
-    <meta name="description" content="Detail Produk:
-
-Bahan Kain : 100% Katun
-Lapisan : 3 Lapisan
-Bordir : Manual ( JUKI )
-
-" />
-    <meta property="og:description" content="Detail Produk:
-
-Bahan Kain : 100% Katun
-Lapisan : 3 Lapisan
-Bordir : Manual ( JUKI )
-
-" />
+    <meta property="image" content="/images/masker-simaya/utama.jpg"/>
+    <meta property="og:image" content="/images/masker-simaya/utama.jpg"/>
     
     <meta name="author" content="As-Syariah Bordir" />
 
     
-    <meta property="og:image" content="/images/masker-simaya/utama.jpg"/>
     <meta property="og:title" content="Masker Bordir Simaya" />
     <meta property="twitter:title" content="Masker Bordir Simaya" />
     
@@ -66,18 +52,151 @@ Bordir : Manual ( JUKI )
     <![endif]-->
 <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
 <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<link href="https://unpkg.com/ionicons@4.4.4/dist/css/ionicons.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
 <link rel="stylesheet" type="text/css" href="/style.css" />
 <link rel="alternate" type="application/rss+xml" title="As-Syariah Bordir - Produk & Jasa Bordir Tasikmalaya" href="/feed.xml" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"/>
 
     
+	  
+<style type="text/css">
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Tombol Button Pesan */
+#button {margin: 5% auto; width: 100px; text-align: center;}
+#button a {
+	width: 100px;
+	height: 30px;
+	vertical-align: middle;
+	background-color: #F00;
+	color: #fff;
+	text-decoration: none;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid transparent;
+}
+
+/* Jendela Pop Up */
+#kontak {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	background: rgba(0,0,0,.7);
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	visibility: hidden;
+}
+
+.window {
+	max-width: 300px;
+	width: auto;
+	height: auto;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	padding: 10px;
+	text-align: center;
+    	margin: auto;
+    	margin-top: 10%;
+}
+.window h2 {
+	margin: 30px 0 0 0;
+}
+/* Button Close */
+.close-button {
+    width: 22px;
+    height: 22px;
+    line-height: 21px;
+    background: rgb(0 0 0 / 50%);
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    display: block;
+    text-align: center;
+    color: #f94c2f;
+    text-decoration: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+.wrap-contact {
+  overflow: hidden;
+}
+
+/* Memunculkan Jendela Pop Up*/
+#kontak:target {
+	visibility: visible;
+}
+	  </style>
     <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
 <link rel="stylesheet" type="text/css" href="/css/wa.css"/>
   <script type="module">
     import { modalController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
     window.modalController = modalController;
   </script>
+  <script type="module">
+    import { loadingController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+    window.loadingController = loadingController;
+  </script>
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "e884466f-bced-41ce-8a23-d287803069a5",
+    });
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" />
+<script language="javascript">
+//<![CDATA[
+jQuery(function($) {
+	$(window).load(function() { 
+		var seconds_pop = 20000; // 20 seconds
+		var expireDate = new Date(); // todays date
+		var minutes = 30;
+		expireDate.setTime(expireDate.getTime() + (minutes * 60 * 1000)); // 1 hour
+
+		var BlogSiteVisit = parseInt(cookieVal("BlogSiteVisit")); // parse in convert str to int // bcus it is content
+		BlogSiteVisit++; // loop by 1
+		
+		if(BlogSiteVisit == 1) { // if BlogSiteVisit if 1
+			document.cookie = "BlogSiteVisit=" + BlogSiteVisit + ";expires=" + expireDate.toGMTString() + ";path=/"; // store cookie 
+			setTimeout(function(){ // then show popup, deley in .5 second
+				
+				$.fancybox.showLoading();  // show loading
+				setTimeout(function(){ // then show popup, deley in .5 second
+					$.fancybox({ // Fancybox Properties
+						'transitionIn' : 'fade',
+						'transitionOut' : 'fade',
+						'overlayColor' : '#000',
+						'overlayOpacity' : '.6',
+						'href' : '#popup_content',
+						'helpers'   : { overlay : {closeClick: false } },
+						'onCleanup' : function() { }
+					});
+				}, 100); // .1 second	
+			}, seconds_pop); 
+		} else { 
+			return; 
+		  }
+		function cookieVal(cookieName) {
+			var thisCookie = document.cookie.split("; "); 
+			for (var i=0; i<thisCookie.length; i++) { 			
+				if (cookieName == thisCookie[i].split("=")[0]) {
+					return thisCookie[i].split("=")[1]; 
+				}
+			}
+		return 0; 
+		}
+	});
+}); // jQuery End
+//]]>
+</script>
   </head>
 
   <body>
@@ -85,7 +204,7 @@ Bordir : Manual ( JUKI )
     
 <ion-toolbar color="danger">
     
-        <ion-buttons slot="start"><a href="/#main">
+        <ion-buttons onclick="handleButtonClick()" slot="start"><a href="/">
           <ion-button><ion-icon name="chevron-back-outline"></ion-icon><ion-label>Back</ion-label>
           </ion-button></a>
         </ion-buttons>
@@ -101,20 +220,20 @@ Bordir : Manual ( JUKI )
     <div class="wrapper-masthead">
       <div class="container">
         <header class="masthead clearfix">
-          <a href="/" class="site-avatar"><img src="/images/logo.png" /></a>
+          <a onclick="handleButtonClick()" href="/" class="site-avatar"><img src="/images/logo.png" /></a>
 
           <div class="site-info">
-            <h1 class="site-name"><a href="/">As-Syariah Bordir</a></h1>
+            <h1 onclick="handleButtonClick()" class="site-name"><a href="/">As-Syariah Bordir</a></h1>
             <p class="site-description">Produk & Jasa Bordir Tasikmalaya</p>
           </div>
 
           <nav>
             <ion-pay>
-        <ion-chip color="default"><ion-label color="light">Payment</ion-label>
+        <ion-chip onclick="handleButtonClick()" color="default"><ion-label color="light">Payment</ion-label>
         </ion-chip></ion-pay>
-            <a href="/kontak">
-        <ion-chip color="default"><ion-label color="light">Contact</ion-label>
-        </ion-chip></a>
+		  <a href="/artikel">
+        <ion-chip onclick="handleButtonClick()" color="default"><ion-label color="light">Artikel</ion-label>
+			  </ion-chip></a>
           </nav>
         </header>
       </div>
@@ -136,7 +255,8 @@ Bordir : Manual ( JUKI )
 <div class="productDetail" data-stock="on">
   <h1>Masker Bordir Simaya</h1>
 
-<span class="productPrice" data-discount-percent="0" itemprop="price" data-selected="18500"><b>Rp.20000</b></span>
+<div style="text-decoration:line-through;color:#a5a5a5!important;font-size: 120%;" itemprop="price">Rp.20000</div>
+<span class="productPrice" itemprop="price"><b>Rp.15000</b><small class="diskon">25% off</small></span>
 
 <ul class="productOption" id="Warna">
 <small>Warna Tersedia</small><p/>
@@ -154,7 +274,7 @@ Bordir : Manual ( JUKI )
 </ul>
 <div class="productCheckout">
 <div class="productQty">
-<span class="min">Stok:</span><span class="plus">20pcs</span>
+<span class="min">Stok:</span><span class="plus">7pcs</span>
 </div>
 <div class="productOrder">
 <a class="tombol-wa" data-width="550" href="#order">
@@ -179,7 +299,9 @@ Bordir : Manual ( JUKI )
 </ul>
 
 <br>
-<b>Disclaimer:</b> <small>Persamaan warna foto katalog dengan produk asli mencapai 98%. Efek cahaya, kecerahan, kerapatan, dan resolusi layar memungkinkan terjadinya distorsi warna.</small>
+<div style="display: flex;flex-flow: nowrap;">
+<b>Disclaimer:</b> <small style="border: 1px solid;padding: 5px;margin-left: 5px;border-radius: 5px;background: #f94c2f1c;">Persamaan warna foto katalog dengan produk asli mencapai 98%. Efek cahaya, kecerahan, kerapatan, dan resolusi layar memungkinkan terjadinya distorsi warna.</small>
+    </div>
 </div></div>
 <div class="tabContent" id="tabShare">
 <div class="shareWrapper">
@@ -224,7 +346,8 @@ Bordir : Manual ( JUKI )
 </article>
 
     </div>
-
+    
+    
     <div class="wrapper-footer">
       <div class="container">
         <footer class="footer">
@@ -508,7 +631,7 @@ Bordir : Manual ( JUKI )
       connectedCallback() {
         this.innerHTML = `
           <ion-header translucent>
-            <ion-toolbar>
+            <ion-toolbar color="danger">
               <ion-title>Metode Pembayaran</ion-title>
               <ion-buttons slot="end">
                 <ion-button onclick="dismissModal()">Close</ion-button>
@@ -536,23 +659,24 @@ Bordir : Manual ( JUKI )
                 </ion-label>
               </ion-item>
                   <a href="/scan-qris">
-              <ion-item>
+              <ion-item onclick="handleButtonClick()">
                 <ion-avatar slot="start">
                   <ion-img src="/images/qris.png"/>
                 </ion-avatar>
                 <ion-label>
-                  <h2>Scan QRIS</h2><p>Klik Untuk Membuka dan Scan Qris.</p>
+                  <h2>Scan QRIS</h2><p>Ketuk Untuk Membuka dan Scan Qris.</p>
                 </ion-label>
               </ion-item></a>
+<a href="https://link.dana.id/p2m?params=[orderId=534a046a-07ee-46c9-a7cd-0a54552e212a]">
               <ion-item>
                 <ion-avatar slot="start">
                   <ion-img src="/images/dana.png"/>
                 </ion-avatar>
                 <ion-label>
                   <h2>Dana Link</h2>
-                  <p>Klik disini untuk menggunakan DANA.</p>
+                  <p>Ketuk disini untuk menggunakan DANA.</p>
                 </ion-label>
-              </ion-item>
+              </ion-item></a>
             </ion-list>
           </ion-content>
         `;
@@ -576,6 +700,24 @@ Bordir : Manual ( JUKI )
       if (currentModal) {
         currentModal.dismiss().then(() => { currentModal = null; });
       }
+    }
+  </script>
+
+	<div style="display:none">
+    <div id="popup_content">
+        <p style="text-align: center; font-weight: bold;">Assalamualaikum.</p>
+	    <p style="text-align: center;">Spesial Promo Bulan Maret<br/>Dapatkan Diskon 25% Untuk Setiap Produk.</p>
+    </div>
+</div>
+    
+  <script>
+    async function handleButtonClick() {
+      const loading = await loadingController.create({
+        message: 'Mohon Tunggu...',
+        duration: 3000
+      });
+
+      await loading.present();
     }
   </script>
   </body>

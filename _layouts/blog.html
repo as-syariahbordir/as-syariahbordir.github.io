@@ -3,10 +3,10 @@ layout: default
 ---
 <style>
     .blog { padding:0px;}
-    .page-artikel { max-width:900px;margin:auto; }
+    .page-artikel { max-width:900px;margin:auto;padding-top:70px; }
     .wrapper-footer { display:none!important; }
 </style>
-<ion-header>
+<ion-header style="position:fixed;">
     <ion-toolbar color="danger">
         <ion-buttons slot="start" onclick="javascript:history.back()">
           <ion-button onclick="handleButtonClick()"><ion-icon name="chevron-back-outline"></ion-icon><ion-label color="light">Back</ion-label>
@@ -20,7 +20,7 @@ layout: default
 {% for artikel in site.data.artikel %}
         <ion-item onclick="handleButtonClick()" href="{{ artikel.url }}">
 		<ion-icon slot="end" name="chevron-forward-outline"></ion-icon>
-          <ion-thumbnail slot="start">
+          <ion-thumbnail style="width: 80px;height: 80px;" slot="start">
             <img src="{{ artikel.img }}">
           </ion-thumbnail>
           <ion-label>

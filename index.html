@@ -28,14 +28,14 @@ layout: default
   {% endfor %}
 
 {% if paginator.total_pages > 1 %}<!-- Pagination links -->
-  <div class="pagination">
+  <div class="pagination container">
     {% if paginator.previous_page %} <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="back">
-        <ion-chip onclick="handleButtonClick()" color="secondary">
+        <ion-chip onclick="handleButtonClick()" color="danger">
 <ion-icon name="chevron-back-outline"></ion-icon>
           <ion-label>Newer Posts</ion-label>
         </ion-chip></a> {% endif %}
     {% if paginator.next_page %} <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next">
-        <ion-chip onclick="handleButtonClick()" color="secondary">
+        <ion-chip onclick="handleButtonClick()" color="danger">
           <ion-label>Older Posts</ion-label>
 <ion-icon name="chevron-forward-outline"></ion-icon>
         </ion-chip></a>{% endif %}

@@ -87,5 +87,5 @@ exclude:
   - README.md
   - CNAME
 
-paginate: 6
-paginate_path: '/:num'
+paginate: 4
+paginate_path: '/page-:num'

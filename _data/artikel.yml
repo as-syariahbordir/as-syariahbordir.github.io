@@ -1,14 +1,14 @@
-- judul: Tes Artikel 1
+- judul: Sejarah Bordir Tasikmalaya
   admin: nDang
-  img: /images/qris.png
-  deskrip: Tes Artikel Contoh
+  img: /images/blog/Bordir-Tasik.jpg
+  deskrip: Kawalu adalah sebuah kecamatan di Kota Tasikmalaya, Provinsi Jawa Barat. Ibu kota kecamatan ini berada di Kelurahan Karsamenak.
   time: 06-03-2021
-  url: /artikel/tes-artikel-contoh
+  url: /artikel/sejarah-bordir-tasikmalaya
   
-- judul: Tes Artikel 2
+- judul: Cara Membuat Bordiran Manual & Bordir Komputer
   admin: nDang
-  img: /images/qris.png
-  deskrip: Tes Artikel Contoh
-  time: 06-03-2021
-  url: /artikel/tes-artikel-contoh2
+  img: /images/blog/Logo-Bordir.jpg
+  deskrip: Ada 2 macam cara membordir yaitu bordir manual dan bordir komputer. Tehnik membordir secara manual maupun dengan komputer itu tetap memerlukan keterampilan khusus.
+  time: 12-03-2021
+  url: /artikel/cara-membuat-bordiran
   
