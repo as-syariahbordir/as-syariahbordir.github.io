@@ -1,0 +1,55 @@
+title: As-Syariah Bordir
+email: as.syariahputra@gmail.com
+description: Menerima jasa bordir komputer & manual ( JUKI ), untuk Logo, Kopiah/Peci,
+  Mukena, dan lain-lain.. ( Partai Besar )
+baseurl: ''
+url: 'https://as-syariahbordir.com'
+twitter_username: 'null'
+github_username: 'null'
+GoogleAnalytics: UA-53683781-2
+AdsenseCode: ca-pub-1171588080744378
+adclient: ca-pub-1171588080744378
+adslot: 6743398360
+signal-id: e884466f-bced-41ce-8a23-d287803069a5
+
+twitter:
+  username: null
+
+facebook:
+  app_id: '1337078570021836'
+  publisher: '764200241166712'
+  fb-pages: '653664722091569'
+
+sass:
+  style: compressed
+
+markdown: kramdown
+
+kramdown:
+  parse_block_html: true
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jemoji
+
+defaults:
+  - scope:
+      type: posts
+    values:
+      layout: post
+      permalink: '/blog/:title'
+
+include:
+  - _pages
+
+exclude:
+  - CNAME
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+paginate: 12
+paginate_path: '/blog/:num'
