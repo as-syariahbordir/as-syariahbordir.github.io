@@ -34,7 +34,15 @@
 <loc>http://localhost:4000/term-service</loc>
 </url>
 <url>
-<loc>http://localhost:4000/google2945a39ea01c2eb5.html</loc>
-<lastmod>2021-03-18T09:41:54+07:00</lastmod>
+<loc>http://localhost:4000/amp-helper-frame.html</loc>
+<lastmod>2021-03-26T15:56:16+07:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/amp-permission-dialog.html</loc>
+<lastmod>2021-03-26T15:56:16+07:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/eb6a3925e2140ddc8ac707b73d2b77f0.html</loc>
+<lastmod>2021-03-27T21:19:54+07:00</lastmod>
 </url>
 </urlset>
