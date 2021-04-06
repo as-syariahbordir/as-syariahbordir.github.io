@@ -1,4 +1,4 @@
-var CACHE_NAME = '20210328140421';
+var CACHE_NAME = '20210407002650';
 
 self.addEventListener('install',event => {
   event.waitUntil(caches.open(CACHE_NAME)
@@ -19,7 +19,7 @@ self.addEventListener('install',event => {
     
     
     
-    '/blog/perbedaan-3-kemasan-vaksin-COVID-19','/blog/disiplin-3m-hal-sederhana','/blog/sejarah-penggunaan-masker',
+    '/blog/Download-Wilcom-ES2006-sp4-Windows7-32bit','/blog/Wilcom-Es-2006-Security-Device-Has-Timed-Out','/blog/perbedaan-3-kemasan-vaksin-COVID-19','/blog/disiplin-3m-hal-sederhana','/blog/sejarah-penggunaan-masker',
   ]))
 );
 });
