@@ -1,0 +1,229 @@
+---
+---
+
+@import "./reset";
+@import "./variables";
+
+html {}
+body {}
+a {text-decoration:none;}
+#main{
+    max-width: 1020px;
+    margin: auto;}
+.hide{display:none}
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+
+  @include mobile {
+    width: auto;
+    margin: 6px;
+    margin-bottom: 50px;}
+}
+.shop {
+    width: auto;
+
+  @include mobile {
+    max-width: 50%;}
+}
+.posts {
+
+  @include mobile {
+    width: auto;}
+}
+
+.simpleCart_shelfItem {
+    width: -webkit-fill-available;
+}
+
+.post-product {
+    width: 235px;
+
+  @include mobile {
+    width: auto;
+    margin: 5px;}
+}
+.post-header {
+}
+.post-title {
+    text-align: center;
+    font-size: 18px;
+    padding-bottom: 10px;
+
+  @include mobile {
+    font-size: 14px;}
+}
+.post-entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+.star{color: $star;}
+
+.shop-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.btn-footer {
+    max-width: 1020px;
+    margin: auto;
+}
+
+.btn-left {
+    float: left;
+    margin-left: 10px;
+}
+
+.btn-right {
+    float: right;
+    margin-right: 10px;
+}
+
+.post-shop {
+    display: flex;
+    flex-wrap: nowrap;
+
+  @include mobile {
+    flex-wrap: wrap;}
+}
+
+.shop-img {
+    width: 545.45px;
+
+  @include mobile {
+    width: auto;}
+}
+
+.wrapit {width:454px;}
+
+.product-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.note{
+    margin-bottom: 15px;
+}
+.item{
+    margin-top: 10px;
+}
+
+.btn-picker {
+    text-align:center;
+    width:70px;
+    border-radius:5px;
+    padding:8px;
+    cursor:pointer;
+    margin:7px;
+    margin-bottom:5px;
+
+  @include mobile {
+    width:75px;
+    margin:3px;}
+}
+.style-picker {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.entry {
+    width: 100%;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-radius: 25px;
+    background: #fff;
+}
+
+.input-group {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px;
+    margin-top: 10px;
+    border: 1px #000 solid;
+    border-radius: 25px;
+}
+
+#input_div {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.date {
+    margin-top: 10px;
+    font-size: xx-small;
+    float: right;
+}
+.input-group-prepend{
+    font-size: 20px;}
+
+.footer {
+    padding: 0 10px;
+
+  @include mobile {
+    text-align: center;}
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: #000000bf;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 4% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+
+  @include mobile {
+  width: 100%;
+  margin: 28% auto;}
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-top: -28px;
+  margin-right: -16px;
+
+  @include mobile {
+    margin-top: -45px;
+    margin-right: -23px;}
+}
+
+.close:hover,
+.close:focus {
+  color: #dc322f;
+  text-decoration: none;
+  cursor: pointer;
+}
+a.fav_btn {color: #888;float: right;}
+a.like-btn {color: crimson;font-size: 20px;}
+span.clicked {color: crimson; font-weight:bold;}
+@import "./highlights";
+@import "./svg-icons";

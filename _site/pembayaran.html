@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <title>Pembayaran – AS-Syariah Bordir – Web Developer from Somewhere</title>
+
+    
+    <meta name="description" content="Web Developer from Somewhere">
+    <meta property="og:description" content="Web Developer from Somewhere" />
+    
+    <meta name="author" content="" />
+
+    
+    <meta property="og:title" content="Pembayaran" />
+    <meta property="twitter:title" content="Pembayaran" />
+    
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <script type="module">
+      import { popoverController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+      window.popoverController = popoverController;
+    </script>
+    <script type="module">
+      import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+      window.alertController = alertController;
+    </script>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/assets/css/ion-style.css" />
+    <link rel="alternate" type="application/rss+xml" title=" - Web Developer from Somewhere" href="/feed.xml" />
+
+    <!-- Created with Jekyll - http://jekyllrb.com -->
+  </head>
+
+<body>
+<ion-app>
+
+    
+
+    <ion-content>
+        <div id="main">
+            <div class="container">
+                  <article class="page">
+  <div class="entry">
+    <style>.page{margin:auto;margin-top:15%;}.payment-point{display:flex;flex-wrap:nowrap;}@media only screen and (max-width:767px){.page{margin:auto;margin-top:15%;}.payment-point{display:flex;flex-wrap:wrap;justify-content: center;}}</style>
+<div class="payment-point">
+<ion-card>
+<img src="/assets/images/qris_logo.jpg" />
+<buttonQris>
+<ion-item id="trigger-qris" class="ion-activated" style="cursor:pointer">
+<ion-icon name="barcode-outline" slot="start"></ion-icon>
+<ion-label>Scan Qris</ion-label>
+<ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+</ion-card>
+<ion-card>
+<img src="/assets/images/bank_transfer.jpg" />
+</ion-item>
+<buttonQris>
+<buttonBank>
+<ion-item id="trigger-transfer" class="ion-activated" style="cursor:pointer">
+<ion-icon name="card-outline" slot="start"></ion-icon>
+<ion-label>Transfer Bank</ion-label>
+<ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+</ion-item>
+</buttonBank>
+</ion-card>
+</div>
+
+<ion-modal  trigger="trigger-qris" id="scQris">
+<ion-header collapse="fade" translucent="true">
+        <ion-toolbar>
+<ion-title>Scan Qris</ion-title>
+    <ion-buttons slot="end">
+      <ion-button onClick="dismissQris()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+        </ion-toolbar>
+     </ion-header>
+<ion-content>
+<img src="/assets/images/qris.jpeg" />
+</ion-content>
+</ion-modal>
+
+<ion-modal  trigger="trigger-transfer" id="tfBank">
+<ion-header collapse="fade" translucent="true">
+        <ion-toolbar>
+<ion-title>Transfer Bank</ion-title>
+<ion-buttons slot="end">
+      <ion-button onClick="dismissTbank()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+        </ion-toolbar>
+     </ion-header>
+  <ion-content>
+<ion-item>
+<ion-label>Bank BRI</ion-label>
+<input type="text" id="bri" value="000501121217502" style="border: none!important;background: transparent;" readonly>
+                  <div class="input-group-append">
+                    <span onclick="myBri()">
+<i class="far fa-copy" style="font-size:25px;cursor:pointer;"></i></span>
+                  </div>
+</ion-item>
+<ion-item >
+<ion-label>Bank BTPN</ion-label>
+<input type="text" id="btpn" value="903700011795" style="border: none!important;background: transparent;" readonly>
+                  <div class="input-group-append">
+                    <span onclick="myBtpn()">
+<i class="far fa-copy" style="font-size:25px;cursor:pointer;"></i></span>
+                  </div>
+</ion-item>
+</ion-content>
+</ion-modal>
+<script>
+async function dismissQris() {
+  await cardModal.dismiss({
+    'dismissed': true
+  });
+}
+
+async function dismissTbank() {
+  await sheetModal.dismiss({
+    'dismissed': true
+  });
+}
+</script>
+<script>
+      const Bank = document.querySelector('buttonBank');
+      Bank.addEventListener('click', handleButtonClick);
+
+      async function handleButtonClick() {
+        const alert = await alertController.create({
+          message: 'Kamu akan melakukan pembayaran melalui transfer BANK, silahkan Copy Paste nomor Rekening kami.',
+          buttons: ['Agree'],
+        });
+
+        await alert.present();
+      }
+</script>
+
+<script>
+      const Qris = document.querySelector('buttonQris');
+      Qris.addEventListener('click', handleButtonClick);
+
+      async function handleButtonClick() {
+        const alert = await alertController.create({
+          message: 'Silahkan Scan BarCode dengan aplikasi E-Wallet kamu, menerima pembayaran dari semua E-Wallet.',
+          buttons: ['Oke'],
+        });
+
+        await alert.present();
+      }
+</script>
+
+<script>
+  const sheetModal = document.querySelector('#tfBank');
+  const cardModal = document.querySelector('#scQris');
+
+  sheetModal.breakpoints = [0.1, 0.5, 1];
+  sheetModal.initialBreakpoint = 0.5;
+  
+  cardModal.swipeToClose = true;
+  cardModal.presentingElement = document.querySelector('ion-app');
+</script>
+
+  </div>
+</article>
+
+            </div>
+        </div>
+    </ion-content>
+
+    
+
+
+
+</ion-app>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script src="/assets/js/jquery-3.6.0.js"></script>
+    <script src="/assets/js/simpleCart.js"></script>
+    <script async src="/assets/js/main.js"></script>
+    <script async src="/assets/js/responsive-menu.js"></script>
+      <script async src="/assets/js/form-order.js"></script>
+    <script src="/assets/js/question.js" type="text/javascript"></script>
+    <script src="/assets/js/like.js" type="text/javascript"></script>
+
+
+
+    
+
+
+<script>
+function myCart() {
+  location.replace("/cart")
+}
+
+function myBlog() {
+  location.replace("/blog")
+}
+
+function myPayment() {
+  location.replace("/pembayaran")
+}
+</script>
+<script>
+  let currentPopover = null;
+
+  const buttons = document.querySelectorAll('privacy');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', handleButtonClick);
+  }
+
+  async function handleButtonClick(ev) {
+    popover = await popoverController.create({
+      component: 'popover-example-page',
+      event: ev,
+      translucent: true,
+    });
+    currentPopover = popover;
+    return popover.present();
+  }
+
+  function dismissPopover() {
+    if (currentPopover) {
+      currentPopover.dismiss().then(() => {
+        currentPopover = null;
+      });
+    }
+  }
+
+  customElements.define(
+    'popover-example-page',
+    class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+      <ion-list>
+        <ion-item button >Blogs</ion-item>
+        <ion-item button onclick="myPayment()">Pembayaran</ion-item>
+        <ion-item lines="none" detail="false" button href="/privacy-policy">Privacy Policy</ion-item>
+      </ion-list>
+    `;
+      }
+    }
+  );
+</script>
+<script type='text/javascript'>
+//<![CDATA[
+$(function(){if($("#twFeature").length){var o=$("#twFeature"),t=$("#twFeature").offset().top,i=$("#twFeature").height();$(window).scroll(function(){var s=$("#footer").offset().top-i-20,f=$(window).scrollTop();if(f>t?o.css({position:"fixed",top:90}):o.css("position","static"),f>s){var n=s-f;o.css({top:n})}})}});
+//]]>
+</script>
+<script>
+ function setModal(modalBtn) {
+        var bagBtn = document.getElementById('bagBtn')
+        var xBtn = document.getElementById('xBtn')
+
+        if(modalBtn) {
+            xBtn.style.display = "block"
+            bagBtn.style.display = "none"
+        } else {
+            xBtn.style.display = "none"
+            bagBtn.style.display = "block"
+        }
+
+        document.body.classList.toggle("modalBtn");
+    }
+</script>
+    <script>
+      const button = document.querySelector('alert');
+      button.addEventListener('click', handleAlertClick);
+
+      async function handleAlertClick() {
+        const alert = await alertController.create({
+          message: 'Blogs Sedang Dalam Perbaikan.',
+          buttons: ['oke'],
+        });
+
+        await alert.present();
+      }
+    </script>
+<script>
+      async function onLoad() {
+  const loading = document.createElement('ion-loading');
+
+  loading.message = 'Mohon Tunggu...';
+  loading.duration = 2000;
+
+  document.body.appendChild(loading);
+  await loading.present();
+
+  const { role, data } = await loading.onDidDismiss();
+  console.log('Loading dismissed!');
+}
+    </script>
+
+</body>
+</html>

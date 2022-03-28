@@ -1,0 +1,28 @@
+---
+layout: default
+---
+
+<script>
+    function pageRedirect() {
+        window.location.replace("{{ site.baseurl }}/product");
+    }      
+    setTimeout("pageRedirect()", 5000);
+</script>
+      <ion-slides>
+        <ion-slide>
+          <img src="assets/images/pakaimasker.jpg"/>
+          <h2></h2>
+          <ion-button fill="clear" onclick="myButton()">Go Shopping <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+        </ion-slide>
+
+      </ion-slides>
+
+  <style>
+    ion-header,ion-footer,ion-toolbar{display:none!important;}.swiper-slide{flex-wrap: wrap;}
+    p{padding: 0 40px;font-size: 14px;line-height: 1.5;color: var(--ion-color-step-600, #60646b);}@media screen and (max-width: 727px){.container {margin-top: 50%;}}
+  </style>
+<script>
+function myButton() {
+  location.replace("{{ site.baseurl }}/product")
+}
+</script>
