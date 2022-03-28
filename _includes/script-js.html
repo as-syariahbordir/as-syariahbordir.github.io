@@ -110,19 +110,6 @@ $(function(){if($("#twFeature").length){var o=$("#twFeature"),t=$("#twFeature").
         document.body.classList.toggle("modalBtn");
     }
 </script>
-    <script>
-      const button = document.querySelector('alert');
-      button.addEventListener('click', handleAlertClick);
-
-      async function handleAlertClick() {
-        const alert = await alertController.create({
-          message: 'Blogs Sedang Dalam Perbaikan.',
-          buttons: ['oke'],
-        });
-
-        await alert.present();
-      }
-    </script>
 <script>
       async function onLoad() {
   const loading = document.createElement('ion-loading');

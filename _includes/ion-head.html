@@ -43,5 +43,33 @@
     
     {% include fb-pixel.html %}
 
+    {% if page.layout == "post" %}
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "productID":"{{page.title}}_{{page.noID}}",
+  "name":"{{page.title}}",
+  "description":"{{page.description}}",
+  "url":"{{site.url}}{{page.url}}",
+  "image":"{{page.img}}",
+  "brand":"{{page.merk}}",
+  "offers": [
+    {
+      "@type": "Offer",
+      "price": "{{page.price}}",
+      "priceCurrency": "IDR",
+      "itemCondition": "https://schema.org/NewCondition",
+      "availability": "https://schema.org/InStock"
+    }
+  ],
+  "additionalProperty": [{
+    "@type": "PropertyValue",
+    "propertyID": "{{page.noID}}",
+    "value": "{{page.categories}}"
+  }]
+}
+</script>
+    {% endif %}
     <!-- Created with Jekyll - http://jekyllrb.com -->
   </head>
