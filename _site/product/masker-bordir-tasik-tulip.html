@@ -61,13 +61,25 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 
 <body>
 <ion-app>
-
+       <ion-header translucent>
+            <ion-toolbar>
+          <ion-title class="site-info">
+            <h1 class="site-name"><a href="/product">AS-Syariah Bordir</a></h1>
+          </ion-title>
     
+<ion-buttons slot="end">
+<privacy><ion-button>
+<ion-icon name="ellipsis-vertical"></ion-icon>
+</ion-button></privacy>
+</ion-buttons>
+            </ion-toolbar>
+        </ion-header>
 
     <ion-content>
         <div id="main">
             <div class="container">
-                  <div class="simpleCart_shelfItem">
+                  <style>ion-header{display:none !important;}</style>
+<div class="simpleCart_shelfItem">
 <ion-card class="post-shop">
 <span class="hide item_link">/product/masker-bordir-tasik-tulip</span>
 <div class="shop-img">
@@ -410,6 +422,7 @@ window.onclick = function(event) {
         </div>
     </ion-content>
 
+    
     
 
 
