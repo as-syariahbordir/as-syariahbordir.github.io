@@ -278,13 +278,12 @@ a {
 .modal-content {
   background-color: #fefefe;
   margin: 4% auto;
-  padding: 20px;
   border: 1px solid #888;
   width: 50%;
 }
 @media screen and (max-width: 727px) {
   .modal-content {
-    width: 100%;
+    width: 90%;
     margin: 28% auto;
   }
 }
@@ -295,13 +294,13 @@ a {
   float: right;
   font-size: 28px;
   font-weight: bold;
-  margin-top: -28px;
-  margin-right: -16px;
+  margin-top: -12px;
+  margin-right: -8px;
 }
 @media screen and (max-width: 727px) {
   .close {
-    margin-top: -45px;
-    margin-right: -23px;
+    margin-top: -20px;
+    margin-right: -5px;
   }
 }
 
