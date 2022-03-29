@@ -223,6 +223,14 @@ a {text-decoration:none;}
   text-decoration: none;
   cursor: pointer;
 }
+
+.skeleton {
+    margin: auto;
+    max-width: 1020px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
 a.fav_btn {color: #888;float: right;}
 a.like-btn {color: crimson;font-size: 20px;}
 span.clicked {color: crimson; font-weight:bold;}

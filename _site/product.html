@@ -15,20 +15,6 @@
     <meta http-equiv="x-dns-prefetch-control" content="on">
 
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost:4000">
-    <meta property="og:title" content="AS-Syariah Bordir">
-    <meta property="og:description" content="Makloon Bordir Manual & Komputer">
-    <meta property="og:image" content="/assets/images/logo512.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="http://localhost:4000">
-    <meta property="twitter:title" content="AS-Syariah Bordir">
-    <meta property="twitter:description" content="Makloon Bordir Manual & Komputer">
-    <meta property="twitter:image" content="/assets/images/logo512.png">
-    
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
@@ -73,34 +59,13 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
     <!-- Created with Jekyll - http://jekyllrb.com -->
   </head>
 
-<body>
+<body onload="onLoadSkeleton()">
 <ion-app>
 
     
-        <ion-header translucent>
-            <ion-toolbar>
-          <ion-title class="site-info">
-            <h1 class="site-name"><a href="/product">AS-Syariah Bordir</a></h1>
-          </ion-title>
-    
-    <ion-buttons slot="end">
-      <ion-button href="/cart">
-            <ion-icon name="cart"></ion-icon>
-            <ion-badge color="danger" id="cart-menu" class="simpleCart_quantity" style="position: relative;top: -8px;right: 7px;border-radius: 50px;font-size: xx-small;"></ion-badge>
-        </ion-button>
-    </ion-buttons>
-    
-<ion-buttons slot="end">
-<privacy><ion-button>
-<ion-icon name="ellipsis-vertical"></ion-icon>
-</ion-button></privacy>
-</ion-buttons>
-            </ion-toolbar>
-        </ion-header>
-    
 
     <ion-content>
-        <div id="main">
+        <div id="main" style="display:none;">
             <div class="container">
                     
 <article class="shop">
@@ -336,14 +301,150 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 
             </div>
         </div>
+        <div class="skeleton" id="skeleton">
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+          <div class="shop">
+            <ion-card class="post-product">
+              <img src="/assets/images/blank.jpg">
+            <ion-label>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-label>
+          </ion-card>
+        </div>
+       </div>
+    <script>
+function onLoadSkeleton() {
+  const skeletonEl = document.getElementById('skeleton');
+  const dataEl = document.getElementById('main');
+
+  setTimeout(() => {
+    skeletonEl.style.display = 'none';
+    dataEl.style.display = 'block';
+  }, 5000);
+}
+    </script>
+
     </ion-content>
 
-    
-        <ion-footer class="footer">
-            <ion-toolbar>
-                <ion-note>Developed by NdanG</ion-note>
-            </ion-toolbar>
-        </ion-footer>
     
 
 

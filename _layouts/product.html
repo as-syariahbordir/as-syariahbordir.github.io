@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+{% include ion-head.html %}
+<body onload="onLoadSkeleton()">
+<ion-app>
+{% include ion-header.html %}
+    <ion-content>
+        <div id="main" style="display:none;">
+            <div class="container">
+                  {{ content }}
+            </div>
+        </div>
+{% include skeleton.html %}
+    </ion-content>
+{% include ion-footer.html %}
+{% include analytics.html %}
+</ion-app>
+{% include script-js.html %}
+</body>
+</html>

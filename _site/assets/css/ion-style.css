@@ -316,6 +316,14 @@ a {
   cursor: pointer;
 }
 
+.skeleton {
+  margin: auto;
+  max-width: 1020px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
 a.fav_btn {
   color: #888;
   float: right;
