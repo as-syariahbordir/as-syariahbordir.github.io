@@ -1,6 +1,6 @@
 ---
 title: Masker Bordir Dahlia
-description: Masker kain bordir manual tasikmalaya murah meriah,
+description: Masker kain bordir manual tasikmalaya murah meriah
 categories: Masker-Bordir
 price: '20.000'
 diskon: 16%
