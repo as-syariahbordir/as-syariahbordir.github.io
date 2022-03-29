@@ -35,10 +35,26 @@ layout: default
 <div class="note">
 <ion-text color={{page.stokC}}>{{ page.stok }}</ion-text>
 </div>
-<ion-chip id="myBtn" color="primary" style="cursor:pointer;margin-bottom:15px;">
+<div class="chip desktop">
+<ion-chip id="myBtn" color="primary">
 <ion-icon name="reader-outline"></ion-icon>
 <ion-label>Deskripsi Produk...</ion-label>
 </ion-chip>
+</div>
+<ion-accordion-group class="mobile">
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-label>Deskripsi Produk</ion-label>
+              </ion-item>
+
+              <ion-list slot="content">
+  <ion-card>
+    <ion-card-header>{{page.description}}</ion-card-header>
+    <ion-card-content>{{ content }}</ion-card-content>
+  </ion-card>
+              </ion-list>
+            </ion-accordion>
+</ion-accordion-group>
         	<div class="style-picker">
             {% for picker in page.images %}
               <div id="product-{{ forloop.index }}" {% if forloop.first %} class="btn-picker item_color" {% endif %} class="btn-picker" style="background-color:{{ picker.color }};"><span style="color:#fff">{{ picker.name }}</span></div>

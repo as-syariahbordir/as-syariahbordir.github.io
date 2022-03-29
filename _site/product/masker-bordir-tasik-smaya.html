@@ -129,10 +129,32 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 <div class="note">
 <ion-text color=primary>Stok Tersedia</ion-text>
 </div>
-<ion-chip id="myBtn" color="primary" style="cursor:pointer;margin-bottom:15px;">
+<div class="chip desktop">
+<ion-chip id="myBtn" color="primary">
 <ion-icon name="reader-outline"></ion-icon>
 <ion-label>Deskripsi Produk...</ion-label>
 </ion-chip>
+</div>
+<ion-accordion-group class="mobile">
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-label>Deskripsi Produk</ion-label>
+              </ion-item>
+
+              <ion-list slot="content">
+  <ion-card>
+    <ion-card-header>Bahan Kain Katun, 3 lapis,</ion-card-header>
+    <ion-card-content><ul>
+  <li>Lapisan Tengah : Interlining,</li>
+  <li>Bordir : Manual ( JUKI ),</li>
+  <li>Model : HeadLoop dan EarLoop,</li>
+  <li>Tinggi 14cm, Lebar 13cm (satu sisi).</li>
+</ul>
+</ion-card-content>
+  </ion-card>
+              </ion-list>
+            </ion-accordion>
+</ion-accordion-group>
         	<div class="style-picker">
             
               <div id="product-1"  class="btn-picker item_color"  class="btn-picker" style="background-color:#4a5265;"><span style="color:#fff">Navi</span></div>

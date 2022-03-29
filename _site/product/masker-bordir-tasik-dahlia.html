@@ -125,10 +125,33 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 <div class="note">
 <ion-text color=danger>Stok Habis</ion-text>
 </div>
-<ion-chip id="myBtn" color="primary" style="cursor:pointer;margin-bottom:15px;">
+<div class="chip desktop">
+<ion-chip id="myBtn" color="primary">
 <ion-icon name="reader-outline"></ion-icon>
 <ion-label>Deskripsi Produk...</ion-label>
 </ion-chip>
+</div>
+<ion-accordion-group class="mobile">
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-label>Deskripsi Produk</ion-label>
+              </ion-item>
+
+              <ion-list slot="content">
+  <ion-card>
+    <ion-card-header>Masker kain bordir manual tasikmalaya murah meriah</ion-card-header>
+    <ion-card-content><ul>
+  <li>Jenis Kain : Katun, 3 ply/lapis,</li>
+  <li>Lapisan Tengah : Interlining,</li>
+  <li>Model : HeadLoop dan EarLoop,</li>
+  <li>Tinggi Masker 14cm,</li>
+  <li>Lebar Masker 13cm ( satu sisi )</li>
+</ul>
+</ion-card-content>
+  </ion-card>
+              </ion-list>
+            </ion-accordion>
+</ion-accordion-group>
         	<div class="style-picker">
             
               <div id="product-1"  class="btn-picker item_color"  class="btn-picker" style="background-color:#4a5265;"><span style="color:#fff">Navi</span></div>

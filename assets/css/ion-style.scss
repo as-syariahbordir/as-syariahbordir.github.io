@@ -160,6 +160,8 @@ a {text-decoration:none;}
     margin-top: 10px;
 }
 
+.chip{cursor:pointer;margin-bottom:15px;}
+
 .date {
     margin-top: 10px;
     font-size: xx-small;
@@ -224,5 +226,7 @@ a {text-decoration:none;}
 a.fav_btn {color: #888;float: right;}
 a.like-btn {color: crimson;font-size: 20px;}
 span.clicked {color: crimson; font-weight:bold;}
+.mobile{display:none; @include mobile {display:block;}}
+.desktop{display:block; @include mobile {display:none;}}
 @import "./highlights";
 @import "./svg-icons";

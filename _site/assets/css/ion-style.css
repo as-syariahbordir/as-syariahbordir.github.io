@@ -241,6 +241,11 @@ a {
   margin-top: 10px;
 }
 
+.chip {
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
 .date {
   margin-top: 10px;
   font-size: xx-small;
@@ -324,6 +329,24 @@ a.like-btn {
 span.clicked {
   color: crimson;
   font-weight: bold;
+}
+
+.mobile {
+  display: none;
+}
+@media screen and (max-width: 727px) {
+  .mobile {
+    display: block;
+  }
+}
+
+.desktop {
+  display: block;
+}
+@media screen and (max-width: 727px) {
+  .desktop {
+    display: none;
+  }
 }
 
 .highlight {

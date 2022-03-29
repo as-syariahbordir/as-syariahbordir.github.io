@@ -133,10 +133,32 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 <div class="note">
 <ion-text color=danger>Stok Habis</ion-text>
 </div>
-<ion-chip id="myBtn" color="primary" style="cursor:pointer;margin-bottom:15px;">
+<div class="chip desktop">
+<ion-chip id="myBtn" color="primary">
 <ion-icon name="reader-outline"></ion-icon>
 <ion-label>Deskripsi Produk...</ion-label>
 </ion-chip>
+</div>
+<ion-accordion-group class="mobile">
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-label>Deskripsi Produk</ion-label>
+              </ion-item>
+
+              <ion-list slot="content">
+  <ion-card>
+    <ion-card-header>Masker3D Bordir, 3Lapisan kain,</ion-card-header>
+    <ion-card-content><ul>
+  <li>Kain : 100% Katun,</li>
+  <li>Bordir : Manual ( Juki ),</li>
+  <li>Tali : Karet Hijab &amp; NonHijab,</li>
+  <li>*tali ikat optional.</li>
+</ul>
+</ion-card-content>
+  </ion-card>
+              </ion-list>
+            </ion-accordion>
+</ion-accordion-group>
         	<div class="style-picker">
             
               <div id="product-1"  class="btn-picker item_color"  class="btn-picker" style="background-color:#000000;"><span style="color:#fff">Hitam</span></div>

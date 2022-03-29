@@ -129,10 +129,32 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 <div class="note">
 <ion-text color=danger>Stok Habis</ion-text>
 </div>
-<ion-chip id="myBtn" color="primary" style="cursor:pointer;margin-bottom:15px;">
+<div class="chip desktop">
+<ion-chip id="myBtn" color="primary">
 <ion-icon name="reader-outline"></ion-icon>
 <ion-label>Deskripsi Produk...</ion-label>
 </ion-chip>
+</div>
+<ion-accordion-group class="mobile">
+            <ion-accordion>
+              <ion-item slot="header">
+                <ion-label>Deskripsi Produk</ion-label>
+              </ion-item>
+
+              <ion-list slot="content">
+  <ion-card>
+    <ion-card-header>Masker kain Bordir dengan bahan kain 100% katun 3 lapisan</ion-card-header>
+    <ion-card-content><ul>
+  <li>Bordir : Manual (JUKI),</li>
+  <li>Tinggi : -+13cm,</li>
+  <li>Panjang : -+12cm (satu sisi),</li>
+  <li>Model : Headloop &amp; Earloop.</li>
+</ul>
+</ion-card-content>
+  </ion-card>
+              </ion-list>
+            </ion-accordion>
+</ion-accordion-group>
         	<div class="style-picker">
             
               <div id="product-1"  class="btn-picker item_color"  class="btn-picker" style="background-color:#000000;"><span style="color:#fff">Hitam</span></div>
