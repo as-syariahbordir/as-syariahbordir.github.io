@@ -16,5 +16,16 @@
 {% include analytics.html %}
 </ion-app>
 {% include script-js.html %}
+    <script>
+function onLoadSkeleton() {
+  const skeletonEl = document.getElementById('skeleton');
+  const dataEl = document.getElementById('main');
+
+  setTimeout(() => {
+    skeletonEl.style.display = 'none';
+    dataEl.style.display = 'block';
+  }, 5000);
+}
+    </script>
 </body>
 </html>

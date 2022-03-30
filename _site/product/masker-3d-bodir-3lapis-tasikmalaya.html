@@ -59,7 +59,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
     <!-- Created with Jekyll - http://jekyllrb.com -->
   </head>
 
-<body>
+<body onload="onLoadSkeletonpost()">
 <ion-app>
        <ion-header translucent>
             <ion-toolbar>
@@ -79,7 +79,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
         <div id="main">
             <div class="container">
                   <style>ion-header{display:none !important;}</style>
-<div class="simpleCart_shelfItem">
+<div id="data" class="simpleCart_shelfItem" style="display:none;">
 <ion-card class="post-shop">
 <span class="hide item_link">/product/masker-3d-bodir-3lapis-tasikmalaya</span>
 <div class="shop-img">
@@ -240,6 +240,90 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
             </ion-toolbar>
         </ion-footer>
 </div>
+        <div class="skeleton" id="skeleton-post">
+            <ion-card class="post-shop">
+<div class="shop-img">
+              <img src="/assets/images/blank.jpg">
+</div>
+            <div class="wrapit">
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            </div>
+          </ion-card>
+        </div>
+    <script>
+function onLoadSkeletonpost() {
+  const skeletonEl = document.getElementById('skeleton-post');
+  const dataEl = document.getElementById('data');
+
+  setTimeout(() => {
+    skeletonEl.style.display = 'none';
+    dataEl.style.display = 'block';
+  }, 5000);
+}
+    </script>
+
 
 <div id="myModal" class="modal">
   <!-- Modal content -->
@@ -257,7 +341,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 </div>
 
 <ion-modal  trigger="trigger-wa" id="wa">
-<ion-header collapse="fade" translucent="true">
+<ion-modal-header collapse="fade" translucent="true">
         <ion-toolbar color="success">
 <ion-title>WhatsApp Kontak</ion-title>
     <ion-buttons slot="end">
@@ -266,7 +350,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       </ion-button>
     </ion-buttons>
         </ion-toolbar>
-     </ion-header>
+     </ion-modal-header>
 <ion-content>
   <form validate-form' id='whatsapp'>
     <input class='pertanyaan' id='nomorAdmin' type='hidden'/>
@@ -294,7 +378,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 </ion-modal>
 
 <ion-modal  trigger="trigger-cart" id="cart">
-<ion-header collapse="fade" translucent="true">
+<ion-modal-header collapse="fade" translucent="true">
         <ion-toolbar color="secondary">
         <ion-title>Keranjang</ion-title>
       <ion-buttons slot="end">
@@ -303,7 +387,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       </ion-button>
     </ion-buttons>
         </ion-toolbar>
-     </ion-header>
+     </ion-modal-header>
 <ion-content>
 
 

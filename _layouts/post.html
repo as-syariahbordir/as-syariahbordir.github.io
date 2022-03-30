@@ -2,7 +2,7 @@
 layout: default
 ---
 <style>ion-header{display:none !important;}</style>
-<div class="simpleCart_shelfItem">
+<div id="data" class="simpleCart_shelfItem" style="display:none;">
 <ion-card class="post-shop">
 <span class="hide item_link">{{site.baseurl}}{{page.url}}</span>
 <div class="shop-img">
@@ -105,6 +105,7 @@ layout: default
             </ion-toolbar>
         </ion-footer>
 </div>
+{% include skeleton-post.html %}
 
 <div id="myModal" class="modal">
   <!-- Modal content -->
@@ -116,7 +117,7 @@ layout: default
 </div>
 
 <ion-modal  trigger="trigger-wa" id="wa">
-<ion-header collapse="fade" translucent="true">
+<ion-modal-header collapse="fade" translucent="true">
         <ion-toolbar color="success">
 <ion-title>WhatsApp Kontak</ion-title>
     <ion-buttons slot="end">
@@ -125,7 +126,7 @@ layout: default
       </ion-button>
     </ion-buttons>
         </ion-toolbar>
-     </ion-header>
+     </ion-modal-header>
 <ion-content>
   <form validate-form' id='whatsapp'>
     <input class='pertanyaan' id='nomorAdmin' type='hidden'/>
@@ -153,7 +154,7 @@ layout: default
 </ion-modal>
 
 <ion-modal  trigger="trigger-cart" id="cart">
-<ion-header collapse="fade" translucent="true">
+<ion-modal-header collapse="fade" translucent="true">
         <ion-toolbar color="secondary">
         <ion-title>Keranjang</ion-title>
       <ion-buttons slot="end">
@@ -162,7 +163,7 @@ layout: default
       </ion-button>
     </ion-buttons>
         </ion-toolbar>
-     </ion-header>
+     </ion-modal-header>
 <ion-content>
 
 {% include keranjang.html %}

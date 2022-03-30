@@ -1,0 +1,83 @@
+        <div class="skeleton" id="skeleton-post">
+            <ion-card class="post-shop">
+<div class="shop-img">
+              <img src="/assets/images/blank.jpg">
+</div>
+            <div class="wrapit">
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            <ion-card-content>
+              <h3>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+              </p>
+            </ion-card-content>
+            </div>
+          </ion-card>
+        </div>
+    <script>
+function onLoadSkeletonpost() {
+  const skeletonEl = document.getElementById('skeleton-post');
+  const dataEl = document.getElementById('data');
+
+  setTimeout(() => {
+    skeletonEl.style.display = 'none';
+    dataEl.style.display = 'block';
+  }, 5000);
+}
+    </script>
