@@ -29,6 +29,10 @@
       import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
       window.alertController = alertController;
     </script>
+    <script type="module">
+      import { toastController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+      window.toastController = toastController;
+    </script>
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -235,7 +239,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
             <ion-button color="secondary" class="btn-left" shape="round" fill="outline" id="trigger-cart">
   <ion-icon slot="icon-only" name="cart"></ion-icon></ion-button>
 
-                <ion-button color=danger class="btn-right item_add" shape="round" fill="outline" disabled>habis</ion-button>
+                <ion-button onclick="beliClick()" color=danger class="btn-right item_add" shape="round" fill="outline" disabled>habis</ion-button>
             </div>
             </ion-toolbar>
         </ion-footer>
@@ -474,6 +478,18 @@ function checkOut() {
   cardModal.swipeToClose = true;
   cardModal.presentingElement = document.querySelector('ion-app');
 </script>
+<script>
+      async function beliClick() {
+        const toast = await toastController.create({
+          color: 'dark',
+          duration: 2000,
+          message: 'Masker 3D Bordir Berhasil Masuk ke keranjang',
+          showCloseButton: true,
+        });
+
+        await toast.present();
+      }
+    </script>
 
 <script>
 async function dismissWa() {
@@ -626,20 +642,6 @@ $(function(){if($("#twFeature").length){var o=$("#twFeature"),t=$("#twFeature").
         document.body.classList.toggle("modalBtn");
     }
 </script>
-<script>
-      async function onLoad() {
-  const loading = document.createElement('ion-loading');
-
-  loading.message = 'Mohon Tunggu...';
-  loading.duration = 2000;
-
-  document.body.appendChild(loading);
-  await loading.present();
-
-  const { role, data } = await loading.onDidDismiss();
-  console.log('Loading dismissed!');
-}
-    </script>
 
 </body>
 </html>

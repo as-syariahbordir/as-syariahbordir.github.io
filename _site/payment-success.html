@@ -29,6 +29,10 @@
       import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
       window.alertController = alertController;
     </script>
+    <script type="module">
+      import { toastController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+      window.toastController = toastController;
+    </script>
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -190,20 +194,6 @@ $(function(){if($("#twFeature").length){var o=$("#twFeature"),t=$("#twFeature").
         document.body.classList.toggle("modalBtn");
     }
 </script>
-<script>
-      async function onLoad() {
-  const loading = document.createElement('ion-loading');
-
-  loading.message = 'Mohon Tunggu...';
-  loading.duration = 2000;
-
-  document.body.appendChild(loading);
-  await loading.present();
-
-  const { role, data } = await loading.onDidDismiss();
-  console.log('Loading dismissed!');
-}
-    </script>
 
 </body>
 </html>

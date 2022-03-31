@@ -29,6 +29,10 @@
       import { alertController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
       window.alertController = alertController;
     </script>
+    <script type="module">
+      import { toastController } from 'https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/index.esm.js';
+      window.toastController = toastController;
+    </script>
 
     <!--[if lt IE 9]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -93,7 +97,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Tulip</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-1" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -116,7 +120,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Rosse</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-2" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -139,7 +143,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Kucing</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 22.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-3" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -162,7 +166,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Setaman</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-4" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -185,7 +189,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Mukena Garcella</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 185.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-5" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -208,7 +212,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker 3D Bordir</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 30.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-6" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -231,7 +235,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Mawar</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-7" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -254,7 +258,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir sMaya</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-8" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -277,7 +281,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Ilalang</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-9" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -300,7 +304,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
       <ion-card-header class="post-header">
         <ion-card-title class="post-title">Masker Bordir Dahlia</ion-card-title>
         <ion-card-subtitle color="danger">Rp. 20.000
-<a  class="fav_btn" href="#" >
+<a  class="fav_btn" onclick="favOptions()" >
     <span id="like-10" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
@@ -571,20 +575,6 @@ $(function(){if($("#twFeature").length){var o=$("#twFeature"),t=$("#twFeature").
         document.body.classList.toggle("modalBtn");
     }
 </script>
-<script>
-      async function onLoad() {
-  const loading = document.createElement('ion-loading');
-
-  loading.message = 'Mohon Tunggu...';
-  loading.duration = 2000;
-
-  document.body.appendChild(loading);
-  await loading.present();
-
-  const { role, data } = await loading.onDidDismiss();
-  console.log('Loading dismissed!');
-}
-    </script>
 
     <script>
 function onLoadSkeleton() {

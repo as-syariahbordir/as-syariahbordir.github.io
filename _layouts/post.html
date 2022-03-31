@@ -100,7 +100,7 @@ layout: default
             <ion-button color="secondary" class="btn-left" shape="round" fill="outline" id="trigger-cart">
   <ion-icon slot="icon-only" name="cart"></ion-icon></ion-button>
 
-                <ion-button color={{page.stokC}} class="btn-right item_add" shape="round" fill="outline" {{page.nolStok}}>{{page.tombol}}</ion-button>
+                <ion-button onclick="beliClick()" color={{page.stokC}} class="btn-right item_add" shape="round" fill="outline" {{page.nolStok}}>{{page.tombol}}</ion-button>
             </div>
             </ion-toolbar>
         </ion-footer>
@@ -181,6 +181,18 @@ layout: default
   cardModal.swipeToClose = true;
   cardModal.presentingElement = document.querySelector('ion-app');
 </script>
+<script>
+      async function beliClick() {
+        const toast = await toastController.create({
+          color: 'dark',
+          duration: 2000,
+          message: '{{ page.title }} Berhasil Masuk ke keranjang',
+          showCloseButton: true,
+        });
+
+        await toast.present();
+      }
+    </script>
 
 <script>
 async function dismissWa() {

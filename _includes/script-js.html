@@ -110,17 +110,3 @@ $(function(){if($("#twFeature").length){var o=$("#twFeature"),t=$("#twFeature").
         document.body.classList.toggle("modalBtn");
     }
 </script>
-<script>
-      async function onLoad() {
-  const loading = document.createElement('ion-loading');
-
-  loading.message = 'Mohon Tunggu...';
-  loading.duration = 2000;
-
-  document.body.appendChild(loading);
-  await loading.present();
-
-  const { role, data } = await loading.onDidDismiss();
-  console.log('Loading dismissed!');
-}
-    </script>
