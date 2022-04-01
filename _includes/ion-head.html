@@ -3,30 +3,24 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <meta name="facebook-domain-verification" content="h75xod087a8f5eiafedln97rbkeh1h" /><!-- Primary Meta Tags -->
     <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.title }} – {{ site.description }}</title>
-    <meta name="facebook-domain-verification" content="h75xod087a8f5eiafedln97rbkeh1h" />
-    <meta name="title" content="{{site.title}}">
-    <meta name="description" content="{{site.description}}">
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="-1" />
-    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="title" content="{{ site.title }}{% if page.title %} – {{ page.title }}{% endif %}">
+    <meta name="description" content="{{ site.description }}{% if page.title %} | {{ page.description }}{% endif %}">
 
-    {% if page.layout == "default" %}
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{site.url}}">
-    <meta property="og:title" content="{{site.title}}">
-    <meta property="og:description" content="{{site.description}}">
+    <meta property="og:url" content="{{ site.url }}">
+    <meta property="og:title" content="{{ site.title }}{% if page.title %} | {{ page.title }}{% endif %}">
+    <meta property="og:description" content="{{ site.description }}{% if page.title %} | {{ page.description }}{% endif %}">
     <meta property="og:image" content="{{ site.baseurl }}/assets/images/logo512.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{site.url}}">
-    <meta property="twitter:title" content="{{site.title}}">
-    <meta property="twitter:description" content="{{site.description}}">
+    <meta property="twitter:url" content="{{ site.url }}">
+    <meta property="twitter:title" content="{{ site.title }}{% if page.title %} | {{ page.title }}{% endif %}">
+    <meta property="twitter:description" content="{{ site.description }}">
     <meta property="twitter:image" content="{{ site.baseurl }}/assets/images/logo512.png">
-    {% endif %}
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
