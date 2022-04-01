@@ -285,6 +285,7 @@ a {
   margin: 4% auto;
   border: 1px solid #888;
   width: 50%;
+  height: 453px;
 }
 @media screen and (max-width: 727px) {
   .modal-content {
@@ -358,6 +359,35 @@ span.clicked {
   }
 }
 
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
 .highlight {
   background-color: #efefef;
   padding: 7px 7px 7px 10px;

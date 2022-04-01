@@ -197,6 +197,7 @@ a {text-decoration:none;}
   margin: 4% auto;
   border: 1px solid #888;
   width: 50%;
+  height: 453px;
 
   @include mobile {
   width: 90%;
@@ -237,5 +238,34 @@ a.like-btn {color: crimson;font-size: 20px;}
 span.clicked {color: crimson; font-weight:bold;}
 .mobile{display:none; @include mobile {display:block;}}
 .desktop{display:block; @include mobile {display:none;}}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes zoomIn {
+  0% {
+  opacity: 0;
+  -webkit-transform: scale3d(.3, .3, .3);
+  transform: scale3d(.3, .3, .3);
+  }
+  50% {
+  opacity: 1;
+  }
+  }
+  @keyframes zoomIn {
+  0% {
+  opacity: 0;
+  -webkit-transform: scale3d(.3, .3, .3);
+  transform: scale3d(.3, .3, .3);
+  }
+  50% {
+  opacity: 1;
+  }
+  }
 @import "./highlights";
 @import "./svg-icons";

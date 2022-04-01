@@ -8,7 +8,7 @@ layout: default
 <div class="shop-img">
             {% for pick in page.images %}
           		<div id="product-{{ forloop.index }}" class="style" {% unless forloop.first %}style="display:none"{% endunless %}>
-<img src="{{ pick.image_path }}" />
+<img class="zoomIn" src="{{ pick.image_path }}" />
                 </div>
           	{% endfor %}
 <img class="item_thumb hide" src="{{page.img}}" alt="{{page.title}}"/>
@@ -146,7 +146,7 @@ layout: default
       </ion-item></ion-list>
             <div class="mb-0 text-right">
                 <a type="button" class="sendWAclik kirim" style="margin-right:10px;color:#07bc4c;float: right;font-size: 30px;">
-                  <ion-icon class="wa" name="send-outline"></ion-icon>
+                 <ion-chip color="success"> <ion-icon name="logo-whatsapp"></ion-icon><ion-label>Kirim Whatsapp</ion-label></ion-chip>
                 </a>
             </div>
         </form>
