@@ -5,6 +5,7 @@
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+    <meta name="color-scheme" content="light dark" />
     <meta name="facebook-domain-verification" content="h75xod087a8f5eiafedln97rbkeh1h" /><!-- Primary Meta Tags -->
     <title>Masker Bordir Mawar – AS-Syariah Bordir – Makloon Bordir Manual & Komputer</title>
     <meta name="title" content="AS-Syariah Bordir – Masker Bordir Mawar">
@@ -47,6 +48,7 @@
     <![endif]-->
 
     <link rel="stylesheet" type="text/css" href="/assets/css/ion-style.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/darkmode.css" />
     <link rel="alternate" type="application/rss+xml" title=" - Makloon Bordir Manual & Komputer" href="/feed.xml" />
     
     <!-- Meta Pixel Code -->
@@ -75,15 +77,25 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 <ion-app>
        <ion-header translucent>
             <ion-toolbar>
-          <ion-title class="site-info">
-            <h1 class="site-name"><a href="/product">AS-Syariah Bordir</a></h1>
-          </ion-title>
-    
-<ion-buttons slot="end">
+<ion-buttons slot="start">
 <privacy><ion-button>
 <ion-icon name="ellipsis-vertical"></ion-icon>
 </ion-button></privacy>
 </ion-buttons>
+          <ion-title class="site-info">
+            <h1><a href="/product">AS-Syariah Bordir</a></h1>
+          </ion-title>
+    
+          <ion-buttons class="mode-btn" slot="end" onclick="setDarkMode(true)" id="darkBtn">
+            <ion-button>
+            <ion-icon name="moon" color="dark"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-buttons class="mode-btn" slot="end" onclick="setDarkMode(false)" id="lightBtn" style="display: none;">
+            <ion-button>
+            <ion-icon name="partly-sunny"></ion-icon>
+            </ion-button>
+          </ion-buttons>
             </ion-toolbar>
         </ion-header>
 
@@ -135,9 +147,9 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
     <ion-icon name="ribbon-outline" slot="start"></ion-icon>
     <ion-label class="item_name">Masker Bordir Mawar</ion-label>
 <ion-buttons>
-<privacy><ion-button slot="end">
-<ion-icon name="ellipsis-vertical"></ion-icon>
-</ion-button></privacy>
+<share><ion-button slot="end">
+<ion-icon name="share-social-outline"></ion-icon>
+</ion-button></share>
 </ion-buttons>
   </ion-item>
 <ion-card-content class="product-info">
@@ -545,6 +557,48 @@ window.onclick = function(event) {
     <script src="/assets/js/question.js" type="text/javascript"></script>
     <script src="/assets/js/like.js" type="text/javascript"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script>
+ function setDarkMode(isDark) {
+        var darkBtn = document.getElementById('darkBtn')
+        var lightBtn = document.getElementById('lightBtn')
+
+        if(isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+        } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+        }
+
+        document.body.classList.toggle("darkmode");
+    }
+
+//check localstorage
+if(localStorage.getItem('preferredTheme') == 'dark') {
+    setDarkMode(true)
+}
+
+function setDarkMode(isDark) {
+    var darkBtn = document.getElementById('darkBtn')
+    var lightBtn = document.getElementById('lightBtn')
+
+    if(isDark) {
+        lightBtn.style.display = "block"
+        darkBtn.style.display = "none" 
+    //tambahan localstorage
+        localStorage.setItem('preferredTheme', 'dark');
+    } else {
+        lightBtn.style.display = "none"
+        darkBtn.style.display = "block"
+     //tambahan localstorage
+        localStorage.removeItem('preferredTheme');
+    }
+
+    document.body.classList.toggle("darkmode");
+}
+
+</script>
 
 
       <script async src="/assets/js/style-picker.js"></script>
@@ -581,6 +635,60 @@ function myBlog() {
 function myPayment() {
   location.replace("/pembayaran")
 }
+
+function fb() {
+  location.replace("https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank")
+}
+
+function tw() {
+  location.replace("https://twitter.com/intent/tweet?url=http://localhost:4000&via=getboldify&text=Makloon Bordir Manual & Komputer';")
+}
+
+function wa() {
+  location.replace("https://api.whatsapp.com/send?")
+}
+</script>
+<script>
+  let sharePopover = null;
+
+  const shares = document.querySelectorAll('share');
+  for (var i = 0; i < shares.length; i++) {
+    shares[i].addEventListener('click', ButtonClick);
+  }
+
+  async function ButtonClick(ev) {
+    popover = await popoverController.create({
+      component: 'popover-share-page',
+      event: ev,
+      translucent: true,
+    });
+    sharePopover = popover;
+    return popover.present();
+  }
+
+  function dismissPopover() {
+    if (currentPopover) {
+      currentPopover.dismiss().then(() => {
+        currentPopover = null;
+      });
+    }
+  }
+
+  customElements.define(
+    'popover-share-page',
+    class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+      <ion-list>
+        <ion-list-header>Share</ion-list-header>
+        <ion-item button onclick="fb()" ><ion-icon name="logo-facebook" slot="start"></ion-icon> Facebook</ion-item>
+        <ion-item button onclick="tw()"><ion-icon name="logo-twitter" slot="start"></ion-icon> Twitter</ion-item>
+        <ion-item lines="none" detail="false" button onclick="wa()"><ion-icon name="logo-whatsapp" slot="start"></ion-icon> Whatsapp</ion-item>
+      </ion-list>
+    `;
+      }
+    }
+  );
 </script>
 <script>
   let currentPopover = null;

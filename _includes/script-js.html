@@ -9,6 +9,48 @@
     <script src="{{site.baseurl}}/assets/js/question.js" type="text/javascript"></script>
     <script src="{{site.baseurl}}/assets/js/like.js" type="text/javascript"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script>
+ function setDarkMode(isDark) {
+        var darkBtn = document.getElementById('darkBtn')
+        var lightBtn = document.getElementById('lightBtn')
+
+        if(isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+        } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+        }
+
+        document.body.classList.toggle("darkmode");
+    }
+
+//check localstorage
+if(localStorage.getItem('preferredTheme') == 'dark') {
+    setDarkMode(true)
+}
+
+function setDarkMode(isDark) {
+    var darkBtn = document.getElementById('darkBtn')
+    var lightBtn = document.getElementById('lightBtn')
+
+    if(isDark) {
+        lightBtn.style.display = "block"
+        darkBtn.style.display = "none" 
+    //tambahan localstorage
+        localStorage.setItem('preferredTheme', 'dark');
+    } else {
+        lightBtn.style.display = "none"
+        darkBtn.style.display = "block"
+     //tambahan localstorage
+        localStorage.removeItem('preferredTheme');
+    }
+
+    document.body.classList.toggle("darkmode");
+}
+
+</script>
 
 {% if page.layout == "post" %}
       <script async src="{{site.baseurl}}/assets/js/style-picker.js"></script>
@@ -47,6 +89,60 @@ function myBlog() {
 function myPayment() {
   location.replace("{{site.baseurl}}/pembayaran")
 }
+
+function fb() {
+  location.replace("https://www.facebook.com/sharer/sharer.php?u=#url" target="_blank")
+}
+
+function tw() {
+  location.replace("https://twitter.com/intent/tweet?url={{site.url}}&via=getboldify&text={{site.description}}';")
+}
+
+function wa() {
+  location.replace("https://api.whatsapp.com/send?")
+}
+</script>
+<script>
+  let sharePopover = null;
+
+  const shares = document.querySelectorAll('share');
+  for (var i = 0; i < shares.length; i++) {
+    shares[i].addEventListener('click', ButtonClick);
+  }
+
+  async function ButtonClick(ev) {
+    popover = await popoverController.create({
+      component: 'popover-share-page',
+      event: ev,
+      translucent: true,
+    });
+    sharePopover = popover;
+    return popover.present();
+  }
+
+  function dismissPopover() {
+    if (currentPopover) {
+      currentPopover.dismiss().then(() => {
+        currentPopover = null;
+      });
+    }
+  }
+
+  customElements.define(
+    'popover-share-page',
+    class ModalContent extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = `
+      <ion-list>
+        <ion-list-header>Share</ion-list-header>
+        <ion-item button onclick="fb()" ><ion-icon name="logo-facebook" slot="start"></ion-icon> Facebook</ion-item>
+        <ion-item button onclick="tw()"><ion-icon name="logo-twitter" slot="start"></ion-icon> Twitter</ion-item>
+        <ion-item lines="none" detail="false" button onclick="wa()"><ion-icon name="logo-whatsapp" slot="start"></ion-icon> Whatsapp</ion-item>
+      </ion-list>
+    `;
+      }
+    }
+  );
 </script>
 <script>
   let currentPopover = null;
