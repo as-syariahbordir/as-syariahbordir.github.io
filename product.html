@@ -10,7 +10,7 @@ layout: product
         <ion-card-title class="post-title">{{ post.title }}</ion-card-title>
         <ion-card-subtitle color="danger">Rp. {{ post.price }}
 <a  class="fav_btn" onclick="favOptions()" >
-    <span id="like-{{ forloop.index }}" class="like-btn">
+    <span id="like-{{ post.noID }}" class="like-btn">
     <ion-icon name="heart" slot="end"></ion-icon>
     </span>
 </a>
