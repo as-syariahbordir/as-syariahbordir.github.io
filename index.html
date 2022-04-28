@@ -1,7 +1,12 @@
 ---
 layout: default
 ---
-
+<style>
+.splash {
+    margin-top: 20px;
+    border-radius: 5px;
+}
+</style>
 <script>
     function pageRedirect() {
         window.location.replace("{{ site.baseurl }}/product");
@@ -10,7 +15,7 @@ layout: default
 </script>
       <ion-slides>
         <ion-slide>
-          <img src="assets/images/pakaimasker.jpg"/>
+          <img class="splash" src="assets/images/pakaimasker.jpg"/>
           <h2></h2>
           <ion-button fill="clear" onclick="myButton()">Go Shopping <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
         </ion-slide>

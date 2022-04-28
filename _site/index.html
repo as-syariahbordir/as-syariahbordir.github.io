@@ -102,7 +102,13 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
     <ion-content>
         <div id="main">
             <div class="container">
-                  <script>
+                  <style>
+.splash {
+    margin-top: 20px;
+    border-radius: 5px;
+}
+</style>
+<script>
     function pageRedirect() {
         window.location.replace("/product");
     }      
@@ -110,7 +116,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 </script>
       <ion-slides>
         <ion-slide>
-          <img src="assets/images/pakaimasker.jpg"/>
+          <img class="splash" src="assets/images/pakaimasker.jpg"/>
           <h2></h2>
           <ion-button fill="clear" onclick="myButton()">Go Shopping <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
         </ion-slide>
