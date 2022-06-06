@@ -17,13 +17,13 @@ layout: default
   <ion-item>
 <a class="fav_btn" onclick="favOptions()" style="font-size: 22px;margin-right: 10px;cursor:pointer;">
     <span id="like-{{ page.noID }}" class="like-btn">
-    <ion-icon name="heart" slot="start"></ion-icon>
+    <ion-icon slot="icon-only" name="heart" slot="start"></ion-icon>
     </span>
 </a>
     <ion-label class="item_name">{{ page.title }}</ion-label>
 <ion-buttons>
 <share><ion-button slot="end">
-<ion-icon name="share-social-outline"></ion-icon>
+<ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
 </ion-button></share>
 </ion-buttons>
   </ion-item>

@@ -2,7 +2,7 @@
             <ion-toolbar>
 <ion-buttons slot="start">
 <privacy><ion-button>
-<ion-icon name="ellipsis-vertical"></ion-icon>
+<ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
 </ion-button></privacy>
 </ion-buttons>
           <ion-title class="site-info">
@@ -18,12 +18,12 @@
     {% endif %}
           <ion-buttons class="mode-btn" slot="end" onclick="setDarkMode(true)" id="darkBtn">
             <ion-button>
-            <ion-icon name="moon" color="dark"></ion-icon>
+            <ion-icon slot="icon-only" name="moon" color="dark"></ion-icon>
             </ion-button>
           </ion-buttons>
           <ion-buttons class="mode-btn" slot="end" onclick="setDarkMode(false)" id="lightBtn" style="display: none;">
             <ion-button>
-            <ion-icon name="partly-sunny"></ion-icon>
+            <ion-icon slot="icon-only" name="partly-sunny"></ion-icon>
             </ion-button>
           </ion-buttons>
             </ion-toolbar>
