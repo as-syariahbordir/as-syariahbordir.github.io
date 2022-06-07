@@ -6,7 +6,10 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
     <meta name="color-scheme" content="light dark" />
-    <meta name="facebook-domain-verification" content="h75xod087a8f5eiafedln97rbkeh1h" /><!-- Primary Meta Tags -->
+    <meta name="facebook-domain-verification" content="h75xod087a8f5eiafedln97rbkeh1h" />
+    <meta name="google-site-verification" content="anQsDctpiPVRp6NpVYsodsP7t8fDKd3t08lnPWc9euI" />
+
+<!-- Primary Meta Tags -->
     <title>Mukena Garcella – AS-Syariah Bordir – Makloon Bordir Manual & Komputer</title>
     <meta name="title" content="AS-Syariah Bordir – Mukena Garcella">
     <meta name="description" content="Makloon Bordir Manual & Komputer | Material -Rayon Premium, -Renda Giffer Premium. -1Set Mukena, Rok & Tas">
@@ -86,7 +89,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
 {
   "@context": "https://schema.org/",
   "@type": "LocalBusiness",
-  "name": "",
+  "name": "AS-Syariah Bordir",
   "address": "Cibeuti, Tasikmalaya",
   "image": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgrDCcxHpECFboWuzsCB9q3NPFGouox9lijNorzzw_lX8EH25MlYjsZyohXE5TDWYMM2z-ZayXYSMxVJL94c2O3rajGhDoxJ4qBCE62w3mRFQWjF59-w7_rCn58wD1WkmsbX5RZjoNuoUY5eoUvIMwK26f2p0gWBPHLIj14xK9bxUxTjBE_THUSVpTIJg/s512/512x512.png",
   "aggregateRating": {
@@ -95,7 +98,14 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
     "ratingCount": "22300",
     "reviewCount": "2050"
   },
-  "priceRange": "IDR 20.000 - 50.000"
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-7.381756384843893",
+    "longitude": "108.19087157363975"
+  },
+  "telephone": "08113951666",
+  "priceRange": "IDR 20.000 - 50.000",
+  "url": "http://localhost:4000/product/mukena-garcella-rayon-premium"
 }
 </script>
 
@@ -108,7 +118,7 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
             <ion-toolbar>
 <ion-buttons slot="start">
 <privacy><ion-button>
-<ion-icon name="ellipsis-vertical"></ion-icon>
+<ion-icon slot="icon-only" name="ellipsis-vertical"></ion-icon>
 </ion-button></privacy>
 </ion-buttons>
           <ion-title class="site-info">
@@ -117,12 +127,12 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
     
           <ion-buttons class="mode-btn" slot="end" onclick="setDarkMode(true)" id="darkBtn">
             <ion-button>
-            <ion-icon name="moon" color="dark"></ion-icon>
+            <ion-icon slot="icon-only" name="moon" color="dark"></ion-icon>
             </ion-button>
           </ion-buttons>
           <ion-buttons class="mode-btn" slot="end" onclick="setDarkMode(false)" id="lightBtn" style="display: none;">
             <ion-button>
-            <ion-icon name="partly-sunny"></ion-icon>
+            <ion-icon slot="icon-only" name="partly-sunny"></ion-icon>
             </ion-button>
           </ion-buttons>
             </ion-toolbar>
@@ -163,13 +173,13 @@ src="https://www.facebook.com/tr?id=&ev=PageView&noscript=1"
   <ion-item>
 <a class="fav_btn" onclick="favOptions()" style="font-size: 22px;margin-right: 10px;cursor:pointer;">
     <span id="like-i.226754372.9136934817" class="like-btn">
-    <ion-icon name="heart" slot="start"></ion-icon>
+    <ion-icon slot="icon-only" name="heart" slot="start"></ion-icon>
     </span>
 </a>
     <ion-label class="item_name">Mukena Garcella</ion-label>
 <ion-buttons>
 <share><ion-button slot="end">
-<ion-icon name="share-social-outline"></ion-icon>
+<ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
 </ion-button></share>
 </ion-buttons>
   </ion-item>
@@ -545,8 +555,8 @@ function checkOut() {
   const sheetModal = document.querySelector('#wa');
   const cardModal = document.querySelector('#cart');
 
-  sheetModal.breakpoints = [0.1, 0.5, 1];
-  sheetModal.initialBreakpoint = 0.5;
+  sheetModal.breakpoints = [0.0, 0.6, 0.6];
+  sheetModal.initialBreakpoint = 0.6;
   
   cardModal.swipeToClose = true;
   cardModal.presentingElement = document.querySelector('ion-app');

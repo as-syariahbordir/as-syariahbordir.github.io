@@ -10,9 +10,9 @@
           </ion-title>
     {% if page.layout == "product" %}
     <ion-buttons slot="end">
+            <ion-badge color="danger" id="cart-menu" class="simpleCart_quantity" style="position:absolute;padding: 3px 6px;top:4px;right:3px;border-radius:50px;font-size:small;z-index:1;"></ion-badge>
       <ion-button href="{{site.baseurl}}/cart">
             <ion-icon slot="icon-only" name="cart"></ion-icon>
-            <ion-badge color="danger" id="cart-menu" class="simpleCart_quantity" style="position: relative;top: -8px;right: 7px;border-radius: 50px;font-size: xx-small;"></ion-badge>
         </ion-button>
     </ion-buttons>
     {% endif %}
