@@ -51,7 +51,7 @@ baseurl: ""
 permalink: /product/:title
 
 # The release of Jekyll Now that you're using
-version: v1.2.0
+version: v1.2.1
 
 # Jekyll 3 now only supports Kramdown for Markdown
 kramdown:
@@ -79,3 +79,17 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+
+# google auth
+
+# Google Auth
+WA_KEY: 08113951666
+SITE_KEY: 
+API_KEY: AIzaSyAg0iGhswfD54OJiw_d0EvfD6O8fAQM6Z8
+AUTH_DOMAIN: as-syariahbordir.firebaseapp.com
+DATABASE_URL: https://as-syariah-putra.firebaseio.com
+PROJECT_ID: as-syariahbordir
+STORAGE_BUCKET: as-syariahbordir.firebasestorage.app
+SENDER_ID: 988921900751
+APP_ID: 1:988921900751:web:b6354638e514d05934d1ba
+MEASUREMENT_ID: G-J96HRFM57R
