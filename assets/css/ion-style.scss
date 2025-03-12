@@ -174,7 +174,8 @@ a {text-decoration:none;}
     padding: 0 10px;
 
   @include mobile {
-    text-align: center;}
+    text-align: center;
+    margin: 0;}
 }
 
 .mode-btn {}
