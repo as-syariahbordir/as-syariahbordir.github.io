@@ -1,0 +1,1 @@
+# as-syariahbordir.github.io
