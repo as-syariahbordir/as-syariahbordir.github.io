@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>As-Syariah Bordir - Masker Bordir Tasikmalaya Berkualitas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#7e3af2',
+                        accent: '#f59e0b'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .color-dot {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 5px;
+            border: 1px solid #e5e7eb;
+        }
+        .modal {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .modal.hidden {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+        .chat-message {
+            max-width: 80%;
+            margin-bottom: 1rem;
+        }
+        .user-message {
+            margin-left: auto;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 1rem 1rem 0 1rem;
+        }
+        .bot-message {
+            margin-right: auto;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            border-radius: 1rem 1rem 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-3">
+                    A
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">As-Syariah Bordir</h1>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-primary">Beranda</a>
+                <a href="#produk" class="text-gray-600 hover:text-primary">Produk</a>
+                <a href="#" class="text-gray-600 hover:text-primary">Tentang Kami</a>
+                <a href="#" class="text-gray-600 hover:text-primary">Kontak</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-600 hover:text-primary">
+                    <i class="fas fa-shopping-cart"></i>
+                </button>
+                <button id="chatButton" class="bg-primary text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-robot mr-2"></i> Assya AI
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-secondary text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">Masker Bordir Tasikmalaya Berkualitas</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Produk masker bordir dengan desain elegan dan bahan premium untuk kenyamanan Anda sehari-hari</p>
+            <a href="#produk" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">
+                Lihat Katalog
+            </a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="produk" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-2 text-gray-800">Koleksi Masker Bordir</h2>
+            <p class="text-center text-gray-600 mb-8">Pilih masker bordir favorit Anda dengan berbagai pilihan motif dan warna</p>
+            
+            <!-- Filter Section -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="filter-btn bg-primary text-white px-4 py-2 rounded-lg">Semua</button>
+                <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">Tersedia</button>
+                <button class="filter-btn bg-gray-200 text-gray-700 px-4 py-2 rounded-lg">Habis</button>
+            </div>
+            
+            <!-- Products Grid -->
+            <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Mengapa Memilih Produk Kami</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Bahan Berkualitas</h3>
+                    <p class="text-gray-600">Menggunakan bahan katun 100% premium dengan 3 lapisan untuk kenyamanan maksimal</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Bordir Manual</h3>
+                    <p class="text-gray-600">Dibordir secara manual oleh pengrajin Tasikmalaya yang berpengalaman</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-4">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Pengiriman Cepat</h3>
+                    <p class="text-gray-600">Pengiriman ke seluruh Indonesia dengan proses yang cepat dan aman</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">As-Syariah Bordir</h3>
+                    <p class="text-gray-400">Produsen masker bordir Tasikmalaya dengan kualitas terbaik dan harga terjangkau.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Beranda</a></li>
+                        <li><a href="#produk" class="text-gray-400 hover:text-white">Produk</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Tentang Kami</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Kontak Kami</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Tasikmalaya, Jawa Barat</li>
+                        <li><i class="fas fa-phone mr-2"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-envelope mr-2"></i> info@assyariahbordir.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Ikuti Kami</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2023 As-Syariah Bordir. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Assya AI Chat Modal -->
+    <div id="chatModal" class="modal fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 z-10">
+            <!-- Modal Header -->
+            <div class="bg-primary text-white p-4 rounded-t-lg flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-primary mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="font-bold">Assya AI Assistant</h3>
+                </div>
+                <button id="closeChat" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chatMessages" class="p-4 h-80 overflow-y-auto">
+                <div class="chat-message bot-message p-3">
+                    <p>Halo! Saya Assya AI, asisten virtual toko As-Syariah Bordir. Ada yang bisa saya bantu? Saya bisa membantu Anda mencari produk, mengecek ketersediaan, atau memberikan informasi tentang masker bordir kami.</p>
+                </div>
+            </div>
+            
+            <!-- Chat Input -->
+            <div class="p-4 border-t">
+                <div class="flex">
+                    <input id="chatInput" type="text" placeholder="Ketik pertanyaan Anda..." class="flex-1 border rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary">
+                    <button id="sendMessage" class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="mt-2 text-xs text-gray-500">
+                    Contoh: "Masker bordir apa yang tersedia?" atau "Ada masker warna hitam?"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fetch produk data
+        async function loadProducts() {
+            try {
+                const response = await fetch('/assets/data/produk.json');
+                const data = await response.json();
+                displayProducts(data.produk);
+                setupFilters(data.produk);
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productsGrid').innerHTML = '<p class="text-center col-span-full text-gray-500">Gagal memuat produk. Silakan refresh halaman.</p>';
+            }
+        }
+
+        // Display products
+        function displayProducts(products) {
+            const productsGrid = document.getElementById('productsGrid');
+            productsGrid.innerHTML = '';
+
+            products.forEach(product => {
+                const isAvailable = product.stok === 'Tersedia';
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden';
+                
+                productCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${product.image}" alt="${product.title}" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 right-2 ${isAvailable ? 'bg-green-500' : 'bg-red-500'} text-white px-2 py-1 rounded text-xs">
+                            ${product.stok}
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-2">${product.title}</h3>
+                        <p class="text-gray-600 text-sm mb-3 line-clamp-2">${product.description}</p>
+                        
+                        <div class="mb-3">
+                            <div class="flex items-center mb-1">
+                                <span class="text-gray-500 line-through mr-2">Rp ${product.price}</span>
+                                <span class="font-bold text-primary">Rp ${product.discount}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="flex flex-wrap gap-1">
+                                ${product.styles.map(style => `
+                                    <span class="color-dot" style="background-color: ${style.color}" title="${style.name}"></span>
+                                `).join('')}
+                            </div>
+                            <div class="text-xs text-gray-500 mt-1">${product.styles.length} pilihan warna</div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-600 transition-colors ${!isAvailable ? 'opacity-50 cursor-not-allowed' : ''}" ${!isAvailable ? 'disabled' : ''}>
+                                ${isAvailable ? 'Tambah ke Keranjang' : 'Stok Habis'}
+                            </button>
+                            <button class="text-gray-500 hover:text-primary">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Setup filter buttons
+        function setupFilters(products) {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    this.classList.remove('bg-gray-200', 'text-gray-700');
+                    this.classList.add('bg-primary', 'text-white');
+                    
+                    // Filter products
+                    const filterType = this.textContent;
+                    let filteredProducts = [...products];
+                    
+                    if (filterType === 'Tersedia') {
+                        filteredProducts = products.filter(product => product.stok === 'Tersedia');
+                    } else if (filterType === 'Habis') {
+                        filteredProducts = products.filter(product => product.stok === 'Stok Habis');
+                    }
+                    
+                    displayProducts(filteredProducts);
+                });
+            });
+        }
+
+        // Chat Modal Functions
+        const chatButton = document.getElementById('chatButton');
+        const chatModal = document.getElementById('chatModal');
+        const closeChat = document.getElementById('closeChat');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Open chat modal
+        chatButton.addEventListener('click', () => {
+            chatModal.classList.remove('hidden');
+            chatInput.focus();
+        });
+
+        // Close chat modal
+        closeChat.addEventListener('click', () => {
+            chatModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        chatModal.addEventListener('click', (e) => {
+            if (e.target === chatModal) {
+                chatModal.classList.add('hidden');
+            }
+        });
+
+        // Send message
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'chat-message user-message p-3';
+            userMessageDiv.innerHTML = `<p>${message}</p>`;
+            chatMessages.appendChild(userMessageDiv);
+            
+            // Clear input
+            chatInput.value = '';
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate AI response after a short delay
+            setTimeout(() => {
+                const response = generateAIResponse(message);
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'chat-message bot-message p-3';
+                botMessageDiv.innerHTML = `<p>${response}</p>`;
+                chatMessages.appendChild(botMessageDiv);
+                
+                // Scroll to bottom again
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        // Send message on button click
+        sendMessage.addEventListener('click', sendChatMessage);
+
+        // Send message on Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        // Generate AI response based on user input
+        function generateAIResponse(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            if (lowerMessage.includes('tersedia') || lowerMessage.includes('stok')) {
+                return "Saat ini, produk yang tersedia adalah Masker Bordir Setaman, Masker Bordir Ilalang, dan Masker Bordir Rosse. Untuk produk lainnya sedang dalam proses restok. Apakah ada produk tertentu yang ingin Anda tanyakan?";
+            } else if (lowerMessage.includes('hitam') || lowerMessage.includes('warna')) {
+                return "Kami memiliki berbagai pilihan warna untuk setiap produk. Hampir semua produk memiliki varian warna hitam, navi, marun, mustard, krem, coksu, abu, pink, dan toska. Silakan lihat detail produk untuk melihat warna yang tersedia untuk setiap model.";
+            } else if (lowerMessage.includes('harga') || lowerMessage.includes('berapa')) {
+                return "Harga masker bordir kami berkisar antara Rp 15.600 hingga Rp 24.000 tergantung modelnya. Masker 3D Bordir adalah yang termahal dengan harga Rp 24.000, sementara model lainnya biasanya Rp 15.600. Semua harga sudah termasuk diskon.";
+            } else if (lowerMessage.includes('bahan') || lowerMessage.includes('katun')) {
+                return "Semua masker bordir kami menggunakan bahan 100% katun premium dengan 3 lapisan untuk kenyamanan dan perlindungan optimal. Bahan katun dipilih karena nyaman di kulit dan mudah menyerap keringat.";
+            } else if (lowerMessage.includes('pengiriman') || lowerMessage.includes('kirim')) {
+                return "Kami melakukan pengiriman ke seluruh Indonesia. Biaya pengiriman tergantung lokasi dan kurir yang dipilih. Untuk wilayah Tasikmalaya dan sekitarnya, kami menawarkan pengiriman gratis untuk pembelian di atas Rp 100.000.";
+            } else if (lowerMessage.includes('bordir') || lowerMessage.includes('manual')) {
+                return "Ya, semua bordir pada masker kami dilakukan secara manual oleh pengrajin Tasikmalaya yang berpengalaman. Ini menjadikan setiap produk kami unik dan memiliki nilai seni yang tinggi.";
+            } else {
+                return "Terima kasih atas pertanyaannya. Saya adalah asisten virtual untuk toko As-Syariah Bordir. Saya dapat membantu Anda dengan informasi tentang produk, ketersediaan stok, harga, atau proses pemesanan. Ada hal spesifik yang ingin Anda ketahui?";
+            }
+        }
+
+        // Load products when page loads
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>
