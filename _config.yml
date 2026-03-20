@@ -1,11 +1,12 @@
 title: As-Syari'ah Bordir
 email: your-email@example.com
 description: >-
-  Toko Masker Online with AI Assistant
+  Toko Online with AI Assistant
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://as-syariahbordir.github.io" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
+author: nDang
 
 # Build settings
 port: 8800
