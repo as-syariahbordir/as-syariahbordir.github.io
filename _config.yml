@@ -1,0 +1,29 @@
+title: As-Syari'ah Bordir
+email: your-email@example.com
+description: >-
+  Toko Masker Online with AI Assistant
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://as-syariahbordir.github.io" # the base hostname & protocol for your site
+twitter_username: jekyllrb
+github_username:  jekyll
+
+# Build settings
+port: 8800
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude` property here will be ignored, even if it is in the `include` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/

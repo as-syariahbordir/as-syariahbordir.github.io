@@ -1,0 +1,148 @@
+<ion-modal id="chat-modal">
+  <ion-header>
+    <ion-toolbar><ion-title id="chat-title">
+      <i data-lucide="bot"></i> Shopping Assistant</ion-title>
+      <ion-buttons slot="end">
+        <ion-button onclick="closeChatModal()">
+          <ion-icon name="close" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="chat-container">
+    <div class="chat-messages" id="chat-messages"></div>
+  </ion-content>
+    <ion-footer>
+      <div class="chat-input-wrapper">
+        <ion-toolbar>
+          <ion-textarea 
+            id="chat-input" 
+            placeholder="Ketik pesan..."
+            auto-grow="true"
+            rows="1"
+            type="round"
+            enterkeyhint="send"
+          ></ion-textarea>
+          <ion-buttons slot="end">
+            <ion-button id="send-button" onclick="sendMessage()" fill="clear" color="primary">
+              <ion-icon name="send" slot="icon-only"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </div>
+    </ion-footer>
+</ion-modal>
+
+<!-- Cart Modal -->
+<ion-modal id="cart-modal">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Keranjang Belanja</ion-title>
+      <ion-buttons slot="end">
+        <ion-button onclick="closeCartModal()">
+          <ion-icon name="close" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="cart-content">
+    <!-- Cart Items Container -->
+    <div id="simpleCart_items" class="simpleCart_items"></div>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+    <!-- Total Section -->
+    <div id="cart-footer" class="cart-footer-info" style="display: none;">
+      <div class="total-row">
+        <span class="total-label">Total Pembayaran:</span>
+        <span class="total-amount simpleCart_total"></span>
+      </div>
+      
+      <ion-button expand="block" color="success" onclick="checkout()" id="checkout-btn" mode="ios" style="margin-top: 16px;">
+        Lanjut ke Pembayaran
+        <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
+      </ion-button>
+    </div>
+    </ion-toolbar>
+  </ion-footer>
+</ion-modal>
+
+<!-- Checkout Form Modal -->
+<ion-modal id="checkout-modal">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Detail Pengiriman</ion-title>
+      <ion-buttons slot="end">
+        <ion-button onclick="closeCheckoutModal()">
+          <ion-icon name="close" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding">
+    <div id="whatsapp-order">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nama Lengkap</ion-label>
+          <ion-input type="text" class="nama" placeholder="Contoh: Budi Santoso"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">No. WhatsApp</ion-label>
+          <ion-input type="tel" class="nomor" placeholder="Contoh: 08123456789"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Alamat Lengkap</ion-label>
+          <ion-textarea class="alamat" placeholder="Nama Jalan, No. Rumah, RT/RW, Desa/Kelurahan"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Kota/Kabupaten</ion-label>
+          <ion-input type="text" class="kota" placeholder="Contoh: Jakarta Selatan"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Provinsi</ion-label>
+          <ion-input type="text" class="provinsi" placeholder="Contoh: DKI Jakarta"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Kode Pos</ion-label>
+          <ion-input type="text" class="kodepos" placeholder="Contoh: 12345"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Metode Pembayaran</ion-label>
+          <ion-select class="bayar" placeholder="Pilih Metode">
+            <ion-select-option value="Transfer Bank">Transfer Bank</ion-select-option>
+            <ion-select-option value="COD">COD (Bayar di Tempat)</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Jasa Pengiriman</ion-label>
+          <ion-select class="informasi" placeholder="Pilih Kurir">
+            <ion-select-option value="JNE">JNE</ion-select-option>
+            <ion-select-option value="J&T">J&T</ion-select-option>
+            <ion-select-option value="Sicepat">Sicepat</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Hidden inputs for validation requirements in formOrder.js -->
+        <input type="hidden" class="email" value="customer@example.com">
+        <input type="hidden" class="qty" value="1">
+        <input type="hidden" class="warna" value="Default">
+        <input type="hidden" class="tali" value="Default">
+        <input type="hidden" class="order" value="6281234567890"> <!-- Nomor Admin -->
+      </ion-list>
+    </div>
+  </ion-content>
+  <ion-footer>
+    <ion-toolbar>
+      <div class="form-order-info">
+        <small style="font-size: 10px; color: #555; margin: 0;">
+          Pastikan data yang Anda masukkan benar untuk memudahkan proses pengiriman.
+        </small>
+      <ion-button expand="block" color="success" onclick="WhatsApp()" mode="ios" style="margin-top: 24px; --border-radius: 12px;">
+        Kirim Pesanan via WhatsApp
+        <ion-icon name="logo-whatsapp" slot="end"></ion-icon>
+      </ion-button>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ion-modal>
