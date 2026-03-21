@@ -1,3 +1,8 @@
+---
+layout: none
+permalink: /products.json
+---
+
 {
   "product": [
     {% assign items = site.products | where: "layout", "product" %}
