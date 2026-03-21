@@ -20,11 +20,12 @@ collections:
   products:
     output: true
     permalink: /product/:path/
-    
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
+
+# compress_html disabled - causes issues with Ionic modals and JavaScript
+# compress_html:
+#   clippings: all
+#   ignore:
+#     envs: [development, production]
 
 # Exclude from processing.
 # The following items will not be processed, by default.
