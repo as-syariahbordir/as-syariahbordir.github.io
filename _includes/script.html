@@ -140,6 +140,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: message,
+            product: currentProduct, // Kirim seluruh data produk
             productId: currentProduct?.id,
             sessionId: chatSessionId
           })
