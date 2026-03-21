@@ -222,10 +222,16 @@
       --max-width: 500px;
       --border-radius: 16px;
       --box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      --background: #ffffff;
     }
 
     ion-modal::part(backdrop) {
       background: rgba(0, 0, 0, 0.5);
+    }
+    
+    ion-modal::part(content) {
+      border-radius: 16px;
+      overflow: hidden;
     }
 
     /* CART MODAL STYLES */

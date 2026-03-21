@@ -20,6 +20,9 @@
     let currentProduct = null;
     let chatSessionId = Date.now().toString();
     const AI_API_URL = 'https://assya-ai.sendaljepit.workers.dev/api/chat';
+    
+    // Flag untuk tracking Ionic readiness
+    let ionicReady = false;
 
     // Helper functions
     function parsePrice(p) {
@@ -41,6 +44,27 @@
     function formatPrice(price) {
       if (typeof price === 'string') return price;
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    
+    // Wait for Ionic to be fully ready
+    async function waitForIonic() {
+      if (ionicReady) return true;
+      
+      try {
+        if (typeof customElements !== 'undefined') {
+          await customElements.whenDefined('ion-modal');
+          await customElements.whenDefined('ion-content');
+          await customElements.whenDefined('ion-header');
+          await customElements.whenDefined('ion-footer');
+          ionicReady = true;
+          console.log('Ionic components ready');
+          return true;
+        }
+      } catch (err) {
+        console.error('Error waiting for Ionic:', err);
+        return false;
+      }
+      return false;
     }
 
     // Open chat for specific product
@@ -64,10 +88,12 @@
       const colors = product.styles?.map(s => s.name).join(', ') || 'berbagai pilihan';
 
       try {
-        // Tunggu komponen Ionic siap (penting di lingkungan live)
+        // Pastikan Ionic sudah siap
+        await waitForIonic();
+        
         if (typeof modal.present !== 'function') {
-          console.warn('Ionic Modal belum siap, menunggu definisi...');
-          await customElements.whenDefined('ion-modal');
+          console.error('EROR: modal.present() bukan fungsi. Ionic mungkin tidak terload dengan benar.');
+          return;
         }
 
         await modal.present();
@@ -78,13 +104,16 @@
         setTimeout(() => {
           hideTyping();
           addMessage('ai', `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Ada warna apa aja?"\n• "Aku mau beli"\n• "Detail produk"`);
-          
+
           const input = document.getElementById('chat-input');
-          if (input) input.setFocus();
+          if (input) {
+            input.setFocus();
+          }
           scrollToBottom();
         }, 1000);
       } catch (err) {
         console.error('Eror saat memanggil modal.present():', err);
+        alert('Terjadi kesalahan saat membuka chat. Silakan refresh halaman.');
       }
     }
 

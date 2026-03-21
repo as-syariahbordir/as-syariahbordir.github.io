@@ -12,29 +12,29 @@
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
-  
+
   <ion-content class="chat-container">
     <div class="chat-messages" id="chat-messages"></div>
   </ion-content>
-    <ion-footer>
-      <div class="chat-input-wrapper">
-        <ion-toolbar>
-          <ion-textarea 
-            id="chat-input" 
-            placeholder="Ketik pesan..."
-            auto-grow="true"
-            rows="1"
-            type="round"
-            enterkeyhint="send"
-          ></ion-textarea>
-          <ion-buttons slot="end">
-            <ion-button id="send-button" onclick="sendMessage()" fill="clear" color="primary">
-              <ion-icon name="send" slot="icon-only"></ion-icon>
-            </ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </div>
-    </ion-footer>
+  <ion-footer>
+    <div class="chat-input-wrapper">
+      <ion-toolbar>
+        <ion-textarea
+          id="chat-input"
+          placeholder="Ketik pesan..."
+          auto-grow="true"
+          rows="1"
+          type="round"
+          enterkeyhint="send"
+        ></ion-textarea>
+        <ion-buttons slot="end">
+          <ion-button id="send-button" onclick="sendMessage()" fill="clear" color="primary">
+            <ion-icon name="send" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </div>
+  </ion-footer>
 </ion-modal>
 
 <!-- Cart Modal -->
@@ -61,7 +61,7 @@
         <span class="total-label">Total Pembayaran:</span>
         <span class="total-amount simpleCart_total"></span>
       </div>
-      
+
       <ion-button expand="block" color="success" onclick="checkout()" id="checkout-btn" mode="ios" style="margin-top: 16px;">
         Lanjut ke Pembayaran
         <ion-icon name="arrow-forward-outline" slot="end"></ion-icon>
