@@ -127,6 +127,54 @@
       display: block;
       content: "";
     }
+    
+    /* Product Images Grid Styles */
+    .product-images-container {
+      max-width: 100% !important;
+      width: 100%;
+      padding: 8px 0;
+    }
+    
+    .product-images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 12px;
+      padding: 8px;
+      margin-top: 12px;
+    }
+    
+    .product-image-card {
+      border: 3px solid;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      background: #fff;
+    }
+    
+    .product-image-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .product-image-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .product-image-label {
+      padding: 6px 8px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+    
+    .product-image-label span {
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
 
     .chat-messages {
       padding: 16px;

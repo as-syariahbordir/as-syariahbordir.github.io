@@ -167,6 +167,45 @@
       messages.appendChild(messageDiv);
       scrollToBottom();
     }
+    
+    // Function to display product images
+    function showProductImages(imagesData) {
+      const messages = document.getElementById('chat-messages');
+      if (!messages || !imagesData || !imagesData.images) return;
+      
+      const imageDiv = document.createElement('div');
+      imageDiv.className = 'message ai-message product-images-container';
+      
+      let imagesHtml = '<div class="product-images-grid">';
+      
+      imagesData.images.forEach(img => {
+        imagesHtml += `
+          <div class="product-image-card" style="border-color: ${img.color || '#ccc'};">
+            <img src="${img.image_path}" alt="${img.name}" loading="lazy" />
+            <div class="product-image-label" style="background-color: ${img.color || '#ccc'};">
+              <span style="color: ${getContrastColor(img.color)};">${img.name}</span>
+            </div>
+          </div>
+        `;
+      });
+      
+      imagesHtml += '</div>';
+      imageDiv.innerHTML = imagesHtml;
+      messages.appendChild(imageDiv);
+      scrollToBottom();
+    }
+    
+    // Helper function to determine text color based on background
+    function getContrastColor(hexcolor) {
+      if (!hexcolor) return '#000';
+      // Convert hex to RGB
+      const r = parseInt(hexcolor.substr(1, 2), 16);
+      const g = parseInt(hexcolor.substr(3, 2), 16);
+      const b = parseInt(hexcolor.substr(5, 2), 16);
+      // Calculate luminance
+      const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+      return (yiq >= 128) ? '#000' : '#fff';
+    }
 
     function scrollToBottom() {
       const content = document.querySelector('#chat-modal ion-content');
@@ -244,6 +283,10 @@
 
         if (aiData.action?.type === 'addToCart' && aiData.action.data) {
           handleAddToCart(aiData.action.data);
+        }
+        
+        if (aiData.action?.type === 'showImages' && aiData.action.data) {
+          showProductImages(aiData.action.data);
         }
 
       } catch (error) {
