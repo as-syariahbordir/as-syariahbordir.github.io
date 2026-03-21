@@ -26,7 +26,7 @@
     
     // Initialize Ionic readiness check immediately
     (async function initIonic() {
-      console.log('Initializing Ionic...');
+      //console.log('Initializing Ionic...');
       try {
         if (typeof customElements !== 'undefined') {
           await Promise.all([
@@ -38,12 +38,12 @@
             customElements.whenDefined('ion-icon')
           ]);
           ionicReady = true;
-          console.log('✅ Ionic fully initialized!');
+          //console.log('✅ Ionic fully initialized!');
         } else {
-          console.error('❌ customElements not available');
+          //console.error('❌ customElements not available');
         }
       } catch (err) {
-        console.error('❌ Ionic initialization error:', err);
+        //console.error('❌ Ionic initialization error:', err);
       }
     })();
 
@@ -72,16 +72,16 @@
     // Wait for Ionic to be fully ready
     async function waitForIonic() {
       if (ionicReady) {
-        console.log('Ionic already ready');
+        //console.log('Ionic already ready');
         return true;
       }
       
-      console.log('Waiting for Ionic...');
+      //console.log('Waiting for Ionic...');
       try {
         if (typeof customElements !== 'undefined') {
           await customElements.whenDefined('ion-modal');
           ionicReady = true;
-          console.log('✅ Ionic ready!');
+          //console.log('✅ Ionic ready!');
           return true;
         }
       } catch (err) {
@@ -93,14 +93,14 @@
 
     // Open chat for specific product
     async function openProductChat(product) {
-      console.log('🔵 [openProductChat] Called with product:', product?.title);
-      console.log('🔵 [openProductChat] ionicReady:', ionicReady);
+      //console.log('🔵 [openProductChat] Called with product:', product?.title);
+      //console.log('🔵 [openProductChat] ionicReady:', ionicReady);
       
       currentProduct = product;
       chatSessionId = Date.now().toString();
 
       const modal = document.getElementById('chat-modal');
-      console.log('🔵 [openProductChat] Modal element:', modal);
+      //console.log('🔵 [openProductChat] Modal element:', modal);
       
       const titleSpan = document.getElementById('chat-title');
       const messages = document.getElementById('chat-messages');
@@ -117,19 +117,19 @@
 
       try {
         // Pastikan Ionic sudah siap
-        console.log('🔵 [openProductChat] Calling waitForIonic()...');
+        //console.log('🔵 [openProductChat] Calling waitForIonic()...');
         const isIonicReady = await waitForIonic();
-        console.log('🔵 [openProductChat] Ionic ready result:', isIonicReady);
+        //console.log('🔵 [openProductChat] Ionic ready result:', isIonicReady);
         
         if (typeof modal.present !== 'function') {
           console.error('❌ [openProductChat] modal.present() bukan fungsi. Ionic mungkin tidak terload dengan benar.');
-          console.log('🔵 [openProductChat] modal object:', modal);
+          //console.log('🔵 [openProductChat] modal object:', modal);
           return;
         }
 
-        console.log('🔵 [openProductChat] Calling modal.present()...');
+        //console.log('🔵 [openProductChat] Calling modal.present()...');
         await modal.present();
-        console.log('✅ [openProductChat] Modal berhasil dibuka (present)');
+        //console.log('✅ [openProductChat] Modal berhasil dibuka (present)');
 
         // Buat chat lebih natural dengan delay dan typing indicator
         showTyping();
@@ -247,11 +247,13 @@
         }
 
       } catch (error) {
+          setTimeout(() => {
           showTyping();
           setTimeout(() => {
             hideTyping();
         console.error('Chat error:', error);
         addMessage('ai', "Maaf kak, Assya sedang istirahat sejenak 😵‍💫 Coba lagi ya atau langsung pesan lewat tombol WhatsApp!");
+          }, 800);
           }, 1000);
       }
     }
@@ -279,12 +281,14 @@
         updateCartModal();
 
       } catch (error) {
+          setTimeout(() => {
           showTyping();
           setTimeout(() => {
             hideTyping();
         console.error('Add to cart error:', error);
             addMessage('ai', '😅 Ups, gagal nambahin ke keranjang. Coba lagi ya!');
-          }, 1000);
+          }, 800);
+        }, 1000);
         }
       }
 
@@ -380,16 +384,16 @@
       }
 
       const productGrid = document.getElementById('productGrid');
-      console.log('Product Grid found:', !!productGrid);
+      //console.log('Product Grid found:', !!productGrid);
       if (productGrid) {
         productGrid.addEventListener('click', function(e) {
-          console.log('Grid clicked!', e.target);
+          //console.log('Grid clicked!', e.target);
           const card = e.target.closest('.product-card');
-          console.log('Card found:', !!card);
+          //console.log('Card found:', !!card);
           if (card && card.dataset.product) {
             try {
               const product = JSON.parse(card.dataset.product);
-              console.log('Product data:', product);
+              //console.log('Product data:', product);
               openProductChat(product);
             } catch (err) {
               console.error('Error parsing product data:', err);

@@ -70,7 +70,7 @@ async function WhatsApp() {
         });
 
         // Ambil Data Form
-        var orderAdmin = $('#whatsapp-order .order').val() || '6281234567890';
+        var orderAdmin = $('#whatsapp-order .order').val() || '6281386267897';
         var nama = $('#whatsapp-order .nama').val();
         var alamat = $('#whatsapp-order .alamat').val();
         var nomor = $('#whatsapp-order .nomor').val();

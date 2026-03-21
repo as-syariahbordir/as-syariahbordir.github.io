@@ -1642,7 +1642,7 @@ $(document).ready(function () {
     myLicense = atob(dev),
     tpllc = $('#footer').text(),
     second = 10;
-    console.log(myLicense);
+    //console.log(myLicense);
     if (myLicense == tpllc) {
     return false
     } else {
