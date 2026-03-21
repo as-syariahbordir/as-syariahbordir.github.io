@@ -5,7 +5,7 @@ title: Toko As-Syariah
 
 <ion-content fullscreen="true">
   <div class="product-grid" id="productGrid">
-    {% for item in site.data.products.product %}
+    {% for item in site.products %}
       <div class="product-card" data-product="{{ item | jsonify | escape }}">
         <img class="product-image" src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
         <div class="product-title">{{ item.title }}</div>
@@ -28,3 +28,4 @@ title: Toko As-Syariah
     {% endfor %}
   </div>
 </ion-content>
+

@@ -59,15 +59,18 @@
 
       const colors = product.styles?.map(s => s.name).join(', ') || 'berbagai pilihan';
 
-      addMessage('ai', `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Ada warna apa aja?"\n• "Aku mau beli"\n• "Detail produk"`);
-
       modal.present();
 
+      // Buat chat lebih natural dengan delay dan typing indicator
+      showTyping();
       setTimeout(() => {
+        hideTyping();
+        addMessage('ai', `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Ada warna apa aja?"\n• "Aku mau beli"\n• "Detail produk"`);
+        
         const input = document.getElementById('chat-input');
         if (input) input.setFocus();
         scrollToBottom();
-      }, 500);
+      }, 1000);
     }
 
     function addMessage(sender, text) {
@@ -168,9 +171,12 @@
         }
 
       } catch (error) {
-        hideTyping();
+          showTyping();
+          setTimeout(() => {
+            hideTyping();
         console.error('Chat error:', error);
         addMessage('ai', "Maaf kak, Assya sedang istirahat sejenak 😵‍💫 Coba lagi ya atau langsung pesan lewat tombol WhatsApp!");
+          }, 1000);
       }
     }
 
@@ -197,10 +203,14 @@
         updateCartModal();
 
       } catch (error) {
+          showTyping();
+          setTimeout(() => {
+            hideTyping();
         console.error('Add to cart error:', error);
-        addMessage('ai', '😅 Ups, gagal nambahin ke keranjang. Coba lagi ya!');
+            addMessage('ai', '😅 Ups, gagal nambahin ke keranjang. Coba lagi ya!');
+          }, 1000);
+        }
       }
-    }
 
     function updateCartCount() {
       try {
@@ -295,7 +305,11 @@
       setTimeout(() => {
         const messages = document.getElementById('chat-messages');
         if (messages && messages.children.length === 0) {
-          addMessage('ai', '👋 **Selamat datang di As-Syari\'ah Bordir AI Shopping Assistant!**\n\nKlik produk untuk mulai ngobrol dengan AI!');
+          showTyping();
+          setTimeout(() => {
+            hideTyping();
+            addMessage('ai', '👋 **Selamat datang di As-Syari\'ah Bordir AI Shopping Assistant!**\n\nKlik produk untuk mulai ngobrol dengan AI!');
+          }, 800);
         }
       }, 1000);
     });
