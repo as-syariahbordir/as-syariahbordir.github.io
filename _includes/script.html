@@ -23,6 +23,29 @@
     
     // Flag untuk tracking Ionic readiness
     let ionicReady = false;
+    
+    // Initialize Ionic readiness check immediately
+    (async function initIonic() {
+      console.log('Initializing Ionic...');
+      try {
+        if (typeof customElements !== 'undefined') {
+          await Promise.all([
+            customElements.whenDefined('ion-modal'),
+            customElements.whenDefined('ion-content'),
+            customElements.whenDefined('ion-header'),
+            customElements.whenDefined('ion-footer'),
+            customElements.whenDefined('ion-button'),
+            customElements.whenDefined('ion-icon')
+          ]);
+          ionicReady = true;
+          console.log('✅ Ionic fully initialized!');
+        } else {
+          console.error('❌ customElements not available');
+        }
+      } catch (err) {
+        console.error('❌ Ionic initialization error:', err);
+      }
+    })();
 
     // Helper functions
     function parsePrice(p) {
@@ -48,16 +71,17 @@
     
     // Wait for Ionic to be fully ready
     async function waitForIonic() {
-      if (ionicReady) return true;
+      if (ionicReady) {
+        console.log('Ionic already ready');
+        return true;
+      }
       
+      console.log('Waiting for Ionic...');
       try {
         if (typeof customElements !== 'undefined') {
           await customElements.whenDefined('ion-modal');
-          await customElements.whenDefined('ion-content');
-          await customElements.whenDefined('ion-header');
-          await customElements.whenDefined('ion-footer');
           ionicReady = true;
-          console.log('Ionic components ready');
+          console.log('✅ Ionic ready!');
           return true;
         }
       } catch (err) {
@@ -69,16 +93,20 @@
 
     // Open chat for specific product
     async function openProductChat(product) {
-      console.log('Membuka Chat untuk:', product.title);
+      console.log('🔵 [openProductChat] Called with product:', product?.title);
+      console.log('🔵 [openProductChat] ionicReady:', ionicReady);
+      
       currentProduct = product;
       chatSessionId = Date.now().toString();
 
       const modal = document.getElementById('chat-modal');
+      console.log('🔵 [openProductChat] Modal element:', modal);
+      
       const titleSpan = document.getElementById('chat-title');
       const messages = document.getElementById('chat-messages');
 
       if (!modal) {
-        console.error('EROR: Modal chat-modal tidak ditemukan di DOM!');
+        console.error('❌ [openProductChat] Modal chat-modal tidak ditemukan di DOM!');
         return;
       }
 
@@ -89,15 +117,19 @@
 
       try {
         // Pastikan Ionic sudah siap
-        await waitForIonic();
+        console.log('🔵 [openProductChat] Calling waitForIonic()...');
+        const isIonicReady = await waitForIonic();
+        console.log('🔵 [openProductChat] Ionic ready result:', isIonicReady);
         
         if (typeof modal.present !== 'function') {
-          console.error('EROR: modal.present() bukan fungsi. Ionic mungkin tidak terload dengan benar.');
+          console.error('❌ [openProductChat] modal.present() bukan fungsi. Ionic mungkin tidak terload dengan benar.');
+          console.log('🔵 [openProductChat] modal object:', modal);
           return;
         }
 
+        console.log('🔵 [openProductChat] Calling modal.present()...');
         await modal.present();
-        console.log('Modal berhasil dibuka (present)');
+        console.log('✅ [openProductChat] Modal berhasil dibuka (present)');
 
         // Buat chat lebih natural dengan delay dan typing indicator
         showTyping();
@@ -112,7 +144,7 @@
           scrollToBottom();
         }, 1000);
       } catch (err) {
-        console.error('Eror saat memanggil modal.present():', err);
+        console.error('❌ [openProductChat] Eror saat memanggil modal.present():', err);
         alert('Terjadi kesalahan saat membuka chat. Silakan refresh halaman.');
       }
     }
@@ -318,6 +350,14 @@
       // Logic has moved to WhatsApp() in formOrder.js
       WhatsApp();
     };
+    
+    // Expose modal functions to window for onclick handlers
+    window.openProductChat = openProductChat;
+    window.closeChatModal = closeChatModal;
+    window.closeCartModal = closeCartModal;
+    window.closeCheckoutModal = closeCheckoutModal;
+    window.checkout = checkout;
+    window.sendMessage = sendMessage;
 
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof simpleCart !== 'undefined') {
@@ -340,12 +380,20 @@
       }
 
       const productGrid = document.getElementById('productGrid');
+      console.log('Product Grid found:', !!productGrid);
       if (productGrid) {
         productGrid.addEventListener('click', function(e) {
+          console.log('Grid clicked!', e.target);
           const card = e.target.closest('.product-card');
+          console.log('Card found:', !!card);
           if (card && card.dataset.product) {
-            const product = JSON.parse(card.dataset.product);
-            openProductChat(product);
+            try {
+              const product = JSON.parse(card.dataset.product);
+              console.log('Product data:', product);
+              openProductChat(product);
+            } catch (err) {
+              console.error('Error parsing product data:', err);
+            }
           }
         });
       }
