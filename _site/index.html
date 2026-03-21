@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+
+    <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Toko As-Syariah</title>
 
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/fav/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/fav/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/fav/favicon-16x16.png">
+<link rel="manifest" href="/assets/fav/site.webmanifest">
+<link rel="mask-icon" href="/assets/fav/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/fav/favicon.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/assets/fav/mstile-144x144.png">
+<meta name="msapplication-config" content="/assets/fav/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+    
   <!-- Ionic Core v8 via CDN -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@8/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@8/dist/ionic/ionic.js"></script>
@@ -395,9 +408,10 @@
     }
   </style>
 </head>
+
 <body>
   <ion-app>
-    <ion-header>
+<ion-header>
   <ion-toolbar color="primary">
     <ion-title>As-Syari'ah Bordir</ion-title>
         <ion-badge color="danger" id="cart-count">0</ion-badge>
@@ -408,8 +422,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content fullscreen="true">
+    <ion-content fullscreen="true">
   <div class="product-grid" id="productGrid">
     
       <div class="product-card" data-product="{&quot;title&quot;:&quot;Masker 3D Bordir&quot;,&quot;slug&quot;:&quot;masker-3d-bordir&quot;,&quot;id&quot;:&quot;product-masker-3d-bodir-3lapis-tasikmalaya&quot;,&quot;category&quot;:&quot;&quot;,&quot;url&quot;:&quot;/product/masker-3d-bodir-3lapis-tasikmalaya/&quot;,&quot;sku&quot;:&quot;masker3D&quot;,&quot;price&quot;:&quot;30.000&quot;,&quot;discount&quot;:&quot;24.000&quot;,&quot;stok&quot;:&quot;Stok Habis&quot;,&quot;description&quot;:&quot;Masker3D Bordir, 3Lapisan kain,&quot;,&quot;narrative&quot;:&quot;&quot;,&quot;image&quot;:&quot;https://cf.shopee.co.id/file/86e632480a9b475919f2d3cf08caa4ef&quot;,&quot;styles&quot;:[{&quot;name&quot;:&quot;hitam&quot;,&quot;color&quot;:&quot;#000000&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/5194cfd90af282168d7351d1350c924c&quot;},{&quot;name&quot;:&quot;navi&quot;,&quot;color&quot;:&quot;#4a5265&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/6761d66ebb1f34b00a07583091ff62c6&quot;},{&quot;name&quot;:&quot;marun&quot;,&quot;color&quot;:&quot;#ba2342&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/d78fe06d94f7f92cfae0505266a78186&quot;},{&quot;name&quot;:&quot;mustard&quot;,&quot;color&quot;:&quot;#efa22c&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/24200fe4753c8a5cb75d1ef3e1458f08&quot;},{&quot;name&quot;:&quot;krem&quot;,&quot;color&quot;:&quot;#d5c4b0&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/edf9ec83f258e82ed1df0ff4384becd1&quot;},{&quot;name&quot;:&quot;coksu&quot;,&quot;color&quot;:&quot;#b48c69&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/cab7b5c489e683e27c7c0d2e2cbb1d11&quot;},{&quot;name&quot;:&quot;abu&quot;,&quot;color&quot;:&quot;#a1a2a7&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/23b3e8f5ac4ef1439a69ee852c6ccfe6&quot;},{&quot;name&quot;:&quot;pink&quot;,&quot;color&quot;:&quot;#d07897&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/b8fd9009125ff1e3743068f6e72173d5&quot;},{&quot;name&quot;:&quot;toska&quot;,&quot;color&quot;:&quot;#298f83&quot;,&quot;image_path&quot;:&quot;https://cf.shopee.co.id/file/74530543685ec9d3fba71596bc7b62d0&quot;}]}">
@@ -602,7 +615,6 @@
     </ion-label>
   </ion-toolbar>
 </ion-footer>
-
   </ion-app>
 
   <ion-modal id="chat-modal">
@@ -754,7 +766,7 @@
   </ion-footer>
 </ion-modal>
 
-
+  
   <script>
     // Konfigurasi SimpleCart
     simpleCart({
@@ -1065,5 +1077,6 @@
   <script>
     lucide.createIcons();
   </script>
+
 </body>
 </html>

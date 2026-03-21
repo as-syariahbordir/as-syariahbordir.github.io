@@ -1,0 +1,13 @@
+.jekyll-cache/
+_site/
+.sass-cache/
+.bundle/
+vendor/bundle/
+vendor/cache/
+vendor/gems/
+vendor/ruby/
+.DS_Store
+Gemfile.lock
+node_modules/
+yarn.lock
+package-lock.json

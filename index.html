@@ -3,18 +3,6 @@ layout: default
 title: Toko As-Syariah
 ---
 
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>{{site.title}}</ion-title>
-        <ion-badge color="danger" id="cart-count">0</ion-badge>
-    <ion-buttons slot="end">
-      <ion-button id="cart-button">
-        <ion-icon name="cart" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content fullscreen="true">
   <div class="product-grid" id="productGrid">
     {% for item in site.data.products.product %}
@@ -40,11 +28,3 @@ title: Toko As-Syariah
     {% endfor %}
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar class="ion-padding">
-    <ion-label slot="end">&copy; {{ site.time | date: "%Y" }} - {{site.title}} by 
-      <span id="footer">{{site.author}}</span>
-    </ion-label>
-  </ion-toolbar>
-</ion-footer>
