@@ -23,7 +23,7 @@ title: Toko As-Syariah
           ]
         }
       {% endcapture %}
-      <div class="product-card" data-product='{{ product_data | strip_newlines | escape }}'>
+      <div class="product-card" data-product="{{ product_data | strip_newlines | escape }}">
         <img class="product-image" src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
         <div class="product-title">{{ item.title }}</div>
         <div class="product-price">

@@ -45,40 +45,47 @@
 
     // Open chat for specific product
     async function openProductChat(product) {
+      console.log('Membuka Chat untuk:', product.title);
       currentProduct = product;
       chatSessionId = Date.now().toString();
 
       const modal = document.getElementById('chat-modal');
-      const title = document.getElementById('chat-title');
+      const titleSpan = document.getElementById('chat-title');
       const messages = document.getElementById('chat-messages');
 
       if (!modal) {
-        console.error('Chat modal not found');
+        console.error('EROR: Modal chat-modal tidak ditemukan di DOM!');
         return;
       }
 
-      if (title) title.textContent = product.title;
+      if (titleSpan) titleSpan.textContent = product.title;
       if (messages) messages.innerHTML = '';
 
       const colors = product.styles?.map(s => s.name).join(', ') || 'berbagai pilihan';
 
-      // Ensure the modal's present method exists (Ionic might be hydrating)
-      if (typeof modal.present !== 'function') {
-        await customElements.whenDefined('ion-modal');
+      try {
+        // Tunggu komponen Ionic siap (penting di lingkungan live)
+        if (typeof modal.present !== 'function') {
+          console.warn('Ionic Modal belum siap, menunggu definisi...');
+          await customElements.whenDefined('ion-modal');
+        }
+
+        await modal.present();
+        console.log('Modal berhasil dibuka (present)');
+
+        // Buat chat lebih natural dengan delay dan typing indicator
+        showTyping();
+        setTimeout(() => {
+          hideTyping();
+          addMessage('ai', `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Ada warna apa aja?"\n• "Aku mau beli"\n• "Detail produk"`);
+          
+          const input = document.getElementById('chat-input');
+          if (input) input.setFocus();
+          scrollToBottom();
+        }, 1000);
+      } catch (err) {
+        console.error('Eror saat memanggil modal.present():', err);
       }
-
-      await modal.present();
-
-      // Buat chat lebih natural dengan delay dan typing indicator
-      showTyping();
-      setTimeout(() => {
-        hideTyping();
-        addMessage('ai', `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Ada warna apa aja?"\n• "Aku mau beli"\n• "Detail produk"`);
-        
-        const input = document.getElementById('chat-input');
-        if (input) input.setFocus();
-        scrollToBottom();
-      }, 1000);
     }
 
     function addMessage(sender, text) {
