@@ -3,7 +3,8 @@ layout: default
 title: Toko As-Syariah
 ---
 
-<ion-content fullscreen="true">
+<ion-content>
+  {% include parallax.html %}
   <div class="product-grid" id="productGrid">
     {% for item in site.products %}
       {% capture product_data %}
