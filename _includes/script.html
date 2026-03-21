@@ -44,7 +44,7 @@
     }
 
     // Open chat for specific product
-    function openProductChat(product) {
+    async function openProductChat(product) {
       currentProduct = product;
       chatSessionId = Date.now().toString();
 
@@ -52,14 +52,22 @@
       const title = document.getElementById('chat-title');
       const messages = document.getElementById('chat-messages');
 
-      if (!modal || !title || !messages) return;
+      if (!modal) {
+        console.error('Chat modal not found');
+        return;
+      }
 
-      title.textContent = `AI Assist - ${product.title}`;
-      messages.innerHTML = '';
+      if (title) title.textContent = product.title;
+      if (messages) messages.innerHTML = '';
 
       const colors = product.styles?.map(s => s.name).join(', ') || 'berbagai pilihan';
 
-      modal.present();
+      // Ensure the modal's present method exists (Ionic might be hydrating)
+      if (typeof modal.present !== 'function') {
+        await customElements.whenDefined('ion-modal');
+      }
+
+      await modal.present();
 
       // Buat chat lebih natural dengan delay dan typing indicator
       showTyping();
@@ -254,17 +262,20 @@
       if (modal) modal.dismiss();
     }
 
-    function checkout() {
+    async function checkout() {
       if (simpleCart.quantity() === 0) {
         alert('Keranjang masih kosong nih!');
         return;
       }
       
       const cartModal = document.getElementById('cart-modal');
-      if (cartModal) cartModal.dismiss();
+      if (cartModal) await cartModal.dismiss();
 
       const checkoutModal = document.getElementById('checkout-modal');
-      if (checkoutModal) checkoutModal.present();
+      if (checkoutModal) {
+        if (typeof checkoutModal.present !== 'function') await customElements.whenDefined('ion-modal');
+        await checkoutModal.present();
+      }
     }
 
     window.WhatsAppOrder = function() {
@@ -282,11 +293,12 @@
 
       const cartBtn = document.getElementById('cart-button');
       if (cartBtn) {
-        cartBtn.addEventListener('click', function() {
+        cartBtn.addEventListener('click', async function() {
           const modal = document.getElementById('cart-modal');
           if (modal) {
             updateCartModal();
-            modal.present();
+            if (typeof modal.present !== 'function') await customElements.whenDefined('ion-modal');
+            await modal.present();
           }
         });
       }

@@ -8,22 +8,22 @@ title: Toko As-Syariah
     {% for item in site.products %}
       {% capture product_data %}
         {
-          "title": "{{ item.title | escape }}",
-          "discount": "{{ item.discount }}",
-          "price": "{{ item.price }}",
-          "stok": "{{ item.stok }}",
-          "id": "{{ item.id | slugify }}",
-          "url": "{{ item.url }}",
-          "image": "{{ item.image }}",
-          "description": "{{ item.description | escape }}",
+          "title": {{ item.title | jsonify }},
+          "discount": {{ item.discount | jsonify }},
+          "price": {{ item.price | jsonify }},
+          "stok": {{ item.stok | jsonify }},
+          "id": {{ item.id | slugify | jsonify }},
+          "url": {{ item.url | jsonify }},
+          "image": {{ item.image | jsonify }},
+          "description": {{ item.description | jsonify }},
           "styles": [
             {% for style in item.styles %}
-              { "name": "{{ style.name }}", "color": "{{ style.color }}" }{% unless forloop.last %},{% endunless %}
+              { "name": {{ style.name | jsonify }}, "color": {{ style.color | jsonify }} }{% unless forloop.last %},{% endunless %}
             {% endfor %}
           ]
         }
       {% endcapture %}
-      <div class="product-card" data-product='{{ product_data | strip_newlines }}'>
+      <div class="product-card" data-product='{{ product_data | strip_newlines | escape }}'>
         <img class="product-image" src="{{ item.image }}" alt="{{ item.title }}" loading="lazy" />
         <div class="product-title">{{ item.title }}</div>
         <div class="product-price">
