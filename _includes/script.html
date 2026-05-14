@@ -463,10 +463,10 @@ if (aiData.action?.type === 'addMultipleToCart' && Array.isArray(aiData.action.d
         });
       }
 
-      const productGrid = document.getElementById('productGrid');
-      //console.log('Product Grid found:', !!productGrid);
-      if (productGrid) {
-        productGrid.addEventListener('click', function(e) {
+      const collection = document.getElementById('collection');
+      //console.log('Product Grid found:', !!collection);
+      if (collection) {
+        collection.addEventListener('click', function(e) {
           //console.log('Grid clicked!', e.target);
           const card = e.target.closest('.product-card');
           //console.log('Card found:', !!card);
