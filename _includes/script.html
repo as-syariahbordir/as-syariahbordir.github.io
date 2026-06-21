@@ -283,7 +283,7 @@
         // Otomatis arahkan dan buka modal keranjang setelah barang ditambahkan
         setTimeout(() => {
           openCartModalDirectly();
-        }, 1500); // Memberikan jeda 1.5 detik agar user sempat membaca info sukses di chat
+        }, 3000); // Memberikan jeda 3 detik agar user sempat membaca info sukses di chat
 
       } catch (error) {
         console.error('Add multiple to cart error:', error);
@@ -351,7 +351,7 @@
         if (aiData.action?.type === 'openCart') {
           setTimeout(() => {
             openCartModalDirectly();
-          }, 1500); // Jeda 1.5 detik agar user sempat membaca chat respons AI terlebih dahulu
+          }, 3000); // Jeda 3 detik agar user sempat membaca chat respons AI terlebih dahulu
         }
 
       } catch (error) {
@@ -362,7 +362,7 @@
         console.error('Chat error:', error);
         addMessage('ai', "Maaf kak, Assya sedang istirahat sejenak 😵‍💫 Coba lagi ya atau langsung pesan lewat tombol WhatsApp!");
           }, 800);
-          }, 1000);
+          }, 1500);
       }
     }
 
@@ -396,7 +396,7 @@
         console.error('Add to cart error:', error);
             addMessage('ai', '😅 Ups, gagal nambahin ke keranjang. Coba lagi ya!');
           }, 800);
-        }, 1000);
+        }, 1500);
         }
       }
 
@@ -519,7 +519,7 @@
             addMessage('ai', '👋 **Selamat datang di As-Syari\'ah Bordir AI Shopping Assistant!**\n\nKlik produk untuk mulai ngobrol dengan AI!');
           }, 800);
         }
-      }, 1000);
+      }, 1500);
     });
 
     // Handle viewport changes for keyboard
