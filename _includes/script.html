@@ -1,6 +1,6 @@
 
   <script>
-    // Konfigurasi SimpleCart
+   // Konfigurasi SimpleCart
     simpleCart({
       cartColumns: [
         { attr: "thumb", label: "", view: "thumb" },
@@ -20,10 +20,10 @@
     let currentProduct = null;
     let chatSessionId = Date.now().toString();
     const AI_API_URL = 'https://assya-ai.sendaljepit.workers.dev/api/chat';
-    
+
     // Flag untuk tracking Ionic readiness
     let ionicReady = false;
-    
+
     // Initialize Ionic readiness check immediately
     (async function initIonic() {
       //console.log('Initializing Ionic...');
@@ -68,14 +68,14 @@
       if (typeof price === 'string') return price;
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
-    
+
     // Wait for Ionic to be fully ready
     async function waitForIonic() {
       if (ionicReady) {
         //console.log('Ionic already ready');
         return true;
       }
-      
+
       //console.log('Waiting for Ionic...');
       try {
         if (typeof customElements !== 'undefined') {
@@ -95,13 +95,13 @@
     async function openProductChat(product) {
       //console.log('🔵 [openProductChat] Called with product:', product?.title);
       //console.log('🔵 [openProductChat] ionicReady:', ionicReady);
-      
+
       currentProduct = product;
       chatSessionId = Date.now().toString();
 
       const modal = document.getElementById('chat-modal');
       //console.log('🔵 [openProductChat] Modal element:', modal);
-      
+
       const titleSpan = document.getElementById('chat-title');
       const messages = document.getElementById('chat-messages');
 
@@ -120,7 +120,7 @@
         //console.log('🔵 [openProductChat] Calling waitForIonic()...');
         const isIonicReady = await waitForIonic();
         //console.log('🔵 [openProductChat] Ionic ready result:', isIonicReady);
-        
+
         if (typeof modal.present !== 'function') {
           console.error('❌ [openProductChat] modal.present() bukan fungsi. Ionic mungkin tidak terload dengan benar.');
           //console.log('🔵 [openProductChat] modal object:', modal);
@@ -167,17 +167,17 @@
       messages.appendChild(messageDiv);
       scrollToBottom();
     }
-    
+
     // Function to display product images
     function showProductImages(imagesData) {
       const messages = document.getElementById('chat-messages');
       if (!messages || !imagesData || !imagesData.images) return;
-      
+
       const imageDiv = document.createElement('div');
       imageDiv.className = 'message ai-message product-images-container';
-      
+
       let imagesHtml = '<div class="product-images-grid">';
-      
+
       imagesData.images.forEach(img => {
         imagesHtml += `
           <div class="product-image-card" style="border-color: ${img.color || '#ccc'};">
@@ -188,13 +188,13 @@
           </div>
         `;
       });
-      
+
       imagesHtml += '</div>';
       imageDiv.innerHTML = imagesHtml;
       messages.appendChild(imageDiv);
       scrollToBottom();
     }
-    
+
     // Helper function to determine text color based on background
     function getContrastColor(hexcolor) {
       if (!hexcolor) return '#000';
@@ -236,38 +236,60 @@
       const typing = document.getElementById('typing-indicator');
       if (typing) typing.remove();
     }
-    
-function handleAddMultipleToCart(itemsArray) {
-  try {
-    itemsArray.forEach(item => {
-      const price = parsePrice(item.price);
-      const quantity = item.quantity || 1;
-      const warna = item.warna || 'pilihan';
-      const ukuran = item.ukuran || 'regular';
-      const productName = item.name || currentProduct?.title;
-      
-      simpleCart.add({
-        name: productName,
-        price: price,
-        quantity: quantity,
-        warna: warna,
-        ukuran: ukuran,
-        link: item.link || currentProduct?.url || '#',
-        thumb: item.thumb || currentProduct?.image || '',
-        berat: item.berat || 100
-      });
-    });
-    
-    updateCartCount();
-    updateCartModal();
-    
-    // Optional: notifikasi sukses
-    addMessage('ai', `✅ ${itemsArray.length} item berhasil ditambahkan ke keranjang!`);
-  } catch (error) {
-    console.error('Add multiple to cart error:', error);
-    addMessage('ai', '😅 Ups, gagal menambahkan beberapa item. Coba lagi ya!');
-  }
-}
+
+    // Fungsi helper untuk membuka modal Keranjang Ionic
+    async function openCartModalDirectly() {
+      const chatModal = document.getElementById('chat-modal');
+      // Tutup modal chat terlebih dahulu
+      if (chatModal) {
+        await chatModal.dismiss();
+      }
+
+      // Buka modal keranjang
+      const cartModal = document.getElementById('cart-modal');
+      if (cartModal) {
+        updateCartModal();
+        if (typeof cartModal.present !== 'function') {
+          await customElements.whenDefined('ion-modal');
+        }
+        await cartModal.present();
+      }
+    }
+
+    function handleAddMultipleToCart(itemsArray) {
+      try {
+        itemsArray.forEach(item => {
+          const price = parsePrice(item.price);
+          const quantity = item.quantity || 1;
+          const warna = item.warna || 'pilihan';
+          const ukuran = item.ukuran || 'regular';
+          const productName = item.name || currentProduct?.title;
+
+          simpleCart.add({
+            name: productName,
+            price: price,
+            quantity: quantity,
+            warna: warna,
+            ukuran: ukuran,
+            link: item.link || currentProduct?.url || '#',
+            thumb: item.thumb || currentProduct?.image || '',
+            berat: item.berat || 100
+          });
+        });
+
+        updateCartCount();
+        updateCartModal();
+
+        // Otomatis arahkan dan buka modal keranjang setelah barang ditambahkan
+        setTimeout(() => {
+          openCartModalDirectly();
+        }, 1500); // Memberikan jeda 1.5 detik agar user sempat membaca info sukses di chat
+
+      } catch (error) {
+        console.error('Add multiple to cart error:', error);
+        addMessage('ai', '😅 Ups, gagal menambahkan beberapa item. Coba lagi ya!');
+      }
+    }
 
     async function sendMessage() {
       const input = document.getElementById('chat-input');
@@ -316,14 +338,20 @@ function handleAddMultipleToCart(itemsArray) {
         if (aiData.action?.type === 'addToCart' && aiData.action.data) {
           handleAddToCart(aiData.action.data);
         }
-        
-if (aiData.action?.type === 'addMultipleToCart' && Array.isArray(aiData.action.data)) {
-  handleAddMultipleToCart(aiData.action.data);
-}
 
-        
+        if (aiData.action?.type === 'addMultipleToCart' && Array.isArray(aiData.action.data)) {
+          handleAddMultipleToCart(aiData.action.data);
+        }
+
         if (aiData.action?.type === 'showImages' && aiData.action.data) {
           showProductImages(aiData.action.data);
+        }
+
+        // Handle aksi baru: openCart
+        if (aiData.action?.type === 'openCart') {
+          setTimeout(() => {
+            openCartModalDirectly();
+          }, 1500); // Jeda 1.5 detik agar user sempat membaca chat respons AI terlebih dahulu
         }
 
       } catch (error) {
@@ -419,7 +447,7 @@ if (aiData.action?.type === 'addMultipleToCart' && Array.isArray(aiData.action.d
         alert('Keranjang masih kosong nih!');
         return;
       }
-      
+
       const cartModal = document.getElementById('cart-modal');
       if (cartModal) await cartModal.dismiss();
 
@@ -434,7 +462,7 @@ if (aiData.action?.type === 'addMultipleToCart' && Array.isArray(aiData.action.d
       // Logic has moved to WhatsApp() in formOrder.js
       WhatsApp();
     };
-    
+
     // Expose modal functions to window for onclick handlers
     window.openProductChat = openProductChat;
     window.closeChatModal = closeChatModal;
