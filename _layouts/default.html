@@ -22,11 +22,9 @@ title: AI OLshop
   </ion-toolbar>
 </ion-header>
     {{ content }}
-<footer id="footer">
+<footer>
 <ion-toolbar class="p-02">
-    <ion-label slot="end">&copy; {{ site.time | date: "%Y" }} - {{site.title}} by 
-      <span id="author">{{site.author}}</span>
-    </ion-label>
+    <ion-label slot="end" id="footer"></ion-label>
 </ion-toolbar>
 </footer>
   {% include modals.html %}
