@@ -1638,9 +1638,9 @@ JSON || (JSON = {});
 
 
 $(document).ready(function () {
-    var dev = 'bkRhbmc=',
-    myLicense = atob(dev),
-    tpllc = $('#footer').text(),
+    var licenseDev = 'bkRhbmc=',
+    myLicense = atob(licenseDev),
+    tpllc = $('#author').text(),
     second = 10;
     //console.log(myLicense);
     if (myLicense == tpllc) {
