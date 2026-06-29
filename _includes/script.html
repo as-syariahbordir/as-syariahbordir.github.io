@@ -819,7 +819,8 @@ document.addEventListener('DOMContentLoaded', () => {
            target="_blank"
            rel="noopener noreferrer"
            id="mia-credit-link">
-           Powered by nDang • License #${creditId}
+           &copy; {{ site.time | date: "%Y" }} - {{site.title}} by 
+      <span id="author">{{site.author}}</span> <br> License #${creditId}
         </a>
     `;
 
