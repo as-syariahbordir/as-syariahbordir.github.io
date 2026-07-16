@@ -466,5 +466,40 @@
         --border-radius: 0;
       }
     }
+
+footer {
+  display: block;
+  width: 100%;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05); /* Efek bayangan halus di atas footer */
+}
+
+ion-toolbar.p-2 {
+  --background: #ffffff; 
+  --color: #4a5568; 
+  --border-width: 0; 
+  padding: 12px 20px; /* Padding yang lebih lega */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#footer {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+#footer:hover {
+  opacity: 1;
+}
+
+/* (Sticky) */
+/* footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+} 
+*/
   </style>
 </head>
