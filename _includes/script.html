@@ -833,6 +833,7 @@ document.addEventListener('DOMContentLoaded', () => {
         display: block !important;
         visibility: visible !important;
         text-align: center !important;
+        text-decoration: none !important;
         transition: opacity 0.3s !important;
     `;
 
@@ -849,13 +850,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('footer') ||
             document.querySelector('.footer');
 
-        // 1. Cek keberadaan elemen fisik
         if (!footerEl || !creditEl) {
             lockTemplate('Credit Dihapus dari DOM');
             return;
         }
 
-        // 2. Cek apakah disembunyikan menggunakan CSS (display / opacity / visibility)
         const style = window.getComputedStyle(creditEl);
         const opacity = parseFloat(style.opacity);
         
@@ -869,14 +868,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // 3. Cek manipulasi isi Link / URL tujuan
         const linkEl = document.getElementById('mia-credit-link');
         if (!linkEl || linkEl.getAttribute('href') !== LICENSE_URL) {
             lockTemplate('License URL Tampered');
             return;
         }
 
-        // 4. Cek manipulasi Teks Kredit (Mencegah nama diganti)
         if (!linkEl.textContent.includes('nDang')) {
             lockTemplate('Credit Text Renamed');
             return;
@@ -937,7 +934,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     transform: scale(1) translateY(0);
                 }
 
-                /* Close button mobile friendly dengan area ketuk 44px */
                 .close-ad-btn {
                     position: absolute;
                     top: 12px;
@@ -1012,7 +1008,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     transition: transform 0.5s ease;
                 }
 
-                /* Efek hover dinonaktifkan di layar sentuh agar transisi mulus */
                 @media (hover: hover) {
                     .ad-image-container:hover .ad-image {
                         transform: scale(1.03);
