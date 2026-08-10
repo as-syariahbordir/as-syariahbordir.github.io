@@ -2,18 +2,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-  {% comment %} --- LOGIKA SEO & VARIABLE JEKYLL (SAFE ESCAPING) --- {% endcomment %}
-  {% assign page_title = page.title | default: site.title %}
-  {% if page.url != '/' and page_title != site.title %}
-    {% assign page_title = page_title | append: ' | ' | append: site.title %}
-  {% endif %}
-
-  {% assign raw_desc = page.description | default: page.excerpt | default: site.description %}
-  {% assign page_description = raw_desc | strip_html | strip_newlines | truncate: 160 %}
-  {% assign default_img = 'https://s3.cdnppp789.com/uploads/1003/162ed9ff5afd4975c66ea061ec9516fa.png' %}
-  {% assign page_image = page.image | default: site.logo | default: default_img | absolute_url %}
-  {% assign canonical_url = page.url | replace:'index.html','' | absolute_url %}
-
   <!-- Primary Meta Tags -->
   <title>{{ page_title | escape }}</title>
   <meta name="title" content="{{ page_title | escape }}" />
