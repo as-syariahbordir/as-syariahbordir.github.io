@@ -1,11 +1,191 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>{{site.title}}</ion-title>
-        <ion-badge color="danger" id="cart-count">0</ion-badge>
-    <ion-buttons slot="end">
-      <ion-button id="cart-button">
-        <ion-icon name="cart" slot="icon-only"></ion-icon>
-      </ion-button>
+<!-- Ionic v8 Modern Flat Parallax Header -->
+<ion-header class="ion-no-border modern-parallax-header">
+  <ion-toolbar class="transparent-toolbar">
+    <!-- Brand / Logo Title -->
+    <ion-title slot="start" class="brand-title">
+      <a href="{{ site.baseurl }}/" class="brand-link">
+        <span class="brand-text">{{ site.title }}</span>
+      </a>
+    </ion-title>
+
+    <!-- Action Buttons -->
+    <ion-buttons slot="end" class="header-actions">
+      <!-- Cart Button with Floating Badge -->
+      <div class="cart-btn-wrapper">
+        <ion-button id="cart-button" fill="clear" aria-label="Keranjang Belanja" class="icon-btn">
+          <ion-icon name="bag-handle-outline" slot="icon-only"></ion-icon>
+        </ion-button>
+        <span class="modern-badge" id="cart-count">0</span>
+      </div>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
+<style>
+  /* Base Modern Header Setup */
+  ion-header.modern-parallax-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    background: transparent;
+  }
+
+  /* Toolbar Transparent Styling */
+  ion-toolbar.transparent-toolbar {
+    --background: transparent !important;
+    --border-width: 0 !important;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --min-height: 64px;
+  }
+
+  /* Scrolled State (Aktif via JS saat di-scroll) */
+  ion-header.modern-parallax-header.is-scrolled {
+    background: rgba(26, 26, 46, 0.75) !important;
+    backdrop-filter: blur(16px) -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Brand / Site Title */
+  .brand-title {
+    padding-start: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .brand-link {
+    text-decoration: none;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 0.2s ease;
+  }
+
+  .brand-link:hover {
+    opacity: 0.85;
+  }
+
+  .brand-text {
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: inherit;
+  }
+
+  /* Header Buttons Layout */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cart-btn-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Modern Flat Action Icon Button */
+  ion-button.icon-btn {
+    --color: #ffffff;
+    --color-hover: #ffd700;
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --border-radius: 50%;
+    margin: 0;
+    height: 44px;
+    width: 44px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  ion-button.icon-btn:hover {
+    transform: scale(1.08);
+  }
+
+  ion-button.icon-btn ion-icon {
+    font-size: 22px;
+  }
+
+  /* Floating Minimalist Cart Badge */
+  .modern-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: #ffd700;
+    color: #1a1a2e;
+    font-size: 0.72rem;
+    font-weight: 800;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease;
+  }
+
+  /* Sembunyikan badge jika 0 */
+  .modern-badge:empty,
+  .modern-badge[data-count="0"] {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  /* Mobile Adjustments */
+  @media (max-width: 576px) {
+    ion-toolbar.transparent-toolbar {
+      --padding-start: 12px;
+      --padding-end: 12px;
+      --min-height: 56px;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const header = document.querySelector('.modern-parallax-header');
+    
+    // Auto Glassmorphism Effect saat Scroll
+    function updateHeaderOnScroll() {
+      if (!header) return;
+      if (window.scrollY > 40) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    }
+
+    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+    updateHeaderOnScroll(); // Initial check
+
+    // Helper sederhana untuk animasi Cart Badge ketika angka berubah
+    const cartBadge = document.getElementById('cart-count');
+    if (cartBadge) {
+      const observer = new MutationObserver(function() {
+        const count = parseInt(cartBadge.textContent || '0', 10);
+        cartBadge.setAttribute('data-count', count);
+        
+        // Efek bounce ringan saat count berubah
+        cartBadge.style.transform = 'scale(1.3)';
+        setTimeout(() => {
+          cartBadge.style.transform = count > 0 ? 'scale(1)' : 'scale(0)';
+        }, 150);
+      });
+
+      observer.observe(cartBadge, { childList: true, characterData: true, subtree: true });
+    }
+  });
+</script>
