@@ -285,6 +285,7 @@
 </style>
 
 <script>
+{% raw %}
   // Dynamic fetch (Pertahankan ini jika tidak menggunakan Liquid Jekyll {% for %})
   async function loadParallaxProducts() {
     try {
@@ -362,4 +363,5 @@
     loadParallaxProducts();
     initParallax();
   });
+{% endraw %}
 </script>
