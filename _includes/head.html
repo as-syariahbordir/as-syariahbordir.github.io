@@ -2,7 +2,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   
-  {% comment %} --- LOGIKA SEO & VARIABLE JEKYLL --- {% endcomment %}
   {% assign page_title = page.title | default: site.title %}
   {% if page.url != '/' %}{% assign page_title = page_title | append: ' | ' | append: site.title %}{% endif %}
   {% assign page_description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 %}
