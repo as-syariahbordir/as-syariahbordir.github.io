@@ -1,5 +1,81 @@
-<footer>
-<ion-toolbar class="p-2 text-center">
-    <ion-label id="footer"></ion-label>
-</ion-toolbar>
+<!-- Modern Flat Parallax Footer -->
+<footer class="modern-site-footer">
+  <ion-toolbar class="footer-toolbar p-2 text-center">
+    <ion-label id="footer" class="footer-label"></ion-label>
+  </ion-toolbar>
 </footer>
+
+<style>
+  /* Footer Layout Base */
+  footer.modern-site-footer {
+    display: block;
+    width: 100%;
+    background: #1a1a2e;
+    border-top: 1px solid rgba(255, 215, 0, 0.15);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Ionic Toolbar Overrides for Footer */
+  ion-toolbar.footer-toolbar {
+    --background: #1a1a2e;
+    --color: #a0aec0;
+    --border-width: 0;
+    padding: 16px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Targetting the mandatory ID #footer */
+  ion-label#footer,
+  .footer-label {
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+
+  /* Styling for links injected dynamically inside #footer */
+  ion-label#footer a,
+  .footer-label a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  ion-label#footer a:hover,
+  .footer-label a:hover {
+    color: #ffed4e;
+    text-decoration: underline;
+    opacity: 1;
+  }
+
+  /* Helper class p-2 & text-center compatibility */
+  .p-2 {
+    padding: 12px 16px;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 576px) {
+    ion-toolbar.footer-toolbar {
+      padding: 12px 16px;
+    }
+
+    ion-label#footer,
+    .footer-label {
+      font-size: 0.8rem;
+    }
+  }
+</style>
+
