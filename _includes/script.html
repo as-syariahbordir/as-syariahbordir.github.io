@@ -1,183 +1,205 @@
-// includes/script.html
-  <script>
-   // Konfigurasi SimpleCart
-    simpleCart({
-      cartColumns: [
-        { attr: "thumb", label: "", view: "thumb" },
-        { attr: "name", label: "Produk", view: "link" },
-        { attr: "price", label: "Harga", view: "currency" },
-        { attr: "warna", label: "Warna", view: "text" },
-        { attr: "ukuran", label: "Model", view: "text" },
-        { view: "decrement", label: false },
-        { attr: "quantity", label: 'Qty', view: "qty" },
-        { view: "increment", label: false },
-        { view: "remove", text: "Hapus", label: false }
-      ],
-      currency: "IDR",
-    });
+<script>
+  // Konfigurasi SimpleCart
+  simpleCart({
+    cartColumns: [
+      { attr: "thumb", label: "", view: "thumb" },
+      { attr: "name", label: "Produk", view: "link" },
+      { attr: "price", label: "Harga", view: "currency" },
+      { attr: "warna", label: "Warna", view: "text" },
+      { attr: "ukuran", label: "Model", view: "text" },
+      { view: "decrement", label: false },
+      { attr: "quantity", label: 'Qty', view: "qty" },
+      { view: "increment", label: false },
+      { view: "remove", text: "Hapus", label: false }
+    ],
+    currency: "IDR",
+  });
 
-    // AI Chat State
-    let currentProduct = null;
-    let chatSessionId = Date.now().toString();
-    const AI_API_URL = 'https://assya-ai.sendaljepit.workers.dev/api/chat';
+  // AI Chat State
+  let currentProduct = null;
+  let chatSessionId = Date.now().toString();
+  const AI_API_URL = 'https://assya-ai.sendaljepit.workers.dev/api/chat';
 
-    // Flag untuk tracking Ionic readiness
-    let ionicReady = false;
+  // Flag untuk tracking Ionic readiness
+  let ionicReady = false;
 
-    // Initialize Ionic readiness check immediately
-    (async function initIonic() {
-      //console.log('Initializing Ionic...');
-      try {
-        if (typeof customElements !== 'undefined') {
-          await Promise.all([
-            customElements.whenDefined('ion-modal'),
-            customElements.whenDefined('ion-content'),
-            customElements.whenDefined('ion-header'),
-            customElements.whenDefined('ion-footer'),
-            customElements.whenDefined('ion-button'),
-            customElements.whenDefined('ion-icon')
-          ]);
-          ionicReady = true;
-          //console.log('✅ Ionic fully initialized!');
-        } else {
-          //console.error('❌ customElements not available');
-        }
-      } catch (err) {
-        //console.error('❌ Ionic initialization error:', err);
+  // Initialize Ionic readiness check
+  (async function initIonic() {
+    try {
+      if (typeof customElements !== 'undefined') {
+        await Promise.all([
+          customElements.whenDefined('ion-modal'),
+          customElements.whenDefined('ion-content'),
+          customElements.whenDefined('ion-header'),
+          customElements.whenDefined('ion-footer'),
+          customElements.whenDefined('ion-button'),
+          customElements.whenDefined('ion-icon')
+        ]);
+        ionicReady = true;
       }
-    })();
-
-    // Helper functions
-    function parsePrice(p) {
-      if (!p) return 0;
-      let val = p;
-      if (typeof val === 'string') {
-        val = val.replace(/\./g, '').replace(/\D/g, '');
-        val = parseInt(val, 10);
-      }
-      if (typeof val === 'number' && !isNaN(val)) {
-        // AI often reads "15.600" as 15.6 (decimal).
-        // Since all products are > Rp10.000, we multiply if it's too small.
-        if (val > 0 && val < 1000) return Math.round(val * 1000);
-        return Math.round(val);
-      }
-      return 0;
+    } catch (err) {
+      console.error('❌ Ionic initialization error:', err);
     }
+  })();
 
-    function formatPrice(price) {
-      if (typeof price === 'string') return price;
-      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  // Helper functions
+  function parsePrice(p) {
+    if (!p) return 0;
+    let val = p;
+    if (typeof val === 'string') {
+      val = val.replace(/\./g, '').replace(/\D/g, '');
+      val = parseInt(val, 10);
     }
+    if (typeof val === 'number' && !isNaN(val)) {
+      if (val > 0 && val < 1000) return Math.round(val * 1000);
+      return Math.round(val);
+    }
+    return 0;
+  }
 
-    // Wait for Ionic to be fully ready
-    async function waitForIonic() {
-      if (ionicReady) {
-        //console.log('Ionic already ready');
+  function formatPrice(price) {
+    if (typeof price === 'string') return price;
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  function angkaToRp(angka) {
+    return 'Rp' + formatPrice(angka);
+  }
+
+  async function waitForIonic() {
+    if (ionicReady) return true;
+    try {
+      if (typeof customElements !== 'undefined') {
+        await customElements.whenDefined('ion-modal');
+        ionicReady = true;
         return true;
       }
-
-      //console.log('Waiting for Ionic...');
-      try {
-        if (typeof customElements !== 'undefined') {
-          await customElements.whenDefined('ion-modal');
-          ionicReady = true;
-          //console.log('✅ Ionic ready!');
-          return true;
-        }
-      } catch (err) {
-        console.error('Error waiting for Ionic:', err);
-        return false;
-      }
+    } catch (err) {
+      console.error('Error waiting for Ionic:', err);
       return false;
     }
+    return false;
+  }
 
-    // Open chat for specific product
-    async function openProductChat(product) {
-      //console.log('🔵 [openProductChat] Called with product:', product?.title);
-      //console.log('🔵 [openProductChat] ionicReady:', ionicReady);
+  // Visual Typing Indicator Helpers
+  function showTyping() {
+    const messages = document.getElementById('chat-messages');
+    if (!messages) return;
 
-      currentProduct = product;
-      chatSessionId = Date.now().toString();
+    // Sembunyikan indikator lama jika ada
+    hideTyping();
 
-      const modal = document.getElementById('chat-modal');
-      //console.log('🔵 [openProductChat] Modal element:', modal);
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'typing-indicator';
+    typingDiv.id = 'typing-indicator';
+    typingDiv.innerHTML = `
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+    `;
+    messages.appendChild(typingDiv);
+    scrollToBottom();
+  }
 
-      const titleSpan = document.getElementById('chat-title');
-      const messages = document.getElementById('chat-messages');
+  function hideTyping() {
+    const typing = document.getElementById('typing-indicator');
+    if (typing) typing.remove();
+  }
 
-      if (!modal) {
-        console.error('❌ [openProductChat] Modal chat-modal tidak ditemukan di DOM!');
-        return;
+  function scrollToBottom() {
+    const content = document.querySelector('#chat-modal ion-content');
+    if (content && typeof content.scrollToBottom === 'function') {
+      setTimeout(() => {
+        content.scrollToBottom(500);
+      }, 100);
+    }
+  }
+
+  function addMessage(sender, text) {
+    const messages = document.getElementById('chat-messages');
+    if (!messages) return;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+
+    let htmlText = text
+      .replace(/(\*\*|__)(.*?)\1/g, '<strong>$2</strong>')
+      .replace(/(\*|_)(.*?)\1/g, '<em>$2</em>')
+      .replace(/\n/g, '<br>')
+      .replace(/`(.*?)`/g, '<code>$1</code>')
+      .replace(/•/g, '<span style="display:inline-block;width:20px;color:#3880ff;">•</span>');
+
+    messageDiv.innerHTML = htmlText;
+    messages.appendChild(messageDiv);
+    scrollToBottom();
+  }
+
+  /**
+   * HELPER BARU: Menampilkan pesan AI dengan efek Typing Indicator
+   * Menjamin semua pesan AI (statis & dynamic backend) melalui typing indicator yang sama
+   */
+  function addAIMessageWithTyping(text, delay = 800) {
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      if (text) {
+        addMessage('ai', text);
       }
+    }, delay);
+  }
 
-      if (titleSpan) titleSpan.textContent = product.title;
-      if (messages) messages.innerHTML = '';
+  // Open chat for specific product
+  async function openProductChat(product) {
+    currentProduct = product;
+    chatSessionId = Date.now().toString();
 
-      const colors = product.styles?.map(s => s.name).join(', ') || 'berbagai pilihan';
+    const modal = document.getElementById('chat-modal');
+    const titleSpan = document.getElementById('chat-title');
+    const messages = document.getElementById('chat-messages');
 
-      try {
-        // Pastikan Ionic sudah siap
-        //console.log('🔵 [openProductChat] Calling waitForIonic()...');
-        const isIonicReady = await waitForIonic();
-        //console.log('🔵 [openProductChat] Ionic ready result:', isIonicReady);
-
-        if (typeof modal.present !== 'function') {
-          console.error('❌ [openProductChat] modal.present() bukan fungsi. Ionic mungkin tidak terload dengan benar.');
-          //console.log('🔵 [openProductChat] modal object:', modal);
-          return;
-        }
-
-        //console.log('🔵 [openProductChat] Calling modal.present()...');
-        await modal.present();
-        //console.log('✅ [openProductChat] Modal berhasil dibuka (present)');
-
-        // Buat chat lebih natural dengan delay dan typing indicator
-        showTyping();
-        setTimeout(() => {
-          hideTyping();
-          addMessage('ai', `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Aku mau beli"\n• "Detail produk"\n• "Lihat Semua Foto"`);
-
-          const input = document.getElementById('chat-input');
-          if (input) {
-            input.setFocus();
-          }
-          scrollToBottom();
-        }, 1000);
-      } catch (err) {
-        console.error('❌ [openProductChat] Eror saat memanggil modal.present():', err);
-        alert('Terjadi kesalahan saat membuka chat. Silakan refresh halaman.');
-      }
+    if (!modal) {
+      console.error('❌ Modal chat-modal tidak ditemukan di DOM!');
+      return;
     }
 
-    function addMessage(sender, text) {
-      const messages = document.getElementById('chat-messages');
-      if (!messages) return;
+    if (titleSpan) titleSpan.textContent = product.title;
+    if (messages) messages.innerHTML = '';
 
-      const messageDiv = document.createElement('div');
-      messageDiv.className = `message ${sender}-message`;
+    const colors = product.styles?.map(s => s.name).join(', ') || 'berbagai pilihan';
 
-      let htmlText = text
-        .replace(/(\*\*|__)(.*?)\1/g, '<strong>$2</strong>')
-        .replace(/(\*|_)(.*?)\1/g, '<em>$2</em>')
-        .replace(/\n/g, '<br>')
-        .replace(/`(.*?)`/g, '<code>$1</code>')
-        .replace(/•/g, '<span style="display:inline-block;width:20px;color:#3880ff;">•</span>');
+    try {
+      await waitForIonic();
+      if (typeof modal.present !== 'function') return;
 
-      messageDiv.innerHTML = htmlText;
-      messages.appendChild(messageDiv);
-      scrollToBottom();
+      await modal.present();
+
+      // Gunakan helper typing indicator untuk pesan pembuka statis
+      const welcomeMsg = `👋 **Hai! Saya Assya, AI Assistant untuk ${product.title}**\n\nProduk ini tersedia dalam warna: *${colors}*.\n\nApa yang bisa saya bantu? 😊\n\n*Contoh chat:*\n• "Aku mau beli"\n• "Detail produk"\n• "Lihat Semua Foto"`;
+      
+      addAIMessageWithTyping(welcomeMsg, 1000);
+
+      const input = document.getElementById('chat-input');
+      if (input) input.setFocus();
+
+    } catch (err) {
+      console.error('❌ Eror saat memanggil modal.present():', err);
+      alert('Terjadi kesalahan saat membuka chat. Silakan refresh halaman.');
     }
+  }
 
-    // Function to display product images
-    function showProductImages(imagesData) {
-      const messages = document.getElementById('chat-messages');
-      if (!messages || !imagesData || !imagesData.images) return;
+  // Display product images
+  function showProductImages(imagesData) {
+    const messages = document.getElementById('chat-messages');
+    if (!messages || !imagesData || !imagesData.images) return;
 
+    // Tambahkan delay ngetik kecil agar gambar tidak kaget muncul
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
       const imageDiv = document.createElement('div');
       imageDiv.className = 'message ai-message product-images-container';
 
       let imagesHtml = '<div class="product-images-grid">';
-
       imagesData.images.forEach(img => {
         imagesHtml += `
           <div class="product-image-card" style="border-color: ${img.color || '#ccc'};">
@@ -193,130 +215,131 @@
       imageDiv.innerHTML = imagesHtml;
       messages.appendChild(imageDiv);
       scrollToBottom();
-    }
+    }, 600);
+  }
 
-    // Helper function to determine text color based on background
-    function getContrastColor(hexcolor) {
-      if (!hexcolor) return '#000';
-      // Convert hex to RGB
-      const r = parseInt(hexcolor.substr(1, 2), 16);
-      const g = parseInt(hexcolor.substr(3, 2), 16);
-      const b = parseInt(hexcolor.substr(5, 2), 16);
-      // Calculate luminance
-      const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-      return (yiq >= 128) ? '#000' : '#fff';
-    }
+  function getContrastColor(hexcolor) {
+    if (!hexcolor) return '#000';
+    const r = parseInt(hexcolor.substr(1, 2), 16);
+    const g = parseInt(hexcolor.substr(3, 2), 16);
+    const b = parseInt(hexcolor.substr(5, 2), 16);
+    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return (yiq >= 128) ? '#000' : '#fff';
+  }
 
-    function scrollToBottom() {
-      const content = document.querySelector('#chat-modal ion-content');
-      if (content && typeof content.scrollToBottom === 'function') {
-        setTimeout(() => {
-          content.scrollToBottom(500); // 500ms adalah durasi animasi scroll-nya
-        }, 100);
+  async function openCartModalDirectly() {
+    const chatModal = document.getElementById('chat-modal');
+    if (chatModal) await chatModal.dismiss();
+
+    const cartModal = document.getElementById('cart-modal');
+    if (cartModal) {
+      updateCartModal();
+      if (typeof cartModal.present !== 'function') {
+        await customElements.whenDefined('ion-modal');
       }
+      await cartModal.present();
     }
+  }
 
-    function showTyping() {
-      const messages = document.getElementById('chat-messages');
-      if (!messages) return;
+  function handleAddMultipleToCart(itemsArray) {
+    try {
+      itemsArray.forEach(item => {
+        const price = parsePrice(item.price);
+        const quantity = item.quantity || 1;
+        const warna = item.warna || 'pilihan';
+        const ukuran = item.ukuran || 'regular';
+        const productName = item.name || currentProduct?.title;
 
-      const typingDiv = document.createElement('div');
-      typingDiv.className = 'typing-indicator';
-      typingDiv.id = 'typing-indicator';
-      typingDiv.innerHTML = `
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-        <div class="typing-dot"></div>
-      `;
-      messages.appendChild(typingDiv);
-      scrollToBottom();
-    }
-
-    function hideTyping() {
-      const typing = document.getElementById('typing-indicator');
-      if (typing) typing.remove();
-    }
-
-    // Fungsi helper untuk membuka modal Keranjang Ionic
-    async function openCartModalDirectly() {
-      const chatModal = document.getElementById('chat-modal');
-      // Tutup modal chat terlebih dahulu
-      if (chatModal) {
-        await chatModal.dismiss();
-      }
-
-      // Buka modal keranjang
-      const cartModal = document.getElementById('cart-modal');
-      if (cartModal) {
-        updateCartModal();
-        if (typeof cartModal.present !== 'function') {
-          await customElements.whenDefined('ion-modal');
-        }
-        await cartModal.present();
-      }
-    }
-
-    function handleAddMultipleToCart(itemsArray) {
-      try {
-        itemsArray.forEach(item => {
-          const price = parsePrice(item.price);
-          const quantity = item.quantity || 1;
-          const warna = item.warna || 'pilihan';
-          const ukuran = item.ukuran || 'regular';
-          const productName = item.name || currentProduct?.title;
-
-          simpleCart.add({
-            name: productName,
-            price: price,
-            quantity: quantity,
-            warna: warna,
-            ukuran: ukuran,
-            link: item.link || currentProduct?.url || '#',
-            thumb: item.thumb || currentProduct?.image || '',
-            berat: item.berat || 100
-          });
+        simpleCart.add({
+          name: productName,
+          price: price,
+          quantity: quantity,
+          warna: warna,
+          ukuran: ukuran,
+          link: item.link || currentProduct?.url || '#',
+          thumb: item.thumb || currentProduct?.image || '',
+          berat: item.berat || 100
         });
+      });
 
-        updateCartCount();
-        updateCartModal();
+      updateCartCount();
+      updateCartModal();
 
-        // Otomatis arahkan dan buka modal keranjang setelah barang ditambahkan
-        setTimeout(() => {
-          openCartModalDirectly();
-        }, 3000); // Memberikan jeda 3 detik agar user sempat membaca info sukses di chat
+      setTimeout(() => {
+        openCartModalDirectly();
+      }, 3000);
 
-      } catch (error) {
-        console.error('Add multiple to cart error:', error);
-        addMessage('ai', '😅 Ups, gagal menambahkan beberapa item. Coba lagi ya!');
-      }
+    } catch (error) {
+      console.error('Add multiple to cart error:', error);
+      addAIMessageWithTyping('😅 Ups, gagal menambahkan beberapa item. Coba lagi ya!', 600);
     }
+  }
 
-    async function sendMessage() {
-      const input = document.getElementById('chat-input');
-      if (!input) return;
+  function handleAddToCart(itemData) {
+    try {
+      const price = parsePrice(itemData.price);
+      const quantity = itemData.quantity || 1;
+      const warna = itemData.warna || 'pilihan';
+      const ukuran = itemData.ukuran || 'regular';
+      const productName = itemData.name || currentProduct?.title;
 
-      const message = input.value.trim();
-      if (!message) return;
+      simpleCart.add({
+        name: productName,
+        price: price,
+        quantity: quantity,
+        warna: warna,
+        ukuran: ukuran,
+        link: currentProduct?.url || '#',
+        thumb: currentProduct?.image || '',
+        berat: 100
+      });
 
-      input.value = '';
+      updateCartCount();
+      updateCartModal();
 
-      addMessage('user', message);
-      showTyping();
+    } catch (error) {
+      console.error('Add to cart error:', error);
+      addAIMessageWithTyping('😅 Ups, gagal nambahin ke keranjang. Coba lagi ya!', 600);
+    }
+  }
 
-      try {
-        const response = await fetch(AI_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            message: message,
-            productId: currentProduct?.id,
-            sessionId: chatSessionId
-          })
-        });
+  async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    if (!input) return;
 
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const message = input.value.trim();
+    if (!message) return;
 
-        const aiData = await response.json();
+    input.value = '';
+
+    // Pesan User
+    addMessage('user', message);
+    
+    // Tampilkan Typing Indicator segera saat menunggu API Backend
+    showTyping();
+
+    const startTime = Date.now();
+
+    try {
+      const response = await fetch(AI_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: message,
+          productId: currentProduct?.id,
+          sessionId: chatSessionId
+        })
+      });
+
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const aiData = await response.json();
+      
+      // Jaga agar typing indicator setidaknya muncul selama min 800ms agar animasi terasa alami
+      const elapsedTime = Date.now() - startTime;
+      const remainingDelay = Math.max(0, 800 - elapsedTime);
+
+      setTimeout(() => {
         hideTyping();
 
         if (aiData.sessionId) {
@@ -324,7 +347,6 @@
         }
 
         if (aiData.response) {
-          // Perbaiki format harga yang "pendek" di teks AI (misal Rp15.6 atau Rp15 -> Rp15.600)
           let processedResponse = aiData.response.replace(/Rp\s?(\d+(?:[.,]\d+)?)/gi, (match, p1) => {
             let num = parseFloat(p1.replace(',', '.'));
             if (num > 0 && num < 1000) {
@@ -347,470 +369,375 @@
           showProductImages(aiData.action.data);
         }
 
-        // Handle aksi baru: openCart
         if (aiData.action?.type === 'openCart') {
           setTimeout(() => {
             openCartModalDirectly();
-          }, 3000); // Jeda 3 detik agar user sempat membaca chat respons AI terlebih dahulu
+          }, 3000);
         }
+      }, remainingDelay);
 
-      } catch (error) {
-          setTimeout(() => {
-          showTyping();
-          setTimeout(() => {
-            hideTyping();
-        console.error('Chat error:', error);
-        addMessage('ai', "Maaf kak, Assya sedang istirahat sejenak 😵‍💫 Coba lagi ya atau langsung pesan lewat tombol WhatsApp!");
-          }, 800);
-          }, 1500);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setTimeout(() => {
+        hideTyping();
+        addAIMessageWithTyping("Maaf kak, Assya sedang istirahat sejenak 😵‍💫 Coba lagi ya atau langsung pesan lewat tombol WhatsApp!", 500);
+      }, 500);
+    }
+  }
+
+  function updateCartCount() {
+    try {
+      const count = simpleCart.quantity();
+      const cartCount = document.getElementById('cart-count');
+      if (cartCount) {
+        cartCount.textContent = count;
       }
+    } catch (error) {
+      console.error('Update cart count error:', error);
+    }
+  }
+
+  function updateCartModal() {
+    const items = simpleCart.items();
+    const cartFooter = document.getElementById('cart-footer');
+
+    if (items.length === 0) {
+      if (cartFooter) cartFooter.style.display = 'none';
+    } else {
+      if (cartFooter) cartFooter.style.display = 'block';
+    }
+  }
+
+  function closeChatModal() {
+    const modal = document.getElementById('chat-modal');
+    if (modal) {
+      modal.dismiss();
+      currentProduct = null;
+      chatSessionId = Date.now().toString();
+    }
+  }
+
+  function closeCartModal() {
+    const modal = document.getElementById('cart-modal');
+    if (modal) modal.dismiss();
+  }
+
+  function closeCheckoutModal() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) modal.dismiss();
+  }
+
+  async function checkout() {
+    if (simpleCart.quantity() === 0) {
+      alert('Keranjang masih kosong nih!');
+      return;
     }
 
-    function handleAddToCart(itemData) {
-      try {
-        const price = parsePrice(itemData.price);
-        const quantity = itemData.quantity || 1;
-        const warna = itemData.warna || 'pilihan';
-        const ukuran = itemData.ukuran || 'regular';
-        const productName = itemData.name || currentProduct?.title;
+    const cartModal = document.getElementById('cart-modal');
+    if (cartModal) await cartModal.dismiss();
 
-        simpleCart.add({
-          name: productName,
-          price: price,
-          quantity: quantity,
-          warna: warna,
-          ukuran: ukuran,
-          link: currentProduct?.url || '#',
-          thumb: currentProduct?.image || '',
-          berat: 100
-        });
+    const checkoutModal = document.getElementById('checkout-modal');
+    if (checkoutModal) {
+      if (typeof checkoutModal.present !== 'function') await customElements.whenDefined('ion-modal');
+      await checkoutModal.present();
+    }
+  }
 
+  window.WhatsAppOrder = function() {
+    WhatsApp();
+  };
+
+  // Expose modal functions to window
+  window.openProductChat = openProductChat;
+  window.closeChatModal = closeChatModal;
+  window.closeCartModal = closeCartModal;
+  window.closeCheckoutModal = closeCheckoutModal;
+  window.checkout = checkout;
+  window.sendMessage = sendMessage;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof simpleCart !== 'undefined') {
+      simpleCart.bind('update', function() {
         updateCartCount();
         updateCartModal();
-
-      } catch (error) {
-          setTimeout(() => {
-          showTyping();
-          setTimeout(() => {
-            hideTyping();
-        console.error('Add to cart error:', error);
-            addMessage('ai', '😅 Ups, gagal nambahin ke keranjang. Coba lagi ya!');
-          }, 800);
-        }, 1500);
-        }
-      }
-
-    function updateCartCount() {
-      try {
-        const count = simpleCart.quantity();
-        const cartCount = document.getElementById('cart-count');
-        if (cartCount) {
-          cartCount.textContent = count;
-        }
-      } catch (error) {
-        console.error('Update cart count error:', error);
-      }
+      });
     }
 
-    function updateCartModal() {
-      const items = simpleCart.items();
-      const cartFooter = document.getElementById('cart-footer');
-
-      if (items.length === 0) {
-        if (cartFooter) cartFooter.style.display = 'none';
-      } else {
-        if (cartFooter) cartFooter.style.display = 'block';
-      }
-    }
-
-    function closeChatModal() {
-      const modal = document.getElementById('chat-modal');
-      if (modal) {
-        modal.dismiss();
-        currentProduct = null;
-        chatSessionId = Date.now().toString();
-      }
-    }
-
-    function closeCartModal() {
-      const modal = document.getElementById('cart-modal');
-      if (modal) modal.dismiss();
-    }
-
-    function closeCheckoutModal() {
-      const modal = document.getElementById('checkout-modal');
-      if (modal) modal.dismiss();
-    }
-
-    async function checkout() {
-      if (simpleCart.quantity() === 0) {
-        alert('Keranjang masih kosong nih!');
-        return;
-      }
-
-      const cartModal = document.getElementById('cart-modal');
-      if (cartModal) await cartModal.dismiss();
-
-      const checkoutModal = document.getElementById('checkout-modal');
-      if (checkoutModal) {
-        if (typeof checkoutModal.present !== 'function') await customElements.whenDefined('ion-modal');
-        await checkoutModal.present();
-      }
-    }
-
-    window.WhatsAppOrder = function() {
-      // Logic has moved to WhatsApp() in formOrder.js
-      WhatsApp();
-    };
-
-    // Expose modal functions to window for onclick handlers
-    window.openProductChat = openProductChat;
-    window.closeChatModal = closeChatModal;
-    window.closeCartModal = closeCartModal;
-    window.closeCheckoutModal = closeCheckoutModal;
-    window.checkout = checkout;
-    window.sendMessage = sendMessage;
-
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof simpleCart !== 'undefined') {
-        simpleCart.bind('update', function() {
-          updateCartCount();
+    const cartBtn = document.getElementById('cart-button');
+    if (cartBtn) {
+      cartBtn.addEventListener('click', async function() {
+        const modal = document.getElementById('cart-modal');
+        if (modal) {
           updateCartModal();
-        });
-      }
-
-      const cartBtn = document.getElementById('cart-button');
-      if (cartBtn) {
-        cartBtn.addEventListener('click', async function() {
-          const modal = document.getElementById('cart-modal');
-          if (modal) {
-            updateCartModal();
-            if (typeof modal.present !== 'function') await customElements.whenDefined('ion-modal');
-            await modal.present();
-          }
-        });
-      }
-
-      const collection = document.getElementById('collection');
-      //console.log('Product Grid found:', !!collection);
-      if (collection) {
-        collection.addEventListener('click', function(e) {
-          //console.log('Grid clicked!', e.target);
-          const card = e.target.closest('.product-card');
-          //console.log('Card found:', !!card);
-          if (card && card.dataset.product) {
-            try {
-              const product = JSON.parse(card.dataset.product);
-              //console.log('Product data:', product);
-              openProductChat(product);
-            } catch (err) {
-              console.error('Error parsing product data:', err);
-            }
-          }
-        });
-      }
-
-      setTimeout(() => {
-        const messages = document.getElementById('chat-messages');
-        if (messages && messages.children.length === 0) {
-          showTyping();
-          setTimeout(() => {
-            hideTyping();
-            addMessage('ai', '👋 **Selamat datang di As-Syari\'ah Bordir AI Shopping Assistant!**\n\nKlik produk untuk mulai ngobrol dengan AI!');
-          }, 800);
+          if (typeof modal.present !== 'function') await customElements.whenDefined('ion-modal');
+          await modal.present();
         }
-      }, 1500);
-    });
-
-    // Handle viewport changes for keyboard
-    if ('visualViewport' in window) {
-      window.visualViewport.addEventListener('resize', () => scrollToBottom());
+      });
     }
- 
-document.addEventListener('DOMContentLoaded', () => {
 
-    // =====================================================
-    // CONFIG
-    // =====================================================
+    const collection = document.getElementById('collection');
+    if (collection) {
+      collection.addEventListener('click', function(e) {
+        const card = e.target.closest('.product-card');
+        if (card && card.dataset.product) {
+          try {
+            const product = JSON.parse(card.dataset.product);
+            openProductChat(product);
+          } catch (err) {
+            console.error('Error parsing product data:', err);
+          }
+        }
+      });
+    }
 
+    // Pesan Selamat Datang Umum (jika modal chat langsung terbuka/kosong)
+    setTimeout(() => {
+      const messages = document.getElementById('chat-messages');
+      if (messages && messages.children.length === 0) {
+        addAIMessageWithTyping('👋 **Selamat datang di As-Syari\'ah Bordir AI Shopping Assistant!**\n\nKlik produk untuk mulai ngobrol dengan AI!', 1000);
+      }
+    }, 1500);
+  });
+
+  // Handle viewport changes for keyboard
+  if ('visualViewport' in window) {
+    window.visualViewport.addEventListener('resize', () => scrollToBottom());
+  }
+
+  // =====================================================
+  // LICENSE & SECURITY WATCHDOG
+  // =====================================================
+  document.addEventListener('DOMContentLoaded', () => {
     const LICENSE_B64 = 'bkRhbmc=';
     const LICENSE_URL = atob(LICENSE_B64);
 
-    const metaLicense =
-        document.querySelector('meta[name="license"]')
-            ?.getAttribute('content') || '';
-
-    const adImageUrl =
-        document.querySelector('meta[name="ads-image"]')
-            ?.getAttribute('content') || '';
-
-    const adTargetUrl =
-        document.querySelector('meta[name="ads-link"]')
-            ?.getAttribute('content') || '#';
+    const metaLicense = document.querySelector('meta[name="license"]')?.getAttribute('content') || '';
+    const adImageUrl = document.querySelector('meta[name="ads-image"]')?.getAttribute('content') || '';
+    const adTargetUrl = document.querySelector('meta[name="ads-link"]')?.getAttribute('content') || '#';
 
     let isValid = false;
 
-    // =====================================================
-    // VALIDASI LICENSE
-    // =====================================================
-
     try {
-        if (
-            metaLicense === LICENSE_B64 ||
-            metaLicense === LICENSE_URL
-        ) {
-            isValid = true;
-        } else {
-            isValid = atob(metaLicense) === LICENSE_URL;
-        }
+      if (metaLicense === LICENSE_B64 || metaLicense === LICENSE_URL) {
+        isValid = true;
+      } else {
+        isValid = atob(metaLicense) === LICENSE_URL;
+      }
     } catch (err) {
-        isValid = false;
+      isValid = false;
     }
 
-    // =====================================================
-    // LOCK TEMPLATE FUNCTION (SUPER PRO, ELEGANT & RESPONSIVE)
-    // =====================================================
-
     function lockTemplate(reason = 'License Invalid') {
-        if (document.getElementById('peringatan')) return;
+      if (document.getElementById('peringatan')) return;
 
-        const lockHtml = `
-        <style id="peringatan-style">
-            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-            
-            html, body {
-                overflow: hidden !important;
-                height: 100% !important;
-                position: fixed !important;
-                width: 100% !important;
-            }
-            
-            #peringatan {
-                position: fixed;
-                inset: 0;
-                z-index: 99999999999;
-                background: rgba(9, 9, 11, 0.98);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                color: #f4f4f5;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-                padding: 16px;
-                font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-                box-sizing: border-box;
-            }
+      const lockHtml = `
+      <style id="peringatan-style">
+          @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+          
+          html, body {
+              overflow: hidden !important;
+              height: 100% !important;
+              position: fixed !important;
+              width: 100% !important;
+          }
+          
+          #peringatan {
+              position: fixed;
+              inset: 0;
+              z-index: 99999999999;
+              background: rgba(9, 9, 11, 0.98);
+              backdrop-filter: blur(20px);
+              -webkit-backdrop-filter: blur(20px);
+              color: #f4f4f5;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              text-align: center;
+              padding: 16px;
+              font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+              box-sizing: border-box;
+          }
 
-            .lock-card {
-                background: rgba(20, 20, 23, 0.6);
-                border: 1px solid rgba(255, 255, 255, 0.05);
-                padding: 40px 24px;
-                border-radius: 24px;
-                max-width: 440px;
-                width: 100%;
-                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                box-sizing: border-box;
-                animation: lockAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            }
+          .lock-card {
+              background: rgba(20, 20, 23, 0.6);
+              border: 1px solid rgba(255, 255, 255, 0.05);
+              padding: 40px 24px;
+              border-radius: 24px;
+              max-width: 440px;
+              width: 100%;
+              box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              box-sizing: border-box;
+              animation: lockAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          }
 
-            .lock-icon-wrapper {
-                width: 56px;
-                height: 56px;
-                background: rgba(239, 68, 68, 0.1);
-                border: 1px solid rgba(239, 68, 68, 0.2);
-                border-radius: 16px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-bottom: 20px;
-                color: #ef4444;
-            }
+          .lock-icon-wrapper {
+              width: 56px;
+              height: 56px;
+              background: rgba(239, 68, 68, 0.1);
+              border: 1px solid rgba(239, 68, 68, 0.2);
+              border-radius: 16px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 20px;
+              color: #ef4444;
+          }
 
-            #peringatan h2 {
-                margin: 0 0 12px;
-                font-size: 22px;
-                font-weight: 600;
-                letter-spacing: -0.02em;
-                color: #ffffff;
-            }
+          #peringatan h2 {
+              margin: 0 0 12px;
+              font-size: 22px;
+              font-weight: 600;
+              letter-spacing: -0.02em;
+              color: #ffffff;
+          }
 
-            #peringatan p.reason-tag {
-                font-size: 10px;
-                text-transform: uppercase;
-                letter-spacing: 0.15em;
-                color: #ef4444;
-                font-weight: 600;
-                background: rgba(239, 68, 68, 0.08);
-                padding: 4px 12px;
-                border-radius: 100px;
-                margin-bottom: 16px;
-                border: 1px solid rgba(239, 68, 68, 0.15);
-            }
+          #peringatan p.reason-tag {
+              font-size: 10px;
+              text-transform: uppercase;
+              letter-spacing: 0.15em;
+              color: #ef4444;
+              font-weight: 600;
+              background: rgba(239, 68, 68, 0.08);
+              padding: 4px 12px;
+              border-radius: 100px;
+              margin-bottom: 16px;
+              border: 1px solid rgba(239, 68, 68, 0.15);
+          }
 
-            #peringatan p.desc {
-                font-size: 13px;
-                line-height: 1.6;
-                color: #a1a1aa;
-                margin: 0 0 28px;
-                font-weight: 300;
-            }
+          #peringatan p.desc {
+              font-size: 13px;
+              line-height: 1.6;
+              color: #a1a1aa;
+              margin: 0 0 28px;
+              font-weight: 300;
+          }
 
-            .countdown-container {
-                position: relative;
-                width: 72px;
-                height: 72px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
+          .countdown-container {
+              position: relative;
+              width: 72px;
+              height: 72px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
 
-            .countdown-svg {
-                position: absolute;
-                inset: 0;
-                transform: rotate(-90deg);
-                width: 100%;
-                height: 100%;
-            }
+          .countdown-svg {
+              position: absolute;
+              inset: 0;
+              transform: rotate(-90deg);
+              width: 100%;
+              height: 100%;
+          }
 
-            .countdown-svg circle {
-                fill: none;
-                stroke-width: 3;
-            }
+          .countdown-svg circle {
+              fill: none;
+              stroke-width: 3;
+          }
 
-            .countdown-bg {
-                stroke: rgba(255, 255, 255, 0.05);
-            }
+          .countdown-bg {
+              stroke: rgba(255, 255, 255, 0.05);
+          }
 
-            .countdown-bar {
-                stroke: #ef4444;
-                stroke-dasharray: 220;
-                stroke-dashoffset: 0;
-                transition: stroke-dashoffset 1s linear;
-            }
+          .countdown-bar {
+              stroke: #ef4444;
+              stroke-dasharray: 220;
+              stroke-dashoffset: 0;
+              transition: stroke-dashoffset 1s linear;
+          }
 
-            #aktivasi {
-                font-size: 20px;
-                color: #ffffff;
-                font-weight: 600;
-                z-index: 2;
-            }
+          #aktivasi {
+              font-size: 20px;
+              color: #ffffff;
+              font-weight: 600;
+              z-index: 2;
+          }
 
-            @keyframes lockAppear {
-                from { opacity: 0; transform: translateY(15px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
+          @keyframes lockAppear {
+              from { opacity: 0; transform: translateY(15px); }
+              to { opacity: 1; transform: translateY(0); }
+          }
+      </style>
+      
+      <div id="peringatan">
+          <div class="lock-card">
+              <div class="lock-icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+              </div>
+              
+              <p class="reason-tag">${reason}</p>
+              <h2>System Locked</h2>
+              <p class="desc">
+                  Lisensi meta tidak valid atau kredit footer dimodifikasi secara ilegal. Silakan hubungi pengembang untuk aktivasi kembali.
+              </p>
 
-            /* Responsive Khusus HP Kecil */
-            @media (max-width: 360px) {
-                .lock-card {
-                    padding: 32px 16px;
-                }
-                #peringatan h2 {
-                    font-size: 18px;
-                }
-                #peringatan p.desc {
-                    font-size: 12px;
-                }
-            }
-        </style>
-        
-        <div id="peringatan">
-            <div class="lock-card">
-                <div class="lock-icon-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                    </svg>
-                </div>
-                
-                <p class="reason-tag">${reason}</p>
-                <h2>System Locked</h2>
-                <p class="desc">
-                    Lisensi meta tidak valid atau kredit footer dimodifikasi secara ilegal. Silakan hubungi pengembang untuk aktivasi kembali.
-                </p>
+              <div class="countdown-container">
+                  <svg class="countdown-svg" viewBox="0 0 80 80">
+                      <circle class="countdown-bg" cx="40" cy="40" r="35"></circle>
+                      <circle class="countdown-bar" id="countdownBar" cx="40" cy="40" r="35"></circle>
+                  </svg>
+                  <span id="aktivasi">10</span>
+              </div>
+          </div>
+      </div>
+      `;
 
-                <div class="countdown-container">
-                    <svg class="countdown-svg" viewBox="0 0 80 80">
-                        <circle class="countdown-bg" cx="40" cy="40" r="35"></circle>
-                        <circle class="countdown-bar" id="countdownBar" cx="40" cy="40" r="35"></circle>
-                    </svg>
-                    <span id="aktivasi">10</span>
-                </div>
-            </div>
-        </div>
-        `;
+      document.body.insertAdjacentHTML('beforeend', lockHtml);
 
-        document.body.insertAdjacentHTML('beforeend', lockHtml);
+      let second = 10;
+      const totalDuration = 10;
+      const circleRadius = 35;
+      const circumference = 2 * Math.PI * circleRadius;
 
-        let second = 10;
-        const totalDuration = 10;
-        const circleRadius = 35;
-        const circumference = 2 * Math.PI * circleRadius;
+      const countdownBar = document.getElementById('countdownBar');
+      if (countdownBar) {
+          countdownBar.style.strokeDasharray = circumference;
+          countdownBar.style.strokeDashoffset = 0;
+      }
 
-        const countdownBar = document.getElementById('countdownBar');
-        if (countdownBar) {
-            countdownBar.style.strokeDasharray = circumference;
-            countdownBar.style.strokeDashoffset = 0;
-        }
+      const timer = setInterval(() => {
+          second--;
 
-        const timer = setInterval(() => {
-            second--;
+          const el = document.getElementById('aktivasi');
+          if (el) el.textContent = second;
 
-            const el = document.getElementById('aktivasi');
-            if (el) el.textContent = second;
+          if (countdownBar) {
+              const offset = circumference - (second / totalDuration) * circumference;
+              countdownBar.style.strokeDashoffset = offset;
+          }
 
-            if (countdownBar) {
-                const offset = circumference - (second / totalDuration) * circumference;
-                countdownBar.style.strokeDashoffset = offset;
-            }
-
-            if (second <= 0) {
-                clearInterval(timer);
-                window.location.href = 'https://daffadevhosting.github.io/blog/';
-            }
-        }, 1000);
+          if (second <= 0) {
+              clearInterval(timer);
+              window.location.href = 'https://daffadevhosting.github.io/blog/';
+          }
+      }, 1000);
     }
 
     if (!isValid) {
-        lockTemplate('Meta License Invalid');
-        return;
+      lockTemplate('Meta License Invalid');
+      return;
     }
 
-    // =====================================================
-    // FOOTER SELECTION
-    // =====================================================
-
-    const footer =
-        document.getElementById('footer') ||
-        document.querySelector('footer') ||
-        document.querySelector('.footer');
-
+    const footer = document.getElementById('footer') || document.querySelector('footer') || document.querySelector('.footer');
     if (!footer) {
-        lockTemplate('Missing Footer Element');
-        return;
+      lockTemplate('Missing Footer Element');
+      return;
     }
-
-    // =====================================================
-    // CREDIT ID GENERATOR
-    // =====================================================
 
     const creditId = btoa(
-        LICENSE_URL
-            .split('')
-            .reduce((sum, c) => sum + c.charCodeAt(0), 0)
-            .toString()
+      LICENSE_URL
+          .split('')
+          .reduce((sum, c) => sum + c.charCodeAt(0), 0)
+          .toString()
     )
     .replace(/=/g, '')
     .substring(0, 10);
-
-    // =====================================================
-    // INJECT CREDIT
-    // =====================================================
 
     const credit = document.createElement('div');
     credit.id = 'mia-license-credit';
@@ -839,280 +766,270 @@ document.addEventListener('DOMContentLoaded', () => {
 
     footer.appendChild(credit);
 
-    // =====================================================
-    // WATCHDOG (ULTRA SECURITY)
-    // =====================================================
-
     setInterval(() => {
-        const creditEl = document.getElementById('mia-license-credit');
-        const footerEl =
-            document.getElementById('footer') ||
-            document.querySelector('footer') ||
-            document.querySelector('.footer');
+      const creditEl = document.getElementById('mia-license-credit');
+      const footerEl = document.getElementById('footer') || document.querySelector('footer') || document.querySelector('.footer');
 
-        if (!footerEl || !creditEl) {
-            lockTemplate('Credit Dihapus dari DOM');
-            return;
-        }
+      if (!footerEl || !creditEl) {
+        lockTemplate('Credit Dihapus dari DOM');
+        return;
+      }
 
-        const style = window.getComputedStyle(creditEl);
-        const opacity = parseFloat(style.opacity);
-        
-        if (
-            style.display === 'none' || 
-            style.visibility === 'hidden' || 
-            opacity < 0.1 ||
-            creditEl.offsetHeight === 0
-        ) {
-            lockTemplate('CSS Hiding Detected');
-            return;
-        }
+      const style = window.getComputedStyle(creditEl);
+      const opacity = parseFloat(style.opacity);
+      
+      if (
+        style.display === 'none' || 
+        style.visibility === 'hidden' || 
+        opacity < 0.1 ||
+        creditEl.offsetHeight === 0
+      ) {
+        lockTemplate('CSS Hiding Detected');
+        return;
+      }
 
-        const linkEl = document.getElementById('mia-credit-link');
-        if (!linkEl || linkEl.getAttribute('href') !== LICENSE_URL) {
-            lockTemplate('License URL Tampered');
-            return;
-        }
+      const linkEl = document.getElementById('mia-credit-link');
+      if (!linkEl || linkEl.getAttribute('href') !== LICENSE_URL) {
+        lockTemplate('License URL Tampered');
+        return;
+      }
 
-        if (!linkEl.textContent.includes('nDang')) {
-            lockTemplate('Credit Text Renamed');
-            return;
-        }
-
+      if (!linkEl.textContent.includes('nDang')) {
+        lockTemplate('Credit Text Renamed');
+        return;
+      }
     }, 3000);
 
-    // =====================================================
-    // IKLAN (AD MODAL - MODERN, MINIMALIST & MOBILE FRIENDLY)
-    // =====================================================
-
+    // AD MODAL
     if (adImageUrl && adTargetUrl) {
-        document.body.insertAdjacentHTML(
-            'beforeend',
-            `
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
-                .modal-overlay-ad {
-                    position: fixed;
-                    inset: 0;
-                    background: rgba(9, 9, 11, 0.6);
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    z-index: 9999999;
-                    opacity: 0;
-                    pointer-events: none;
-                    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-                    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-                    padding: 16px; /* Mencegah modal menyentuh tepi layar HP */
-                    box-sizing: border-box;
+            .modal-overlay-ad {
+                position: fixed;
+                inset: 0;
+                background: rgba(9, 9, 11, 0.6);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+                padding: 16px;
+                box-sizing: border-box;
+            }
+
+            .modal-overlay-ad.show {
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .modal-content-ad {
+                width: 100%;
+                max-width: 380px;
+                background: #ffffff;
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                border-radius: 24px;
+                padding: 32px 20px 24px;
+                position: relative;
+                text-align: center;
+                box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.25);
+                transform: scale(0.93) translateY(15px);
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+                box-sizing: border-box;
+            }
+
+            .modal-overlay-ad.show .modal-content-ad {
+                transform: scale(1) translateY(0);
+            }
+
+            .close-ad-btn {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                border: none;
+                background: none;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                color: #71717a;
+                transition: all 0.2s ease;
+                border-radius: 50%;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .close-ad-btn-inner {
+                background: rgba(0, 0, 0, 0.04);
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.2s ease;
+            }
+
+            .close-ad-btn:hover .close-ad-btn-inner {
+                background: rgba(0, 0, 0, 0.08);
+                color: #18181b;
+                transform: rotate(90deg);
+            }
+
+            .close-ad-btn svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            .modal-content-ad h3 {
+                margin: 8px 0 6px;
+                font-size: 11px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: #3b82f6;
+            }
+
+            .modal-content-ad h2 {
+                margin: 0 0 16px;
+                font-size: 18px;
+                font-weight: 700;
+                color: #18181b;
+                letter-spacing: -0.02em;
+                line-height: 1.3;
+            }
+
+            .ad-image-container {
+                position: relative;
+                width: 100%;
+                border-radius: 16px;
+                overflow: hidden;
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+                margin-bottom: 20px;
+            }
+
+            .ad-image {
+                width: 100%;
+                height: auto;
+                display: block;
+                transition: transform 0.5s ease;
+            }
+
+            @media (hover: hover) {
+                .ad-image-container:hover .ad-image {
+                    transform: scale(1.03);
                 }
+            }
 
-                .modal-overlay-ad.show {
-                    opacity: 1;
-                    pointer-events: auto;
-                }
+            .ad-link-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                width: 100%;
+                padding: 12px 20px;
+                background: #18181b;
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: 12px;
+                font-weight: 600;
+                font-size: 14px;
+                box-sizing: border-box;
+                transition: all 0.2s ease;
+                -webkit-tap-highlight-color: transparent;
+            }
 
-                .modal-content-ad {
-                    width: 100%;
-                    max-width: 380px;
-                    background: #ffffff;
-                    border: 1px solid rgba(0, 0, 0, 0.05);
-                    border-radius: 24px;
-                    padding: 32px 20px 24px;
-                    position: relative;
-                    text-align: center;
-                    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.25);
-                    transform: scale(0.93) translateY(15px);
-                    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-                    box-sizing: border-box;
-                }
+            .ad-link-btn:active {
+                background: #27272a;
+                transform: scale(0.98);
+            }
 
-                .modal-overlay-ad.show .modal-content-ad {
-                    transform: scale(1) translateY(0);
-                }
-
-                .close-ad-btn {
-                    position: absolute;
-                    top: 12px;
-                    right: 12px;
-                    border: none;
-                    background: none;
-                    width: 44px;
-                    height: 44px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    cursor: pointer;
-                    color: #71717a;
-                    transition: all 0.2s ease;
-                    border-radius: 50%;
-                    -webkit-tap-highlight-color: transparent;
-                }
-
-                .close-ad-btn-inner {
-                    background: rgba(0, 0, 0, 0.04);
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 50%;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    transition: all 0.2s ease;
-                }
-
-                .close-ad-btn:hover .close-ad-btn-inner {
-                    background: rgba(0, 0, 0, 0.08);
-                    color: #18181b;
-                    transform: rotate(90deg);
-                }
-
-                .close-ad-btn svg {
-                    width: 12px;
-                    height: 12px;
-                }
-
-                .modal-content-ad h3 {
-                    margin: 8px 0 6px;
-                    font-size: 11px;
-                    font-weight: 600;
-                    text-transform: uppercase;
-                    letter-spacing: 0.1em;
-                    color: #3b82f6;
-                }
-
-                .modal-content-ad h2 {
-                    margin: 0 0 16px;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: #18181b;
-                    letter-spacing: -0.02em;
-                    line-height: 1.3;
-                }
-
-                .ad-image-container {
-                    position: relative;
-                    width: 100%;
-                    border-radius: 16px;
-                    overflow: hidden;
-                    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-                    margin-bottom: 20px;
-                }
-
-                .ad-image {
-                    width: 100%;
-                    height: auto;
-                    display: block;
-                    transition: transform 0.5s ease;
-                }
-
-                @media (hover: hover) {
-                    .ad-image-container:hover .ad-image {
-                        transform: scale(1.03);
-                    }
-                }
-
-                .ad-link-btn {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 8px;
-                    width: 100%;
-                    padding: 12px 20px;
-                    background: #18181b;
-                    color: #ffffff;
-                    text-decoration: none;
-                    border-radius: 12px;
-                    font-weight: 600;
-                    font-size: 14px;
-                    box-sizing: border-box;
-                    transition: all 0.2s ease;
-                    -webkit-tap-highlight-color: transparent;
-                }
-
-                .ad-link-btn:active {
+            @media (hover: hover) {
+                .ad-link-btn:hover {
                     background: #27272a;
-                    transform: scale(0.98);
+                    box-shadow: 0 8px 20px -6px rgba(24, 24, 27, 0.4);
+                    transform: translateY(-1px);
                 }
-
-                @media (hover: hover) {
-                    .ad-link-btn:hover {
-                        background: #27272a;
-                        box-shadow: 0 8px 20px -6px rgba(24, 24, 27, 0.4);
-                        transform: translateY(-1px);
-                    }
-                    .ad-link-btn:hover svg {
-                        transform: translateX(3px);
-                    }
+                .ad-link-btn:hover svg {
+                    transform: translateX(3px);
                 }
+            }
 
-                .ad-link-btn svg {
-                    width: 14px;
-                    height: 14px;
-                    transition: transform 0.2s ease;
+            .ad-link-btn svg {
+                width: 14px;
+                height: 14px;
+                transition: transform 0.2s ease;
+            }
+
+            @media (max-width: 360px) {
+                .modal-content-ad {
+                    padding: 24px 16px 16px;
                 }
-
-                /* Penyesuaian khusus HP Layar Kecil */
-                @media (max-width: 360px) {
-                    .modal-content-ad {
-                        padding: 24px 16px 16px;
-                    }
-                    .modal-content-ad h2 {
-                        font-size: 16px;
-                    }
+                .modal-content-ad h2 {
+                    font-size: 16px;
                 }
-            </style>
+            }
+        </style>
 
-            <div class="modal-overlay-ad" id="adModal">
-                <div class="modal-content-ad">
-                    <button id="closeAdBtn" class="close-ad-btn" aria-label="Close ad">
-                        <div class="close-ad-btn-inner">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </div>
-                    </button>
-
-                    <h3>Limited Offer</h3>
-                    <h2>Promo Spesial Hari Ini!</h2>
-
-                    <div class="ad-image-container">
-                        <a href="${adTargetUrl}" target="_blank">
-                            <img src="${adImageUrl}" class="ad-image" alt="Iklan Promo">
-                        </a>
-                    </div>
-
-                    <a href="${adTargetUrl}" target="_blank" class="ad-link-btn">
-                        Cek Sekarang
+        <div class="modal-overlay-ad" id="adModal">
+            <div class="modal-content-ad">
+                <button id="closeAdBtn" class="close-ad-btn" aria-label="Close ad">
+                    <div class="close-ad-btn-inner">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                         </svg>
+                    </div>
+                </button>
+
+                <h3>Limited Offer</h3>
+                <h2>Promo Spesial Hari Ini!</h2>
+
+                <div class="ad-image-container">
+                    <a href="${adTargetUrl}" target="_blank">
+                        <img src="${adImageUrl}" class="ad-image" alt="Iklan Promo">
                     </a>
                 </div>
+
+                <a href="${adTargetUrl}" target="_blank" class="ad-link-btn">
+                    Cek Sekarang
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                </a>
             </div>
-            `
-        );
+        </div>
+        `
+      );
 
-        const modal = document.getElementById('adModal');
-        const closeBtn = document.getElementById('closeAdBtn');
+      const modal = document.getElementById('adModal');
+      const closeBtn = document.getElementById('closeAdBtn');
 
-        setTimeout(() => {
-            modal?.classList.add('show');
-        }, 2000);
+      setTimeout(() => {
+        modal?.classList.add('show');
+      }, 2000);
 
-        closeBtn?.addEventListener('click', () => modal.classList.remove('show'));
+      closeBtn?.addEventListener('click', () => modal.classList.remove('show'));
 
-        modal?.addEventListener('click', e => {
-            if (e.target === modal) {
-                modal.classList.remove('show');
-            }
-        });
+      modal?.addEventListener('click', e => {
+        if (e.target === modal) {
+          modal.classList.remove('show');
+        }
+      });
     }
-});
- </script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  });
+</script>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  lucide.createIcons();
+</script>
+
