@@ -1,20 +1,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  {% comment %} --- LOGIKA SEO & VARIABLE JEKYLL --- {% endcomment %}
+  {% assign page_title = page.title | default: site.title %}
+  {% if page.url != '/' %}{% assign page_title = page_title | append: ' | ' | append: site.title %}{% endif %}
+  {% assign page_description = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 %}
+  {% assign page_image = page.image | default: site.logo | default: 'https://s3.cdnppp789.com/uploads/1003/162ed9ff5afd4975c66ea061ec9516fa.png' | absolute_url %}
+  {% assign canonical_url = page.url | replace:'index.html','' | absolute_url %}
+
+  <!-- Primary Meta Tags -->
+  <title>{{ page_title }}</title>
+  <meta name="title" content="{{ page_title }}" />
+  <meta name="description" content="{{ page_description }}" />
+  <meta name="keywords" content="{{ page.keywords | default: site.keywords | default: 'bordir nusantara, seni bordir, kerajinan bordir, pakaian bordir, embroidery indonesia' }}" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="{{ canonical_url }}" />
+
+  <!-- Meta Lisensi & Iklan Custom -->
   <meta name="license" content="bkRhbmc=">
   <meta name="ads-image" content="https://s3.cdnppp789.com/uploads/1003/162ed9ff5afd4975c66ea061ec9516fa.png">
   <meta name="ads-link" content="https://jp6789x2.com/s/BCE151027183">
-  <title>{{ page.title | default: site.title }}</title>
 
-    {% include favicon.html %}
-    
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content="{% if page.layout == 'post' or page.layout == 'product' %}article{% else %}website{% endif %}" />
+  <meta property="og:url" content="{{ canonical_url }}" />
+  <meta property="og:title" content="{{ page_title }}" />
+  <meta property="og:description" content="{{ page_description }}" />
+  <meta property="og:image" content="{{ page_image }}" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+  <meta property="og:locale" content="{{ site.lang | default: 'id_ID' }}" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="{{ canonical_url }}" />
+  <meta name="twitter:title" content="{{ page_title }}" />
+  <meta name="twitter:description" content="{{ page_description }}" />
+  <meta name="twitter:image" content="{{ page_image }}" />
+  {% if site.twitter_username %}
+  <meta name="twitter:site" content="@{{ site.twitter_username }}" />
+  {% endif %}
+
+  <!-- Schema.org JSON-LD (Google Rich Snippets Engine) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "{{ site.url | default: canonical_url }}#website",
+        "url": "{{ site.url | default: canonical_url }}",
+        "name": "{{ site.title }}",
+        "description": "{{ site.description }}",
+        "inLanguage": "{{ site.lang | default: 'id-ID' }}"
+      },
+      {
+        "@type": "Organization",
+        "@id": "{{ site.url | default: canonical_url }}#organization",
+        "name": "{{ site.title }}",
+        "url": "{{ site.url | default: canonical_url }}",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ page_image }}"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "{{ canonical_url }}#webpage",
+        "url": "{{ canonical_url }}",
+        "name": "{{ page_title }}",
+        "isPartOf": { "@id": "{{ site.url | default: canonical_url }}#website" },
+        "description": "{{ page_description }}",
+        "inLanguage": "{{ site.lang | default: 'id-ID' }}"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Favicon -->
+  {% include favicon.html %}
+
+  <!-- Resource Preconnect & Performance Hints -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="preconnect" href="https://code.jquery.com" crossorigin />
+  <link rel="dns-prefetch" href="https://code.jquery.com" />
+
   <!-- Ionic Core v8 via CDN -->
   <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@8/dist/ionic/ionic.esm.js"></script>
   <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@8/dist/ionic/ionic.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@8/css/ionic.bundle.css" />
 
-  <!-- Include SimpleCart -->
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <!-- Include SimpleCart & jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="{{ '/assets/js/simpleCart.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/formOrder.js' | relative_url }}"></script>
 
